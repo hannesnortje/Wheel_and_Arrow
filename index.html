@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wheel of Life — Interactive</title>
+<meta name="description" content="Plot your Wheel of Life: set each area from 1 to 10 and watch your balance take shape. Private and free — nothing is uploaded.">
+<meta property="og:title" content="Wheel of Life — Interactive">
+<meta property="og:description" content="Set each area from 1 (centre) to 10 (rim). The shape draws itself.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2321506E'/%3E%3Cg stroke='%23FFFFFF' stroke-width='1.4'%3E%3Cline x1='16' y1='4' x2='16' y2='28'/%3E%3Cline x1='4' y1='16' x2='28' y2='16'/%3E%3Cline x1='7.5' y1='7.5' x2='24.5' y2='24.5'/%3E%3Cline x1='24.5' y1='7.5' x2='7.5' y2='24.5'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%236FB3B8'/%3E%3Ccircle cx='16' cy='16' r='15' fill='none' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#1F2A2B; --deep:#21506E; --mid:#2E6F8E; --teal:#4A90A4; --soft:#6FB3B8;
+    --muted:#5A6B6C; --line:#9BB3B5; --bg:#F4F8F9; --gold:#C9A24B; --plot:#B5482E;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:Calibri,'Segoe UI',system-ui,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.45;
+    display:flex; flex-direction:column; align-items:center; padding:24px 16px 60px;
+  }
+  header{max-width:980px; width:100%; text-align:center; margin-bottom:8px;}
+  .kicker{color:var(--teal); font-weight:bold; letter-spacing:3px; font-size:13px; text-transform:uppercase;}
+  h1{font-family:Cambria,Georgia,serif; color:var(--ink); margin:6px 0 2px; font-size:30px;}
+  .sub{color:var(--muted); font-size:15px; margin-bottom:14px;}
+  .namebar{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;}
+  .namebar input{font-family:inherit; font-size:15px; padding:8px 12px; border:1px solid var(--line);
+    border-radius:8px; background:#fff; color:var(--ink);}
+  #nameInput{width:280px;} #dateInput{width:170px;}
+  .wrap{display:flex; gap:26px; flex-wrap:wrap; justify-content:center; align-items:flex-start; max-width:1100px; width:100%;}
+  .canvaswrap{background:#fff; border-radius:14px; padding:10px; box-shadow:0 4px 18px rgba(0,0,0,.08);}
+  svg{display:block; touch-action:none;}
+  .panel{width:330px; min-width:280px;}
+  .card{background:#fff; border:1px solid #E2EAEC; border-radius:12px; padding:16px 18px; margin-bottom:14px; box-shadow:0 3px 12px rgba(0,0,0,.05);}
+  .card h3{margin:0 0 10px; font-size:15px; color:var(--deep); letter-spacing:1px; text-transform:uppercase;}
+  .scalerow{font-size:15px; margin:2px 0;}
+  .scalerow b{color:var(--deep);}
+  .controls{display:flex; flex-direction:column; gap:9px;}
+  .ctl{display:flex; align-items:center; gap:10px;}
+  .ctl label{flex:0 0 130px; font-weight:bold; font-size:13.5px;}
+  .ctl input[type=range]{flex:1; accent-color:var(--deep);}
+  .ctl .val{flex:0 0 38px; text-align:right; font-weight:bold; font-variant-numeric:tabular-nums;}
+  .tip{background:#FBF6EA; border-radius:10px; padding:12px 14px; font-size:13px; color:#5E4A1C;}
+  .tip b{color:#7A5C16;}
+  .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;}
+  button{font-family:inherit; font-size:14px; font-weight:bold; padding:10px 16px; border-radius:9px;
+    border:none; cursor:pointer;}
+  .primary{background:var(--deep); color:#fff;}
+  .ghost{background:#fff; color:var(--deep); border:1.5px solid var(--deep);}
+  button:hover{filter:brightness(1.06);}
+  footer{margin-top:20px; color:var(--muted); font-style:italic; font-size:13px; text-align:center; max-width:760px;}
+  .hint{font-size:12.5px; color:var(--muted); margin-top:8px; text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="kicker">Wheel of Life · Interactive</div>
+  <h1>Plot your wheel</h1>
+  <div class="sub">Set each area from 1 (centre) to 10 (rim). The shape draws itself.</div>
+  <div class="namebar">
+    <input id="nameInput" type="text" placeholder="Your name">
+    <input id="dateInput" type="text" placeholder="Date">
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="canvaswrap">
+    <svg id="wheel" width="560" height="560" viewBox="0 0 560 560" aria-label="Wheel of Life"></svg>
+  </div>
+
+  <div class="panel">
+    <div class="card">
+      <h3>The scale</h3>
+      <div class="scalerow"><b>1</b> at the centre — not at all satisfied</div>
+      <div class="scalerow"><b>10</b> at the rim — fully satisfied</div>
+    </div>
+    <div class="card">
+      <h3>Your scores</h3>
+      <div class="controls" id="controls"></div>
+    </div>
+    <div class="btns">
+      <button class="primary" id="downloadBtn">Download my wheel (PNG)</button>
+      <button class="ghost" id="resetBtn">Reset</button>
+    </div>
+    <div class="tip" style="margin-top:14px;">
+      <b>Tip:</b> drag a slider, or click directly on a wedge in the wheel to set that score. Aim to grow every spoke — while keeping it balanced.
+    </div>
+  </div>
+</div>
+
+<footer>Is your wheel round and full, or jagged and flat? A wheel that scores 9 in one area but 2 in another makes for a very bumpy ride.</footer>
+<div class="hint">Nothing is uploaded — everything stays on your computer. Use “Download my wheel” to keep a copy.</div>
+
+<script>
+const SVGNS="http://www.w3.org/2000/svg";
+const cx=280, cy=280, hub=42, rim=232;           // geometry
+const steps=10;
+const segColors=["#21506E","#2E6F8E","#4A90A4","#6FB3B8","#8FB8CE","#A9C6D9"];
+// order clockwise from top
+const areas=[
+  {name:"Society & Community", a:-90},
+  {name:"Family & Home",       a:-30},
+  {name:"Work & Finances",     a: 30},
+  {name:"Body & Health",       a: 90},
+  {name:"Mind & Learning",     a:150},
+  {name:"Ethics & Values",     a:210},
+];
+const scores=areas.map(()=>5);
+
+const svg=document.getElementById("wheel");
+function el(tag,attrs){const e=document.createElementNS(SVGNS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
+function rad(d){return d*Math.PI/180;}
+function pt(ang,r){return [cx+r*Math.cos(rad(ang)), cy+r*Math.sin(rad(ang))];}
+function scoreR(s){return hub+(s/steps)*(rim-hub);}
+
+function wedgePath(centerAng, r){
+  const half=30;
+  const [x1,y1]=pt(centerAng-half, r);
+  const [x2,y2]=pt(centerAng+half, r);
+  return `M ${cx} ${cy} L ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z`;
+}
+
+function build(){
+  svg.innerHTML="";
+  // segments (full colored wedges)
+  areas.forEach((ar,i)=>{
+    svg.appendChild(el("path",{d:wedgePath(ar.a,rim),fill:segColors[i],stroke:"#FFFFFF","stroke-width":2,
+      "data-i":i,style:"cursor:pointer"}));
+  });
+  // concentric rings
+  for(let s=1;s<=steps;s++){
+    svg.appendChild(el("circle",{cx,cy,r:scoreR(s),fill:"none",stroke:"#FFFFFF","stroke-width":0.8,"pointer-events":"none"}));
+  }
+  // spoke lines
+  areas.forEach(ar=>{
+    const [x,y]=pt(ar.a-30,rim);
+    svg.appendChild(el("line",{x1:cx,y1:cy,x2:x,y2:y,stroke:"#FFFFFF","stroke-width":1.5,"pointer-events":"none"}));
+  });
+  // hub
+  svg.appendChild(el("circle",{cx,cy,r:hub,fill:"#FFFFFF","pointer-events":"none"}));
+  // labels
+  areas.forEach(ar=>{
+    const [lx,ly]=pt(ar.a, (hub+rim)/2);
+    const parts=ar.name.split(" & ");
+    const t=el("text",{x:lx,y:ly,fill:"#FFFFFF","font-weight":"bold","font-size":13,
+      "text-anchor":"middle","pointer-events":"none","font-family":"Calibri, Arial, sans-serif"});
+    const t1=el("tspan",{x:lx,dy:"-2"}); t1.textContent=parts[0]+" &";
+    const t2=el("tspan",{x:lx,dy:"15"}); t2.textContent=parts[1]||"";
+    t.appendChild(t1); t.appendChild(t2); svg.appendChild(t);
+  });
+  // plot group (drawn last so it sits on top)
+  plotGroup=el("g",{}); svg.appendChild(plotGroup);
+  drawPlot();
+}
+let plotGroup;
+function drawPlot(){
+  plotGroup.innerHTML="";
+  const pts=areas.map((ar,i)=>pt(ar.a, scoreR(scores[i])));
+  const poly=pts.map(p=>p.map(v=>v.toFixed(1)).join(",")).join(" ");
+  plotGroup.appendChild(el("polygon",{points:poly,fill:"#B5482E","fill-opacity":0.28,
+    stroke:"#B5482E","stroke-width":3,"stroke-linejoin":"round","pointer-events":"none"}));
+  pts.forEach(p=>plotGroup.appendChild(el("circle",{cx:p[0],cy:p[1],r:6,fill:"#B5482E",
+    stroke:"#FFFFFF","stroke-width":2,"pointer-events":"none"})));
+}
+
+// click on a wedge to set score by radius of click
+svg.addEventListener("click",e=>{
+  const target=e.target.closest("path"); if(!target)return;
+  const i=+target.getAttribute("data-i");
+  const rect=svg.getBoundingClientRect();
+  const sx=(e.clientX-rect.left)*(560/rect.width);
+  const sy=(e.clientY-rect.top)*(560/rect.height);
+  const dist=Math.hypot(sx-cx,sy-cy);
+  let s=Math.round((dist-hub)/(rim-hub)*steps);
+  s=Math.max(1,Math.min(steps,s));
+  scores[i]=s; syncControls(); drawPlot();
+});
+
+// sliders
+const controls=document.getElementById("controls");
+function buildControls(){
+  controls.innerHTML="";
+  areas.forEach((ar,i)=>{
+    const row=document.createElement("div"); row.className="ctl";
+    const lab=document.createElement("label"); lab.textContent=ar.name;
+    const rng=document.createElement("input"); rng.type="range"; rng.min=1; rng.max=10; rng.value=scores[i];
+    const val=document.createElement("span"); val.className="val"; val.textContent=scores[i]+"/10";
+    rng.addEventListener("input",()=>{scores[i]=+rng.value; val.textContent=scores[i]+"/10"; drawPlot();});
+    row.append(lab,rng,val); controls.appendChild(row);
+  });
+}
+function syncControls(){
+  [...controls.querySelectorAll(".ctl")].forEach((row,i)=>{
+    row.querySelector("input").value=scores[i];
+    row.querySelector(".val").textContent=scores[i]+"/10";
+  });
+}
+
+document.getElementById("resetBtn").addEventListener("click",()=>{
+  for(let i=0;i<scores.length;i++)scores[i]=5; syncControls(); drawPlot();
+});
+
+// download as PNG (renders the SVG plus name/date onto a canvas)
+document.getElementById("downloadBtn").addEventListener("click",()=>{
+  const name=document.getElementById("nameInput").value.trim();
+  const date=document.getElementById("dateInput").value.trim();
+  const clone=svg.cloneNode(true);
+  clone.setAttribute("width",560); clone.setAttribute("height",560);
+  const xml=new XMLSerializer().serializeToString(clone);
+  const img=new Image();
+  const svgBlob=new Blob([xml],{type:"image/svg+xml;charset=utf-8"});
+  const url=URL.createObjectURL(svgBlob);
+  img.onload=()=>{
+    const pad=40, top=name||date?70:30;
+    const c=document.createElement("canvas"); c.width=560+pad*2; c.height=560+top+pad;
+    const ctx=c.getContext("2d");
+    ctx.fillStyle="#FFFFFF"; ctx.fillRect(0,0,c.width,c.height);
+    if(name||date){
+      ctx.fillStyle="#1F2A2B"; ctx.font="bold 22px Calibri, Arial, sans-serif";
+      ctx.fillText("My Wheel of Life",pad,42);
+      ctx.font="16px Calibri, Arial, sans-serif"; ctx.fillStyle="#5A6B6C";
+      let meta=[]; if(name)meta.push(name); if(date)meta.push(date);
+      ctx.fillText(meta.join("  ·  "),pad,63);
+    }
+    ctx.drawImage(img,pad,top,560,560);
+    URL.revokeObjectURL(url);
+    c.toBlob(b=>{
+      const a=document.createElement("a");
+      a.href=URL.createObjectURL(b);
+      a.download=(name?name.replace(/\s+/g,"_")+"_":"")+"Wheel_of_Life.png";
+      a.click();
+    });
+  };
+  img.src=url;
+});
+
+// init
+build(); buildControls();
+// prefill date
+document.getElementById("dateInput").value=new Date().toLocaleDateString();
+</script>
+</body>
+</html>
