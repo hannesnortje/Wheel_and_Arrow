@@ -78,7 +78,8 @@
     #nameInput{width:280px;} #dateInput{width:170px;}
     /* restore the side-by-side wheel + panel layout */
     .wrap{flex-direction:row; gap:26px; flex-wrap:wrap; justify-content:center; align-items:flex-start;}
-    .canvaswrap{width:auto; align-self:flex-start;}
+    /* let the wheel grow to fill the space beside the panel, not just shrink to content */
+    .canvaswrap{flex:1 1 460px; align-self:flex-start; max-width:680px;}
     .panel{width:330px; min-width:280px;}
     /* roomier inline control rows when space allows */
     .controls{gap:9px;}
