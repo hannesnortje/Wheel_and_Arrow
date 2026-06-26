@@ -15,42 +15,81 @@
     --muted:#5A6B6C; --line:#9BB3B5; --bg:#F4F8F9; --gold:#C9A24B; --plot:#B5482E;
   }
   *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
   body{
     margin:0; font-family:Calibri,'Segoe UI',system-ui,Arial,sans-serif;
     background:var(--bg); color:var(--ink); line-height:1.45;
-    display:flex; flex-direction:column; align-items:center; padding:24px 16px 60px;
+    display:flex; flex-direction:column; align-items:center;
+    /* mobile-first padding, respect notches */
+    padding:16px 14px calc(40px + env(safe-area-inset-bottom));
+    padding-left:max(14px, env(safe-area-inset-left));
+    padding-right:max(14px, env(safe-area-inset-right));
   }
   header{max-width:980px; width:100%; text-align:center; margin-bottom:8px;}
-  .kicker{color:var(--teal); font-weight:bold; letter-spacing:3px; font-size:13px; text-transform:uppercase;}
-  h1{font-family:Cambria,Georgia,serif; color:var(--ink); margin:6px 0 2px; font-size:30px;}
-  .sub{color:var(--muted); font-size:15px; margin-bottom:14px;}
-  .namebar{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;}
-  .namebar input{font-family:inherit; font-size:15px; padding:8px 12px; border:1px solid var(--line);
-    border-radius:8px; background:#fff; color:var(--ink);}
-  #nameInput{width:280px;} #dateInput{width:170px;}
-  .wrap{display:flex; gap:26px; flex-wrap:wrap; justify-content:center; align-items:flex-start; max-width:1100px; width:100%;}
-  .canvaswrap{background:#fff; border-radius:14px; padding:10px; box-shadow:0 4px 18px rgba(0,0,0,.08);}
-  svg{display:block; touch-action:none;}
-  .panel{width:330px; min-width:280px;}
-  .card{background:#fff; border:1px solid #E2EAEC; border-radius:12px; padding:16px 18px; margin-bottom:14px; box-shadow:0 3px 12px rgba(0,0,0,.05);}
+  .kicker{color:var(--teal); font-weight:bold; letter-spacing:2px; font-size:12px; text-transform:uppercase;}
+  /* fluid type: small on phones, scales up to original on desktop */
+  h1{font-family:Cambria,Georgia,serif; color:var(--ink); margin:6px 0 2px; font-size:clamp(24px,6vw,30px);}
+  .sub{color:var(--muted); font-size:clamp(14px,3.6vw,15px); margin-bottom:14px;}
+
+  /* name/date: stack full-width on phones */
+  .namebar{display:flex; flex-direction:column; gap:10px; margin:0 auto 16px; max-width:420px; width:100%;}
+  .namebar input{font-family:inherit; font-size:16px; /* >=16px avoids iOS zoom-on-focus */
+    padding:11px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); width:100%;}
+
+  /* mobile-first: single column, panel below wheel */
+  .wrap{display:flex; flex-direction:column; gap:18px; align-items:stretch;
+    max-width:1100px; width:100%;}
+  .canvaswrap{background:#fff; border-radius:14px; padding:10px; box-shadow:0 4px 18px rgba(0,0,0,.08);
+    width:100%; align-self:center; max-width:560px;}
+  /* fluid square wheel */
+  svg{display:block; touch-action:pan-y; width:100%; height:auto;}
+  .panel{width:100%;}
+  .card{background:#fff; border:1px solid #E2EAEC; border-radius:12px; padding:16px 16px; margin-bottom:14px; box-shadow:0 3px 12px rgba(0,0,0,.05);}
   .card h3{margin:0 0 10px; font-size:15px; color:var(--deep); letter-spacing:1px; text-transform:uppercase;}
   .scalerow{font-size:15px; margin:2px 0;}
   .scalerow b{color:var(--deep);}
-  .controls{display:flex; flex-direction:column; gap:9px;}
-  .ctl{display:flex; align-items:center; gap:10px;}
-  .ctl label{flex:0 0 130px; font-weight:bold; font-size:13.5px;}
-  .ctl input[type=range]{flex:1; accent-color:var(--deep);}
-  .ctl .val{flex:0 0 38px; text-align:right; font-weight:bold; font-variant-numeric:tabular-nums;}
-  .tip{background:#FBF6EA; border-radius:10px; padding:12px 14px; font-size:13px; color:#5E4A1C;}
+  .controls{display:flex; flex-direction:column; gap:14px;}
+  /* stacked control rows give the slider full width and big touch target */
+  .ctl{display:grid; grid-template-columns:1fr auto; grid-template-areas:"label val" "slider slider";
+    align-items:center; gap:6px 10px;}
+  .ctl label{grid-area:label; font-weight:bold; font-size:14px;}
+  .ctl input[type=range]{grid-area:slider; width:100%; height:32px; accent-color:var(--deep); margin:0;}
+  .ctl .val{grid-area:val; text-align:right; font-weight:bold; font-variant-numeric:tabular-nums; color:var(--deep);}
+  .tip{background:#FBF6EA; border-radius:10px; padding:12px 14px; font-size:13.5px; color:#5E4A1C;}
   .tip b{color:#7A5C16;}
-  .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;}
-  button{font-family:inherit; font-size:14px; font-weight:bold; padding:10px 16px; border-radius:9px;
-    border:none; cursor:pointer;}
+  /* full-width, tall, tappable buttons on mobile */
+  .btns{display:flex; flex-direction:column; gap:10px; margin-top:4px;}
+  button{font-family:inherit; font-size:16px; font-weight:bold; padding:14px 16px; border-radius:10px;
+    border:none; cursor:pointer; width:100%; -webkit-tap-highlight-color:transparent;}
   .primary{background:var(--deep); color:#fff;}
   .ghost{background:#fff; color:var(--deep); border:1.5px solid var(--deep);}
-  button:hover{filter:brightness(1.06);}
+  button:active{filter:brightness(.95);}
   footer{margin-top:20px; color:var(--muted); font-style:italic; font-size:13px; text-align:center; max-width:760px;}
   .hint{font-size:12.5px; color:var(--muted); margin-top:8px; text-align:center;}
+
+  /* ===== tablet / desktop enhancements ===== */
+  @media (hover:hover) and (pointer:fine){
+    button:hover{filter:brightness(1.06);}
+  }
+  @media (min-width:760px){
+    body{padding:24px 16px 60px;}
+    .namebar{flex-direction:row; gap:10px; justify-content:center; max-width:none;}
+    .namebar input{width:auto;}
+    #nameInput{width:280px;} #dateInput{width:170px;}
+    /* restore the side-by-side wheel + panel layout */
+    .wrap{flex-direction:row; gap:26px; flex-wrap:wrap; justify-content:center; align-items:flex-start;}
+    .canvaswrap{width:auto; align-self:flex-start;}
+    .panel{width:330px; min-width:280px;}
+    /* roomier inline control rows when space allows */
+    .controls{gap:9px;}
+    .ctl{display:flex; grid-template-columns:none; grid-template-areas:none;
+      align-items:center; gap:10px;}
+    .ctl label{flex:0 0 130px; font-size:13.5px;}
+    .ctl input[type=range]{flex:1; width:auto; height:auto;}
+    .ctl .val{flex:0 0 44px;}
+    .btns{flex-direction:row; flex-wrap:wrap;}
+    button{width:auto; font-size:14px; padding:10px 16px;}
+  }
 </style>
 </head>
 <body>
@@ -66,7 +105,7 @@
 
 <div class="wrap">
   <div class="canvaswrap">
-    <svg id="wheel" width="560" height="560" viewBox="0 0 560 560" aria-label="Wheel of Life"></svg>
+    <svg id="wheel" viewBox="0 0 560 560" preserveAspectRatio="xMidYMid meet" aria-label="Wheel of Life"></svg>
   </div>
 
   <div class="panel">
