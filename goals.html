@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goal Planning Worksheet — Interactive</title>
+<meta name="description" content="Turn an intention into a dated, trackable plan. Fill it in and download an editable PDF — private and free, nothing is uploaded.">
+<meta property="og:title" content="Goal Planning Worksheet — Interactive">
+<meta property="og:description" content="Turn an intention into a dated, trackable plan. Download an editable PDF.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2321506E'/%3E%3Cg stroke='%23FFFFFF' stroke-width='1.4'%3E%3Cline x1='16' y1='4' x2='16' y2='28'/%3E%3Cline x1='4' y1='16' x2='28' y2='16'/%3E%3Cline x1='7.5' y1='7.5' x2='24.5' y2='24.5'/%3E%3Cline x1='24.5' y1='7.5' x2='7.5' y2='24.5'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%236FB3B8'/%3E%3Ccircle cx='16' cy='16' r='15' fill='none' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#1F2A2B; --deep:#21506E; --mid:#2E6F8E; --teal:#4A90A4; --soft:#6FB3B8;
+    --muted:#5A6B6C; --line:#9BB3B5; --bg:#F4F8F9; --gold:#C9A24B; --plot:#B5482E;
+    --navy:#1F2A44; --headblue:#3E64D6;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; font-family:Calibri,'Segoe UI',system-ui,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.45;
+    display:flex; flex-direction:column; align-items:center;
+    padding:16px 14px calc(40px + env(safe-area-inset-bottom));
+    padding-left:max(14px, env(safe-area-inset-left));
+    padding-right:max(14px, env(safe-area-inset-right));
+  }
+  .page{max-width:900px; width:100%;}
+
+  .backlink{display:inline-block; color:var(--deep); font-weight:bold; text-decoration:none;
+    font-size:14px; margin-bottom:10px;}
+  .backlink:hover{text-decoration:underline;}
+
+  /* worksheet header band — echoes the PDF's navy title bar */
+  .hband{background:var(--navy); color:#fff; border-radius:14px; padding:18px 20px; margin-bottom:18px;
+    box-shadow:0 4px 18px rgba(0,0,0,.10);}
+  .hband h1{font-family:Cambria,Georgia,serif; margin:0; font-size:clamp(24px,6vw,32px); letter-spacing:.3px;}
+  .hband .sub{color:#C7D0E6; font-style:italic; font-size:clamp(13px,3.4vw,15px); margin-top:4px;}
+
+  .card{background:#fff; border:1px solid #E2EAEC; border-radius:12px; padding:16px; margin-bottom:14px;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);}
+  .sec{color:var(--headblue); font-weight:bold; letter-spacing:.6px; text-transform:uppercase;
+    font-size:14px; margin:0 0 4px;}
+  .hint-line{color:var(--muted); font-size:12.5px; font-style:italic; margin:0 0 10px;}
+
+  label.fld{display:block;}
+  .lbl{display:block; color:var(--muted); font-weight:bold; letter-spacing:1px; text-transform:uppercase;
+    font-size:11.5px; margin-bottom:5px;}
+  input[type=text], textarea{font-family:inherit; font-size:16px; /* >=16px avoids iOS zoom-on-focus */
+    padding:11px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink);
+    width:100%; resize:vertical;}
+  textarea{min-height:90px; line-height:1.4;}
+
+  /* top meta: stack on phones, 4-up on desktop */
+  .meta4{display:grid; grid-template-columns:1fr; gap:12px;}
+
+  /* two-column sections: stack on phones */
+  .twocol{display:grid; grid-template-columns:1fr; gap:14px;}
+
+  /* action steps */
+  .ahead{display:none;}
+  .arow{display:grid; grid-template-columns:26px 1fr; grid-template-areas:"num act" "blank meta";
+    gap:5px 8px; padding:9px 0; border-top:1px solid #EEF1F2; align-items:center;}
+  .arow:first-of-type{border-top:none;}
+  .anum{grid-area:num; color:var(--muted); font-weight:bold; font-variant-numeric:tabular-nums; text-align:center;}
+  .ain{grid-area:act;}
+  .ameta{grid-area:meta; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .adue,.arev{flex:1; min-width:96px;}
+  .adone{display:flex; align-items:center; gap:6px; font-size:14px; font-weight:bold; color:var(--deep); white-space:nowrap;}
+  .adone input{width:22px; height:22px; accent-color:var(--deep); margin:0;}
+
+  /* worth-it */
+  .wq{margin:8px 0;}
+  .wq .q{font-weight:bold; margin-bottom:6px;}
+  .opts{display:flex; flex-wrap:wrap; gap:8px;}
+  .opt{display:inline-flex; align-items:center; gap:7px; padding:8px 12px; border:1px solid var(--line);
+    border-radius:9px; background:#fff; font-size:15px; cursor:pointer;}
+  .opt input{width:20px; height:20px; accent-color:var(--deep); margin:0;}
+
+  .banner{background:#EAF0FE; color:#23386E; border-radius:10px; padding:13px 15px; font-weight:bold;
+    font-size:14px; text-align:center;}
+
+  /* buttons — full width, tappable on mobile (matches the wheel page) */
+  .btns{display:flex; flex-direction:column; gap:10px; margin:4px 0 6px;}
+  button{font-family:inherit; font-size:16px; font-weight:bold; padding:14px 16px; border-radius:10px;
+    border:none; cursor:pointer; width:100%; -webkit-tap-highlight-color:transparent;}
+  .primary{background:var(--deep); color:#fff;}
+  .ghost{background:#fff; color:var(--deep); border:1.5px solid var(--deep);}
+  button:active{filter:brightness(.95);}
+  button:disabled{opacity:.6; cursor:default;}
+  .status{font-size:13px; color:var(--muted); text-align:center; min-height:18px; margin-top:2px;}
+  footer{margin-top:18px; color:var(--muted); font-style:italic; font-size:13px; text-align:center;}
+  .hint{font-size:12.5px; color:var(--muted); margin-top:8px; text-align:center;}
+
+  /* ===== tablet / desktop ===== */
+  @media (hover:hover) and (pointer:fine){ button:hover{filter:brightness(1.06);} }
+  @media (min-width:760px){
+    body{padding:24px 16px 60px;}
+    .meta4{grid-template-columns:repeat(4,1fr);}
+    .twocol{grid-template-columns:1fr 1fr;}
+    .btns{flex-direction:row;}
+    button{width:auto; font-size:14px; padding:11px 20px;}
+    /* inline action-step table with a header row */
+    .ahead{display:flex; align-items:center; gap:10px; padding:0 0 8px; color:var(--muted);
+      font-weight:bold; font-size:12px; letter-spacing:.5px; text-transform:uppercase; border-bottom:1px solid #E2EAEC;}
+    .arow{display:flex; align-items:center; gap:10px; padding:7px 0;}
+    .ameta{display:contents;}
+    .anum, .h-num{flex:0 0 26px; text-align:center;}
+    .ain, .h-act{flex:1;}
+    .adue,.arev,.h-due,.h-rev{flex:0 0 96px; min-width:0;}
+    .adone,.h-done{flex:0 0 64px; justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="backlink" href="index.html">← Back to the Wheel</a>
+
+  <div class="hband">
+    <h1>Goal Planning Worksheet</h1>
+    <div class="sub">Turn an intention into a dated, trackable plan.</div>
+  </div>
+
+  <!-- top meta -->
+  <div class="card">
+    <div class="meta4">
+      <label class="fld"><span class="lbl">Life area</span><input type="text" data-field="life_area" placeholder="e.g. Body &amp; Health"></label>
+      <label class="fld"><span class="lbl">Started</span><input type="text" data-field="started" placeholder="Date"></label>
+      <label class="fld"><span class="lbl">Target date</span><input type="text" data-field="target_date" placeholder="Date"></label>
+      <label class="fld"><span class="lbl">Achieved on</span><input type="text" data-field="achieved_on" placeholder="Date"></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="sec">The goal</h2>
+    <p class="hint-line">Make it specific, measurable, motivating, realistic, and time-bound.</p>
+    <textarea data-field="the_goal" rows="4"></textarea>
+  </div>
+
+  <div class="card">
+    <h2 class="sec">Why it matters</h2>
+    <p class="hint-line">What I gain by reaching it — and what I avoid by letting it slide.</p>
+    <textarea data-field="why_matters" rows="4"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="twocol">
+      <div>
+        <h2 class="sec">What could get in the way</h2>
+        <textarea data-field="obstacles" rows="5"></textarea>
+      </div>
+      <div>
+        <h2 class="sec">How I'll handle it</h2>
+        <textarea data-field="handling" rows="5"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="sec">Action steps</h2>
+    <div class="ahead">
+      <span class="h-num">#</span><span class="h-act">Action step</span>
+      <span class="h-due">Due</span><span class="h-rev">Reviewed</span><span class="h-done">Done</span>
+    </div>
+    <div id="actions"></div>
+  </div>
+
+  <div class="card">
+    <h2 class="sec">Who should know</h2>
+    <p class="hint-line">People whose support or awareness helps.</p>
+    <textarea data-field="who_should_know" rows="3"></textarea>
+  </div>
+
+  <div class="card">
+    <h2 class="sec">How I'll track progress</h2>
+    <p class="hint-line">The check-in method that keeps this honest.</p>
+    <textarea data-field="track_progress" rows="3"></textarea>
+  </div>
+
+  <div class="card">
+    <h2 class="sec">Worth it?</h2>
+    <div class="wq" data-group="worth_value">
+      <div class="q">Does this fit what I value?</div>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" data-field="worth_value_yes"> Yes</label>
+        <label class="opt"><input type="checkbox" data-field="worth_value_no"> No</label>
+      </div>
+    </div>
+    <div class="wq" data-group="worth_cost">
+      <div class="q">Is the time, effort, and cost worth it?</div>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" data-field="worth_cost_yes"> Yes</label>
+        <label class="opt"><input type="checkbox" data-field="worth_cost_no"> No</label>
+        <label class="opt"><input type="checkbox" data-field="worth_cost_later"> Yes, but later</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="twocol">
+      <div>
+        <h2 class="sec">Encouraging reminders</h2>
+        <p class="hint-line">Short phrases that keep you motivated.</p>
+        <textarea data-field="reminders" rows="5"></textarea>
+      </div>
+      <div>
+        <h2 class="sec">Ways to picture success</h2>
+        <p class="hint-line">Image or cue, and where to place it.</p>
+        <textarea data-field="picture_success" rows="5"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="btns">
+    <button class="primary" id="downloadBtn">Download my goal plan (PDF)</button>
+    <button class="ghost" id="resetBtn">Reset</button>
+  </div>
+  <div class="status" id="status"></div>
+
+  <div class="banner">✓ When it's done, file this under your wins — a record of what you finished.</div>
+
+  <footer>An intention without a date is a wish. Give every step a due date and a review.</footer>
+  <div class="hint">Nothing is uploaded — everything stays on your computer. The download is an editable PDF you can keep changing.</div>
+</div>
+
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="vendor/goal-template.js"></script>
+<script>
+const ACTION_ROWS = 15;
+
+// build the action-step rows (keeps the markup small, mirrors the wheel page's JS-built controls)
+const actionsWrap = document.getElementById("actions");
+for(let i=1;i<=ACTION_ROWS;i++){
+  const row=document.createElement("div"); row.className="arow";
+  row.innerHTML =
+    `<div class="anum">${i}</div>`+
+    `<input class="ain" type="text" data-field="action_${i}" placeholder="Action step ${i}" aria-label="Action step ${i}">`+
+    `<div class="ameta">`+
+      `<input class="adue" type="text" data-field="due_${i}" placeholder="Due" aria-label="Due ${i}">`+
+      `<input class="arev" type="text" data-field="reviewed_${i}" placeholder="Reviewed" aria-label="Reviewed ${i}">`+
+      `<label class="adone"><input type="checkbox" data-field="done_${i}" aria-label="Done ${i}"><span>Done</span></label>`+
+    `</div>`;
+  actionsWrap.appendChild(row);
+}
+
+// make Yes/No within each "Worth it?" question behave like a single choice (still maps to PDF checkboxes)
+document.querySelectorAll(".wq").forEach(group=>{
+  const boxes=[...group.querySelectorAll("input[type=checkbox]")];
+  boxes.forEach(b=>b.addEventListener("change",()=>{
+    if(b.checked) boxes.forEach(o=>{ if(o!==b) o.checked=false; });
+  }));
+});
+
+// prefill "Started" with today's date, like the wheel page prefills its date
+document.querySelector('[data-field="started"]').value = new Date().toLocaleDateString();
+
+function setStatus(msg){ document.getElementById("status").textContent = msg || ""; }
+
+function b64ToBytes(b64){
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+  return bytes;
+}
+
+function sanitize(s){ return s.trim().replace(/[^\w\- ]+/g,"").replace(/\s+/g,"_"); }
+
+// fill the template AcroForm and download an editable PDF
+async function downloadPdf(){
+  const btn=document.getElementById("downloadBtn");
+  if(typeof PDFLib==="undefined" || !window.GOAL_TEMPLATE_B64){
+    setStatus("Could not load the PDF tools. Please reload the page."); return;
+  }
+  btn.disabled=true; setStatus("Building your PDF…");
+  try{
+    const doc = await PDFLib.PDFDocument.load(b64ToBytes(window.GOAL_TEMPLATE_B64));
+    const form = doc.getForm();
+    document.querySelectorAll("[data-field]").forEach(elt=>{
+      const name = elt.getAttribute("data-field");
+      try{
+        if(elt.type==="checkbox"){
+          const cb=form.getCheckBox(name);
+          elt.checked ? cb.check() : cb.uncheck();
+        }else{
+          const v=elt.value;
+          if(v && v.trim()!=="") form.getTextField(name).setText(v);
+        }
+      }catch(e){ /* field missing in template — skip */ }
+    });
+    // pdf-lib writes appearance streams for every field we touched, so the values
+    // render in any viewer while the fields stay editable (form is left un-flattened).
+    const bytes = await doc.save();
+    const blob = new Blob([bytes], {type:"application/pdf"});
+    const life = sanitize(document.querySelector('[data-field="life_area"]').value || "");
+    const fname = (life ? life+"_" : "") + "Goal_Planning_Worksheet.pdf";
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(blob); a.download=fname; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+    setStatus("Downloaded — open it in any PDF reader to keep editing.");
+  }catch(err){
+    console.error(err);
+    setStatus("Sorry, something went wrong building the PDF.");
+  }finally{
+    btn.disabled=false;
+  }
+}
+
+document.getElementById("downloadBtn").addEventListener("click", downloadPdf);
+
+document.getElementById("resetBtn").addEventListener("click", ()=>{
+  document.querySelectorAll("[data-field]").forEach(elt=>{
+    if(elt.type==="checkbox") elt.checked=false; else elt.value="";
+  });
+  document.querySelector('[data-field="started"]').value = new Date().toLocaleDateString();
+  setStatus("");
+});
+</script>
+</body>
+</html>
