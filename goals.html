@@ -122,6 +122,20 @@
     .adue,.arev,.h-due,.h-rev{flex:0 0 138px; min-width:0;}
     .adone,.h-done{flex:0 0 64px; justify-content:center; padding-bottom:0;}
   }
+
+  /* ===== print: clean worksheet, drop the on-screen controls ===== */
+  @media print{
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    body{background:#fff; padding:10px;}
+    .page{max-width:none;}
+    .backlink, .btns, .status, .hint{display:none !important;}
+    .card{box-shadow:none; border:1px solid #ccd6d8; margin-bottom:10px;}
+    .hband{box-shadow:none;}
+    .arow, .twocol, .hband, .ahead, .wq{break-inside:avoid;}
+    select{background-image:none;} /* hide the dropdown caret on paper */
+    input[type=date]::-webkit-calendar-picker-indicator{display:none;} /* drop calendar icon on paper */
+    textarea, input{background:#fff;}
+  }
 </style>
 </head>
 <body>
@@ -235,6 +249,7 @@
 
   <div class="btns">
     <button class="primary" id="downloadBtn">Download my goal plan (PDF)</button>
+    <button class="ghost" id="printBtn">Print</button>
     <button class="ghost" id="resetBtn">Reset</button>
   </div>
   <div class="status" id="status"></div>
@@ -353,6 +368,7 @@ async function downloadPdf(){
 }
 
 document.getElementById("downloadBtn").addEventListener("click", downloadPdf);
+document.getElementById("printBtn").addEventListener("click", ()=>window.print());
 
 document.getElementById("resetBtn").addEventListener("click", ()=>{
   document.querySelectorAll("[data-field]").forEach(elt=>{
