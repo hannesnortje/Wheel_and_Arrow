@@ -319,44 +319,52 @@ function b64ToBytes(b64){
 
 function sanitize(s){ return s.trim().replace(/[^\w\- ]+/g,"").replace(/\s+/g,"_"); }
 
-// fill the template AcroForm and download an editable PDF
+function pdfReady(){ return typeof PDFLib!=="undefined" && !!window.GOAL_TEMPLATE_B64; }
+
+function pdfFilename(){
+  const life = sanitize(document.querySelector('[data-field="life_area"]').value || "");
+  return (life ? life+"_" : "") + "Goal_Planning_Worksheet.pdf";
+}
+
+// fill the template AcroForm from the on-screen form and return the PDF bytes.
+// Shared by both download and print so they produce the identical worksheet.
+async function buildFilledPdf(){
+  const doc = await PDFLib.PDFDocument.load(b64ToBytes(window.GOAL_TEMPLATE_B64));
+  const form = doc.getForm();
+  document.querySelectorAll("[data-field]").forEach(elt=>{
+    const name = elt.getAttribute("data-field");
+    try{
+      if(elt.type==="checkbox"){
+        const cb=form.getCheckBox(name);
+        elt.checked ? cb.check() : cb.uncheck();
+      }else{
+        const v=elt.value;
+        if(!v || v.trim()==="") return;
+        if(elt.type==="date"){
+          const short = name.startsWith("due_") || name.startsWith("reviewed_");
+          const tf = form.getTextField(name);
+          if(short) tf.setFontSize(9); // shrink to fit the narrow table columns
+          tf.setText(fmtDate(v, short));
+        }else{
+          form.getTextField(name).setText(v);
+        }
+      }
+    }catch(e){ /* field missing in template — skip */ }
+  });
+  // pdf-lib writes appearance streams for every field we touched, so the values
+  // render in any viewer while the fields stay editable (form is left un-flattened).
+  return doc.save();
+}
+
+// download the filled worksheet as an editable PDF
 async function downloadPdf(){
   const btn=document.getElementById("downloadBtn");
-  if(typeof PDFLib==="undefined" || !window.GOAL_TEMPLATE_B64){
-    setStatus("Could not load the PDF tools. Please reload the page."); return;
-  }
+  if(!pdfReady()){ setStatus("Could not load the PDF tools. Please reload the page."); return; }
   btn.disabled=true; setStatus("Building your PDF…");
   try{
-    const doc = await PDFLib.PDFDocument.load(b64ToBytes(window.GOAL_TEMPLATE_B64));
-    const form = doc.getForm();
-    document.querySelectorAll("[data-field]").forEach(elt=>{
-      const name = elt.getAttribute("data-field");
-      try{
-        if(elt.type==="checkbox"){
-          const cb=form.getCheckBox(name);
-          elt.checked ? cb.check() : cb.uncheck();
-        }else{
-          const v=elt.value;
-          if(!v || v.trim()==="") return;
-          if(elt.type==="date"){
-            const short = name.startsWith("due_") || name.startsWith("reviewed_");
-            const tf = form.getTextField(name);
-            if(short) tf.setFontSize(9); // shrink to fit the narrow table columns
-            tf.setText(fmtDate(v, short));
-          }else{
-            form.getTextField(name).setText(v);
-          }
-        }
-      }catch(e){ /* field missing in template — skip */ }
-    });
-    // pdf-lib writes appearance streams for every field we touched, so the values
-    // render in any viewer while the fields stay editable (form is left un-flattened).
-    const bytes = await doc.save();
-    const blob = new Blob([bytes], {type:"application/pdf"});
-    const life = sanitize(document.querySelector('[data-field="life_area"]').value || "");
-    const fname = (life ? life+"_" : "") + "Goal_Planning_Worksheet.pdf";
+    const blob = new Blob([await buildFilledPdf()], {type:"application/pdf"});
     const a=document.createElement("a");
-    a.href=URL.createObjectURL(blob); a.download=fname; a.click();
+    a.href=URL.createObjectURL(blob); a.download=pdfFilename(); a.click();
     setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
     setStatus("Downloaded — open it in any PDF reader to keep editing.");
   }catch(err){
@@ -367,8 +375,39 @@ async function downloadPdf(){
   }
 }
 
+// print the filled worksheet PDF (the exact 2-page layout), not the web page.
+// Renders the PDF in a hidden iframe and triggers its print dialog; falls back
+// to opening it in a new tab if the iframe can't print.
+async function printPdf(){
+  const btn=document.getElementById("printBtn");
+  if(!pdfReady()){ setStatus("Could not load the PDF tools. Please reload the page."); return; }
+  btn.disabled=true; setStatus("Preparing the worksheet to print…");
+  try{
+    const blob = new Blob([await buildFilledPdf()], {type:"application/pdf"});
+    const url = URL.createObjectURL(blob);
+    const iframe = document.createElement("iframe");
+    iframe.style.cssText = "position:fixed; right:0; bottom:0; width:0; height:0; border:0;";
+    iframe.src = url;
+    iframe.onload = ()=>{
+      setTimeout(()=>{
+        try{ iframe.contentWindow.focus(); iframe.contentWindow.print(); }
+        catch(e){ window.open(url, "_blank"); } // popup fallback (e.g. cross-viewer quirks)
+      }, 400);
+      // give the print dialog time before releasing the blob/iframe
+      setTimeout(()=>{ URL.revokeObjectURL(url); iframe.remove(); }, 60000);
+    };
+    document.body.appendChild(iframe);
+    setStatus("Opening the print dialog…");
+  }catch(err){
+    console.error(err);
+    setStatus("Sorry, something went wrong preparing the print.");
+  }finally{
+    btn.disabled=false;
+  }
+}
+
 document.getElementById("downloadBtn").addEventListener("click", downloadPdf);
-document.getElementById("printBtn").addEventListener("click", ()=>window.print());
+document.getElementById("printBtn").addEventListener("click", printPdf);
 
 document.getElementById("resetBtn").addEventListener("click", ()=>{
   document.querySelectorAll("[data-field]").forEach(elt=>{
