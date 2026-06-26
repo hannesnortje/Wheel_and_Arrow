@@ -70,9 +70,12 @@
   .arow:first-of-type{border-top:none;}
   .anum{grid-area:num; color:var(--muted); font-weight:bold; font-variant-numeric:tabular-nums; text-align:center;}
   .ain{grid-area:act;}
-  .ameta{grid-area:meta; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
-  .adue,.arev{flex:1; min-width:138px;}
-  .adone{display:flex; align-items:center; gap:6px; font-size:14px; font-weight:bold; color:var(--deep); white-space:nowrap;}
+  .ameta{grid-area:meta; display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap;}
+  /* on phones each picker gets its own little caption since the table header is hidden */
+  .ml{display:flex; flex-direction:column; gap:3px; flex:1; min-width:130px;}
+  .mlt{font-size:11px; font-weight:bold; letter-spacing:.5px; text-transform:uppercase; color:var(--muted);}
+  .adue,.arev{width:100%;}
+  .adone{display:flex; align-items:center; gap:6px; font-size:14px; font-weight:bold; color:var(--deep); white-space:nowrap; padding-bottom:9px;}
   .adone input{width:22px; height:22px; accent-color:var(--deep); margin:0;}
 
   /* worth-it */
@@ -111,10 +114,13 @@
       font-weight:bold; font-size:12px; letter-spacing:.5px; text-transform:uppercase; border-bottom:1px solid #E2EAEC;}
     .arow{display:flex; align-items:center; gap:10px; padding:7px 0;}
     .ameta{display:contents;}
+    .ml{display:contents;}        /* let the date inputs align under the header columns */
+    .mlt{display:none;}           /* header row already labels the columns */
+    .adone span{display:none;}    /* checkbox sits under the "Done" header */
     .anum, .h-num{flex:0 0 26px; text-align:center;}
     .ain, .h-act{flex:1;}
     .adue,.arev,.h-due,.h-rev{flex:0 0 138px; min-width:0;}
-    .adone,.h-done{flex:0 0 64px; justify-content:center;}
+    .adone,.h-done{flex:0 0 64px; justify-content:center; padding-bottom:0;}
   }
 </style>
 </head>
@@ -252,8 +258,8 @@ for(let i=1;i<=ACTION_ROWS;i++){
     `<div class="anum">${i}</div>`+
     `<input class="ain" type="text" data-field="action_${i}" placeholder="Action step ${i}" aria-label="Action step ${i}">`+
     `<div class="ameta">`+
-      `<input class="adue" type="date" data-field="due_${i}" aria-label="Due ${i}">`+
-      `<input class="arev" type="date" data-field="reviewed_${i}" aria-label="Reviewed ${i}">`+
+      `<label class="ml"><span class="mlt">Due</span><input class="adue" type="date" data-field="due_${i}" aria-label="Due ${i}"></label>`+
+      `<label class="ml"><span class="mlt">Reviewed</span><input class="arev" type="date" data-field="reviewed_${i}" aria-label="Reviewed ${i}"></label>`+
       `<label class="adone"><input type="checkbox" data-field="done_${i}" aria-label="Done ${i}"><span>Done</span></label>`+
     `</div>`;
   actionsWrap.appendChild(row);
