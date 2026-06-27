@@ -262,7 +262,7 @@
 
 <script src="vendor/pdf-lib.min.js"></script>
 <!-- bump ?v= whenever the template PDF changes so browsers don't serve a stale copy -->
-<script src="vendor/goal-template.js?v=3"></script>
+<script src="vendor/goal-template.js?v=4"></script>
 <script>
 const ACTION_ROWS = 15;
 
@@ -368,13 +368,15 @@ async function buildFilledPdf(){
       }else{
         const v=elt.value;
         if(!v || v.trim()==="") return;
+        const tf = form.getTextField(name);
+        // defensively drop any length cap so long entries are never truncated
+        try{ tf.acroField.dict.delete(PDFLib.PDFName.of("MaxLen")); }catch(e){}
         if(elt.type==="date"){
           const short = name.startsWith("due_") || name.startsWith("reviewed_");
-          const tf = form.getTextField(name);
           if(short) tf.setFontSize(9); // shrink to fit the narrow table columns
           tf.setText(winAnsiSafe(fmtDate(v, short)));
         }else{
-          form.getTextField(name).setText(winAnsiSafe(v));
+          tf.setText(winAnsiSafe(v));
         }
       }
     }catch(e){ /* field missing in template — skip */ }
