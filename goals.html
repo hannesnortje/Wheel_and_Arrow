@@ -305,6 +305,33 @@ function fmtDate(iso, short){
                : d.toLocaleDateString();
 }
 
+// The PDF's standard font can only encode the WinAnsi (CP1252) character set, so pasted
+// text with other characters (arrows, emoji, exotic dashes…) would make pdf-lib throw on
+// save and the whole download would fail. Sanitise text to a safe set before filling:
+// transliterate the common offenders, keep everything CP1252 can encode, drop the rest.
+const WINANSI_EXTRA = new Set([0x20AC,0x201A,0x0192,0x201E,0x2026,0x2020,0x2021,0x02C6,
+  0x2030,0x0160,0x2039,0x0152,0x017D,0x2018,0x2019,0x201C,0x201D,0x2022,0x2013,0x2014,
+  0x02DC,0x2122,0x0161,0x203A,0x0153,0x017E,0x0178]);
+const TRANSLIT = {
+  "→":"->","⇒":"=>","←":"<-","↔":"<->","⟶":"->",
+  "−":"-","‐":"-","‑":"-","‒":"-","―":"-","⁃":"-","∙":"-",
+  "≤":"<=","≥":">=","≠":"!=","≈":"~",
+  "′":"'","″":'"',"‵":"'","‶":'"',
+  " ":" "," ":" "," ":" "," ":" "," ":" "," ":" "," ":" ",
+  "​":"","‌":"","‍":"","﻿":""
+};
+let _fillSimplified = false; // set true when sanitising changed the text
+function winAnsiSafe(s){
+  let out="";
+  for(const ch of s){
+    if(Object.prototype.hasOwnProperty.call(TRANSLIT, ch)){ out+=TRANSLIT[ch]; _fillSimplified=true; continue; }
+    const cp=ch.codePointAt(0);
+    if(cp===9||cp===10||cp===13||(cp>=0x20&&cp<=0x7E)||(cp>=0xA0&&cp<=0xFF)||WINANSI_EXTRA.has(cp)) out+=ch;
+    else _fillSimplified=true; // unencodable — drop it rather than fail the whole PDF
+  }
+  return out;
+}
+
 // prefill "Started" with today's date, like the wheel page prefills its date
 document.querySelector('[data-field="started"]').value = todayISO();
 
@@ -329,6 +356,7 @@ function pdfFilename(){
 // fill the template AcroForm from the on-screen form and return the PDF bytes.
 // Shared by both download and print so they produce the identical worksheet.
 async function buildFilledPdf(){
+  _fillSimplified = false;
   const doc = await PDFLib.PDFDocument.load(b64ToBytes(window.GOAL_TEMPLATE_B64));
   const form = doc.getForm();
   document.querySelectorAll("[data-field]").forEach(elt=>{
@@ -344,9 +372,9 @@ async function buildFilledPdf(){
           const short = name.startsWith("due_") || name.startsWith("reviewed_");
           const tf = form.getTextField(name);
           if(short) tf.setFontSize(9); // shrink to fit the narrow table columns
-          tf.setText(fmtDate(v, short));
+          tf.setText(winAnsiSafe(fmtDate(v, short)));
         }else{
-          form.getTextField(name).setText(v);
+          form.getTextField(name).setText(winAnsiSafe(v));
         }
       }
     }catch(e){ /* field missing in template — skip */ }
@@ -366,7 +394,8 @@ async function downloadPdf(){
     const a=document.createElement("a");
     a.href=URL.createObjectURL(blob); a.download=pdfFilename(); a.click();
     setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
-    setStatus("Downloaded — open it in any PDF reader to keep editing.");
+    setStatus("Downloaded — open it in any PDF reader to keep editing."
+      + (_fillSimplified ? " (Some special characters were simplified to fit the PDF.)" : ""));
   }catch(err){
     console.error(err);
     setStatus("Sorry, something went wrong building the PDF.");
