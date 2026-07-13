@@ -73,13 +73,31 @@ every section that makes a goal stick:
 
 A link on the Wheel page leads straight to the worksheet.
 
+### 🧭 The Whole-Life Goal Plan — [`whole-life.html`](whole-life.html)
+
+A single, balanced overview that keeps goals live across every part of your life — the wider companion
+to the single-goal worksheet. Capture a **Personal Mission Statement**, review the **five habits** that
+make goals stick, then keep a running table of goals under each of the six life areas:
+
+- Six **life-area tables** (Health, Growth, Relationships, Purpose, Career, Family) — add or remove as
+  many goal rows as you need, each with a **priority**, **goal type**, the **specific & measurable goal**,
+  a **target date**, and a **status**.
+- **Auto-saves** as you type, straight into your browser (`localStorage`) on this device — reopen the
+  page and your plan is still there.
+- **Download my data** exports a JSON backup you can keep or move to another device, and **Load data**
+  reads it back in.
+- **Save as PDF / Print** produces a clean, printable overview of every area.
+
+A second link on the Wheel page opens this plan.
+
 ---
 
 ## Privacy
 
 Nothing is uploaded. Everything you type, score, and tick stays in your browser on your own computer —
-there is no server, no account, and no analytics. The downloaded PNG and PDF are generated locally.
-Use the download buttons to keep your own copies.
+there is no server, no account, and no analytics. The downloaded PNG and PDF are generated locally, and
+the Whole-Life Goal Plan saves its entries only in this browser's `localStorage` on your device.
+Use the download / export buttons to keep your own copies.
 
 ---
 
@@ -99,6 +117,7 @@ template are vendored locally (the template is embedded as base64), so no networ
 .
 ├── index.html                      # The Wheel of Life (home page)
 ├── goals.html                      # The Goal Planning Worksheet
+├── whole-life.html                 # The Whole-Life Goal Plan (auto-saves locally)
 ├── assets/
 │   └── Goal_Planning_Worksheet.pdf # The fillable PDF template (source of truth)
 ├── vendor/

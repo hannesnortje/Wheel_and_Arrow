@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Whole-Life Goal Plan</title>
+<meta name="description" content="A balanced framework for setting and tracking goals across the six areas of your life. Private and free — nothing is uploaded.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2321506E'/%3E%3Cg stroke='%23FFFFFF' stroke-width='1.4'%3E%3Cline x1='16' y1='4' x2='16' y2='28'/%3E%3Cline x1='4' y1='16' x2='28' y2='16'/%3E%3Cline x1='7.5' y1='7.5' x2='24.5' y2='24.5'/%3E%3Cline x1='24.5' y1='7.5' x2='7.5' y2='24.5'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%236FB3B8'/%3E%3Ccircle cx='16' cy='16' r='15' fill='none' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#1F2A2B; --deep:#21506E; --mid:#2E6F8E; --teal:#4A90A4; --soft:#6FB3B8;
+    --muted:#5A6B6C; --line:#9BB3B5; --bg:#F4F8F9; --gold:#C9A24B; --plot:#B5482E;
+    --hair:#E2EAEC; --fill:#FBFDFD; --band:#EAF2F4;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:Calibri,'Segoe UI',system-ui,Arial,sans-serif;
+    font-size:15px; line-height:1.45;
+  }
+  .wrap{max-width:1000px; margin:0 auto; padding:24px 18px 80px;}
+
+  /* header */
+  header.top{text-align:left; margin-bottom:12px;}
+  .kicker{color:var(--teal); font-weight:bold; letter-spacing:2px; font-size:12px; text-transform:uppercase;}
+  header.top h1{font-family:Cambria,Georgia,serif; color:var(--ink); font-size:clamp(24px,6vw,30px); margin:6px 0 2px; letter-spacing:.2px;}
+  header.top p.sub{color:var(--muted); font-style:italic; margin:0 0 6px; font-size:clamp(14px,3.6vw,16px);}
+  .pagelink{display:inline-block; margin-top:6px; color:var(--deep); font-weight:bold;
+    text-decoration:none; font-size:14px; border:1.5px solid var(--deep); border-radius:9px; padding:8px 14px;}
+  .pagelink:hover{filter:brightness(1.06);}
+
+  /* sticky toolbar */
+  .toolbar{position:sticky; top:0; z-index:20; background:var(--bg);
+    display:flex; gap:10px; flex-wrap:wrap; padding:10px 0 14px; margin-bottom:6px;
+    border-bottom:1px solid var(--hair);}
+  button.btn{
+    border:none; background:var(--deep); color:#fff;
+    padding:9px 15px; border-radius:9px; font-size:14px; cursor:pointer; font-weight:bold;
+    font-family:inherit; -webkit-tap-highlight-color:transparent;
+  }
+  button.btn.ghost{background:#fff; color:var(--deep); border:1.5px solid var(--deep);}
+  button.btn:hover{filter:brightness(1.06);}
+  button.btn:active{filter:brightness(.95);}
+  .saved{color:var(--muted); font-size:13px; align-self:center; margin-left:auto;}
+
+  /* cards */
+  .card{background:#fff; border:1px solid var(--hair); border-radius:12px; padding:16px 18px; margin:14px 0;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);}
+  label.fld{display:block; font-weight:bold; color:var(--deep); font-size:13px; margin:0 0 4px;}
+  input[type=text], input[type=date], input[type=number], textarea, select{
+    width:100%; border:1px solid var(--line); background:var(--fill); color:var(--ink);
+    border-radius:8px; padding:9px 10px; font-size:16px; font-family:inherit;
+  }
+  input:focus, textarea:focus, select:focus{outline:2px solid var(--soft); border-color:var(--teal);}
+  .meta-grid{display:grid; grid-template-columns:1fr; gap:12px; max-width:320px;}
+  .meta-name{max-width:100%;}
+  textarea#mission{min-height:210px; resize:vertical; font-size:16px;}
+
+  h2.section{color:var(--deep); font-size:15px; margin:22px 0 6px; text-transform:uppercase; letter-spacing:1px;}
+  .hint{color:var(--muted); font-style:italic; font-size:13px; margin:0 0 6px;}
+  h2.mission-title{font-size:20px; margin:4px 0 8px; text-transform:none; letter-spacing:.2px;}
+  .mission-title small{color:var(--teal); font-style:italic; font-weight:500; text-transform:none; letter-spacing:0; font-size:16px;}
+
+  /* Habits */
+  .habits ol{margin:6px 0 0; padding-left:22px;}
+  .habits li{margin:6px 0;}
+  .habits b{color:var(--deep);}
+
+  /* Areas */
+  .area{margin:20px 0;}
+  .area .band{background:var(--deep); color:#fff; font-weight:bold; font-size:15px; letter-spacing:.3px;
+    padding:10px 14px; border-radius:11px 11px 0 0;}
+  .area .desc{color:var(--muted); font-style:italic; font-size:13px;
+    background:#fff; border:1px solid var(--hair); border-top:none; padding:8px 14px;}
+  table{width:100%; border-collapse:collapse; background:#fff;
+    border:1px solid var(--hair); border-top:none; border-radius:0 0 11px 11px; overflow:hidden;}
+  thead th{color:var(--deep); font-size:11.5px; text-align:left; font-weight:bold; letter-spacing:.4px;
+    padding:9px 8px; border-bottom:1px solid var(--hair); background:var(--band);}
+  tbody td{padding:7px 8px; border-bottom:1px solid #EDF2F3; vertical-align:middle;}
+  tbody tr:last-child td{border-bottom:none;}
+  col.c-prio{width:78px;} col.c-type{width:135px;} col.c-date{width:150px;}
+  col.c-status{width:140px;} col.c-x{width:34px;}
+  input.prio{width:100%; text-align:center; padding:9px 4px;}
+  td.xcell{text-align:center;}
+  button.rm{border:none; background:transparent; color:var(--plot); font-size:16px; cursor:pointer; line-height:1;}
+  button.rm:hover{filter:brightness(.85);}
+  .addrow{padding:8px 0 2px;}
+  button.add{border:1px dashed var(--teal); background:#fff; color:var(--deep);
+    padding:8px 12px; border-radius:8px; font-size:13px; cursor:pointer; font-weight:bold; font-family:inherit;}
+  button.add:hover{background:var(--band);}
+  footer.note{color:var(--muted); font-size:12px; margin-top:26px; text-align:center; font-style:italic;}
+
+  #areas_print{display:none;}
+  #areas_print .ptable{border-collapse:collapse; border:1px solid #9aa3b0; border-radius:0;}
+  #areas_print .ptable th, #areas_print .ptable td{border:1px solid #9aa3b0;}
+  #areas_print .ptable thead th{background:var(--band); padding:7px 8px;}
+  #areas_print .ptable td{height:30px; font-size:12.5px; padding:6px 8px;}
+  #areas_print .ptable td.pc{text-align:center;}
+  #areas_print .area .band{border-radius:0;}
+  #areas_print .area .desc{border-bottom:none;}
+
+  /* Print */
+  @media print{
+    body{background:#fff;}
+    .toolbar,.addrow,button.rm,.saved,.pagelink,#areas{display:none !important;}
+    #areas_print{display:block !important;}
+    .wrap{max-width:none; padding:0;}
+    .area{break-inside:avoid;}
+    .card,.area,table{border-color:#bbb;}
+    input,select,textarea{border-color:#ccc; background:#fff;}
+    .area .band{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    thead th{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+
+  @media (min-width:760px){
+    .wrap{padding:28px 22px 80px;}
+    input[type=text], input[type=date], input[type=number], textarea, select{font-size:14px;}
+    textarea#mission{font-size:15px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">Whole-Life Goal Plan</div>
+    <h1>My Whole-Life Goal Plan</h1>
+    <p class="sub">A balanced framework for setting and tracking goals across the areas of my life</p>
+    <a class="pagelink" href="index.html">← Back to the Wheel</a>
+  </header>
+
+  <div class="toolbar">
+    <button class="btn" onclick="printDoc()">🖨 Save as PDF / Print</button>
+    <button class="btn ghost" onclick="exportJSON()">⬇ Download my data</button>
+    <button class="btn ghost" onclick="document.getElementById('imp').click()">⬆ Load data</button>
+    <input type="file" id="imp" accept="application/json" style="display:none" onchange="importJSON(event)">
+    <button class="btn ghost" onclick="clearAll()">Clear all</button>
+    <span class="saved" id="savedNote">Auto-saves in this browser</span>
+  </div>
+
+  <div class="card">
+    <div class="meta-grid meta-name" style="max-width:100%">
+      <div>
+        <label class="fld" for="name">Name</label>
+        <input type="text" id="name" data-meta="name" style="max-width:420px">
+      </div>
+    </div>
+    <div class="meta-grid" style="margin-top:12px">
+      <div>
+        <label class="fld" for="created">Date created</label>
+        <input type="date" id="created" data-meta="created">
+      </div>
+      <div>
+        <label class="fld" for="reviewed">Last reviewed</label>
+        <input type="date" id="reviewed" data-meta="reviewed">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="section mission-title">My Personal Mission Statement <small>(My Guiding Principle)</small></h2>
+    <p class="hint">In a sentence or two, capture what you most want your life to stand for and become. Use it as the reference point for every goal in this plan.</p>
+    <textarea id="mission" data-meta="mission" placeholder="Write your mission statement here…"></textarea>
+  </div>
+
+  <div class="card habits">
+    <h2 class="section">Five habits that make it work</h2>
+    <ol>
+      <li><b>Write it down.</b> Goals kept only in your head stay vague. Putting them into plain words sharpens them and turns an intention into a real commitment.</li>
+      <li><b>Revisit it often.</b> Read through your plan regularly — first thing in the morning works well — so it keeps steering your attention and daily choices.</li>
+      <li><b>Keep it balanced.</b> Try to keep at least one live goal in every area. Strong progress in one part of life rarely makes up for neglecting another.</li>
+      <li><b>Break down the big ones.</b> For your top priorities, spell out the next concrete action, the obstacles you expect, and how you plan to handle them.</li>
+      <li><b>Give each a deadline.</b> A target date creates focus and accountability. If life changes, move the date — adjusting a timeline is healthy; quietly abandoning the goal is not.</li>
+    </ol>
+  </div>
+
+  <h2 class="section">The areas of my life</h2>
+  <p class="hint">Choose a goal type and priority, write the goal so it is specific and measurable, add a target date, and update the status as you go. Add as many lines as you need.</p>
+  <div id="areas"></div>
+  <div id="areas_print"></div>
+
+  <footer class="note">Your entries save automatically in this browser on this device. Use “Download my data” to keep a backup or move it to another device, and “Save as PDF / Print” for a hard copy.</footer>
+</div>
+
+<script>
+const AREAS = [
+  ["Health & Vitality","Fitness, nutrition, sleep, energy, and looking after your body and medical needs."],
+  ["Growth & Learning","New skills, knowledge, reading, mindset, and ongoing personal and professional development."],
+  ["Relationships & Community","Friendships, networks, giving back, and involvement in your community and wider culture."],
+  ["Purpose & Values","The principles you live by, inner peace, integrity, and a sense of meaning and direction."],
+  ["Career & Finances","Work, income, saving, investing, and building long-term financial security."],
+  ["Family & Home","Your closest relationships, home life, shared time, and the environment you live in."],
+];
+const TYPES = ["","Short-Term","Medium-Term","Long-Term"];
+const STATUS = ["","Not Started","In Progress","Blocked","Completed"];
+const KEY = "whole_life_goal_plan_v1";
+
+function blank(){return {priority:"",type:"",goal:"",date:"",status:""};}
+const ROWS = 10;
+function defaultData(){
+  return {meta:{name:"",created:"",reviewed:"",mission:""},
+          areas:AREAS.map(()=>Array.from({length:ROWS},blank))};
+}
+function normalize(d){
+  if(!d||!d.areas) return defaultData();
+  if(!d.meta) d.meta={name:"",created:"",reviewed:"",mission:""};
+  d.areas = AREAS.map((_,i)=>{
+    const a = Array.isArray(d.areas[i]) ? d.areas[i] : [];
+    while(a.length < ROWS) a.push(blank());
+    return a;
+  });
+  return d;
+}
+let data = normalize(load()) || defaultData();
+
+function load(){ try{const r=localStorage.getItem(KEY); return r?JSON.parse(r):null;}catch(e){return null;} }
+function save(){ try{localStorage.setItem(KEY, JSON.stringify(data)); flashSaved();}catch(e){} }
+let t; function flashSaved(){
+  const n=document.getElementById('savedNote'); if(!n) return;
+  n.textContent="Saved ✓"; clearTimeout(t);
+  t=setTimeout(()=>{n.textContent="Auto-saves in this browser";},1200);
+}
+
+function opt(list,val){return list.map(o=>`<option value="${o}"${o===val?" selected":""}>${o||"Select"}</option>`).join("");}
+
+function renderMeta(){
+  document.querySelectorAll("[data-meta]").forEach(el=>{
+    el.value = data.meta[el.dataset.meta] || "";
+    el.oninput = ()=>{ data.meta[el.dataset.meta]=el.value; save(); };
+  });
+}
+
+function renderAreas(){
+  const host=document.getElementById("areas"); host.innerHTML="";
+  AREAS.forEach((a,ai)=>{
+    const wrap=document.createElement("div"); wrap.className="area";
+    wrap.innerHTML=`
+      <div class="band">${ai+1}. ${a[0]}</div>
+      <div class="desc">${a[1]}</div>
+      <table>
+        <colgroup>
+          <col class="c-prio"><col class="c-type"><col><col class="c-date"><col class="c-status"><col class="c-x">
+        </colgroup>
+        <thead><tr>
+          <th>Priority</th><th>Goal type</th><th>Goal — specific &amp; measurable</th>
+          <th>Target date</th><th>Status</th><th></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="addrow"><button class="add" onclick="addRow(${ai})">+ Add goal</button></div>`;
+    host.appendChild(wrap);
+    renderBody(ai, wrap.querySelector("tbody"));
+  });
+}
+
+function renderBody(ai, tbody){
+  tbody.innerHTML="";
+  data.areas[ai].forEach((g,ri)=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td><input class="prio" type="number" min="1" max="5" step="1" value="${g.priority}" title="1 = highest"></td>
+      <td><select>${opt(TYPES,g.type)}</select></td>
+      <td><input type="text" value="${escapeHtml(g.goal)}" placeholder="Write the goal…"></td>
+      <td><input type="date" value="${g.date}"></td>
+      <td><select>${opt(STATUS,g.status)}</select></td>
+      <td class="xcell"><button class="rm" title="Remove goal" onclick="removeRow(${ai},${ri})">✕</button></td>`;
+    const [prio,type,goal,date,status]=tr.querySelectorAll("input,select");
+    prio.oninput=()=>{g.priority=prio.value; save();};
+    type.onchange=()=>{g.type=type.value; save();};
+    goal.oninput=()=>{g.goal=goal.value; save();};
+    date.oninput=()=>{g.date=date.value; save();};
+    status.onchange=()=>{g.status=status.value; save();};
+    tbody.appendChild(tr);
+  });
+}
+
+function addRow(ai){ data.areas[ai].push(blank()); refresh(ai); save(); }
+function removeRow(ai,ri){
+  data.areas[ai].splice(ri,1);
+  if(data.areas[ai].length===0) data.areas[ai].push(blank());
+  refresh(ai); save();
+}
+function refresh(ai){
+  const tbody=document.querySelectorAll(".area")[ai].querySelector("tbody");
+  renderBody(ai,tbody);
+}
+
+function escapeHtml(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+function exportJSON(){
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob); const a=document.createElement("a");
+  a.href=url; a.download="my-goal-plan.json"; a.click(); URL.revokeObjectURL(url);
+}
+function importJSON(ev){
+  const f=ev.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ data=JSON.parse(r.result); renderMeta(); renderAreas(); save(); }
+                 catch(e){ alert("Sorry, that file could not be read."); } };
+  r.readAsText(f); ev.target.value="";
+}
+function clearAll(){
+  if(!confirm("Clear everything and start fresh?")) return;
+  data=defaultData(); renderMeta(); renderAreas(); save();
+}
+
+/* ---- Dynamic print view ----
+   A category with 0–2 filled goals prints 3 lines (filled + blank writing lines);
+   a category with 3+ filled goals prints exactly those, with no empty lines. */
+function fmtDate(v){
+  if(!v) return "";
+  const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+  return m ? `${m[3]}/${m[2]}/${m[1]}` : v;
+}
+function rowFilled(g){
+  return [g.priority,g.type,g.goal,g.date,g.status].some(x=>String(x||"").trim()!=="");
+}
+function buildPrint(){
+  const host=document.getElementById("areas_print"); host.innerHTML="";
+  AREAS.forEach((a,ai)=>{
+    const filled=data.areas[ai].filter(rowFilled);
+    let rows=filled;
+    if(filled.length<3) rows=filled.concat(Array.from({length:3-filled.length},blank));
+    const body=rows.map(g=>`<tr>
+        <td class="pc">${escapeHtml(g.priority)}</td>
+        <td>${escapeHtml(g.type)}</td>
+        <td>${escapeHtml(g.goal)}</td>
+        <td>${fmtDate(g.date)}</td>
+        <td>${escapeHtml(g.status)}</td></tr>`).join("");
+    host.insertAdjacentHTML("beforeend",`
+      <div class="area">
+        <div class="band">${ai+1}. ${a[0]}</div>
+        <div class="desc">${a[1]}</div>
+        <table class="ptable">
+          <colgroup><col class="c-prio"><col class="c-type"><col><col class="c-date"><col class="c-status"></colgroup>
+          <thead><tr><th>Priority</th><th>Goal type</th><th>Goal — specific &amp; measurable</th><th>Target date</th><th>Status</th></tr></thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>`);
+  });
+}
+function printDoc(){ buildPrint(); window.print(); }
+window.addEventListener("beforeprint", buildPrint);
+
+renderMeta();
+renderAreas();
+</script>
+</body>
+</html>
