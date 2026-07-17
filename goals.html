@@ -101,6 +101,204 @@
   footer{margin-top:18px; color:var(--muted); font-style:italic; font-size:13px; text-align:center;}
   .hint{font-size:12.5px; color:var(--muted); margin-top:8px; text-align:center;}
 
+  /* Two-column layout */
+  .layout-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+  }
+  
+  .main-content {
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    .layout-container {
+      grid-template-columns: 280px 1fr;
+      align-items: start;
+    }
+  }
+
+  /* Sidebar styling */
+  .sidebar {
+    background: #fff;
+    border: 1px solid #E2EAEC;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.05);
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .sidebar {
+      display: block;
+      position: sticky;
+      top: 20px;
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+    }
+  }
+
+  /* Mobile sidebar drawer */
+  .sidebar.mobile-open {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    z-index: 100;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.15);
+    animation: slideIn 0.25s ease-out;
+  }
+
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99;
+  }
+  .sidebar-backdrop.show {
+    display: block;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+
+  /* New Goal Button */
+  .new-goal-btn {
+    background: var(--deep);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+  .new-goal-btn:hover {
+    background: var(--mid);
+  }
+
+  /* Mobile Top Bar */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .top-bar .backlink {
+    margin-bottom: 0;
+  }
+
+  .menu-toggle {
+    background: var(--deep);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 12px;
+  }
+  @media (min-width: 900px) {
+    .menu-toggle {
+      display: none;
+    }
+  }
+
+  /* Sidebar list items */
+  .cat-header {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 14px;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--bg);
+  }
+  .cat-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .goal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    color: var(--ink);
+    cursor: pointer;
+    margin-bottom: 4px;
+    transition: all 0.2s ease;
+    gap: 6px;
+  }
+  .goal-item:hover {
+    background: var(--bg);
+    color: var(--deep);
+  }
+  .goal-item.active {
+    background: var(--deep);
+    color: #fff;
+    font-weight: bold;
+  }
+  .goal-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .goal-delete-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .goal-item:hover .goal-delete-btn {
+    opacity: 1;
+  }
+  .goal-item.active .goal-delete-btn {
+    color: rgba(255,255,255,0.7);
+  }
+  .goal-item.active .goal-delete-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.15);
+  }
+  .goal-delete-btn:hover {
+    color: var(--plot);
+    background: rgba(181,72,46,0.1);
+  }
+
   /* ===== tablet / desktop ===== */
   @media (hover:hover) and (pointer:fine){ button:hover{filter:brightness(1.06);} }
   @media (min-width:760px){
@@ -139,10 +337,30 @@
 </style>
 </head>
 <body>
-<div class="page">
-  <a class="backlink" href="index.html">← Back to the Wheel</a>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<div class="layout-container">
+  <aside class="sidebar" id="sidebar">
+    <button class="new-goal-btn" id="newGoalBtn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 1V13M1 7H13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      New Goal plan
+    </button>
+    <div id="sidebarNav"></div>
+  </aside>
 
-  <div class="hband">
+  <main class="main-content">
+    <div class="top-bar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 5H17M3 10H17M3 15H17" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <a class="backlink" href="index.html">← Back to the Wheel</a>
+    </div>
+
+    <div class="page">
+      <div class="hband">
     <h1>Goal Planning Worksheet</h1>
     <div class="sub">Turn an intention into a dated, trackable plan.</div>
   </div>
@@ -263,6 +481,8 @@
   </footer>
   <div class="hint">Nothing is uploaded — everything stays on your computer. The download is an editable PDF you can keep changing.</div>
 </div>
+</main>
+</div>
 
 <script src="vendor/pdf-lib.min.js"></script>
 <!-- bump ?v= whenever the template PDF changes so browsers don't serve a stale copy -->
@@ -337,40 +557,247 @@ function winAnsiSafe(s){
 }
 
 const KEY = "goals_worksheet_v1";
+let state = {
+  goals: [],
+  activeGoalId: ""
+};
 
-function saveGoals() {
-  try {
-    const data = {};
-    document.querySelectorAll("[data-field]").forEach(elt => {
-      const name = elt.getAttribute("data-field");
-      if (elt.type === "checkbox") {
-        data[name] = elt.checked;
-      } else {
-        data[name] = elt.value;
-      }
-    });
-    localStorage.setItem(KEY, JSON.stringify(data));
-    flashSaved();
-  } catch(e) {}
+function createBlankGoal() {
+  const newId = "goal_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
+  const blankGoal = {
+    id: newId,
+    life_area: "",
+    started: todayISO(),
+    target_date: "",
+    achieved_on: "",
+    the_goal: "",
+    why_matters: "",
+    obstacles: "",
+    handling: "",
+    who_should_know: "",
+    track_progress: "",
+    worth_value_yes: false,
+    worth_value_no: false,
+    worth_cost_yes: false,
+    worth_cost_no: false,
+    worth_cost_later: false,
+    reminders: "",
+    picture_success: ""
+  };
+  for(let i=1; i<=ACTION_ROWS; i++) {
+    blankGoal[`action_${i}`] = "";
+    blankGoal[`due_${i}`] = "";
+    blankGoal[`reviewed_${i}`] = "";
+    blankGoal[`done_${i}`] = false;
+  }
+  return blankGoal;
 }
 
 function loadGoals() {
   try {
-    const r = localStorage.getItem(KEY);
-    if (r) {
-      const data = JSON.parse(r);
-      document.querySelectorAll("[data-field]").forEach(elt => {
-        const name = elt.getAttribute("data-field");
-        if (data[name] !== undefined) {
-          if (elt.type === "checkbox") {
-            elt.checked = data[name];
-          } else {
-            elt.value = data[name];
-          }
-        }
-      });
+    const raw = localStorage.getItem(KEY);
+    if (raw) {
+      let data = JSON.parse(raw);
+      // Migration checking for old single goal data structure
+      if (data && !data.goals) {
+        const migrated = {
+          id: "migrated_" + Date.now(),
+          ...data
+        };
+        data = {
+          goals: [migrated],
+          activeGoalId: migrated.id
+        };
+      }
+      state = data;
     }
   } catch(e) {}
+  
+  if (!state || !state.goals || state.goals.length === 0) {
+    const blank = createBlankGoal();
+    state = {
+      goals: [blank],
+      activeGoalId: blank.id
+    };
+  }
+  
+  const active = state.goals.find(g => g.id === state.activeGoalId) || state.goals[0];
+  state.activeGoalId = active.id;
+  populateForm(active);
+  renderSidebar();
+}
+
+function populateForm(goal) {
+  document.querySelectorAll("[data-field]").forEach(elt => {
+    const name = elt.getAttribute("data-field");
+    const val = goal[name];
+    if (elt.type === "checkbox") {
+      elt.checked = !!val;
+    } else {
+      elt.value = val || "";
+    }
+  });
+  setStatus("");
+}
+
+function saveGoals() {
+  try {
+    const activeGoal = state.goals.find(g => g.id === state.activeGoalId);
+    if (!activeGoal) return;
+    
+    document.querySelectorAll("[data-field]").forEach(elt => {
+      const name = elt.getAttribute("data-field");
+      if (elt.type === "checkbox") {
+        activeGoal[name] = elt.checked;
+      } else {
+        activeGoal[name] = elt.value;
+      }
+    });
+    
+    localStorage.setItem(KEY, JSON.stringify(state));
+    renderSidebar();
+    flashSaved();
+  } catch(e) {}
+}
+
+function handleNewGoal() {
+  const newGoal = createBlankGoal();
+  state.goals.push(newGoal);
+  state.activeGoalId = newGoal.id;
+  
+  localStorage.setItem(KEY, JSON.stringify(state));
+  renderSidebar();
+  populateForm(newGoal);
+  closeMobileSidebar();
+}
+
+function selectGoal(id) {
+  state.activeGoalId = id;
+  const activeGoal = state.goals.find(g => g.id === id);
+  if (activeGoal) {
+    populateForm(activeGoal);
+    renderSidebar();
+  }
+  closeMobileSidebar();
+}
+
+function deleteGoal(id, event) {
+  if (event) event.stopPropagation();
+  
+  const index = state.goals.findIndex(g => g.id === id);
+  if (index === -1) return;
+  
+  const goalToDelete = state.goals[index];
+  const title = goalToDelete.the_goal.trim() || "Untitled Goal";
+  
+  if (!confirm(`Are you sure you want to delete the goal:\n"${title}"?`)) {
+    return;
+  }
+  
+  state.goals.splice(index, 1);
+  
+  if (state.activeGoalId === id || state.goals.length === 0) {
+    if (state.goals.length === 0) {
+      const blank = createBlankGoal();
+      state.goals.push(blank);
+    }
+    state.activeGoalId = state.goals[0].id;
+  }
+  
+  localStorage.setItem(KEY, JSON.stringify(state));
+  renderSidebar();
+  const activeGoal = state.goals.find(g => g.id === state.activeGoalId);
+  populateForm(activeGoal);
+}
+
+function renderSidebar() {
+  const categories = [
+    "Society & Community",
+    "Family & Home",
+    "Work & Finances",
+    "Body & Health",
+    "Mind & Learning",
+    "Ethics & Values"
+  ];
+  
+  const nav = document.getElementById("sidebarNav");
+  nav.innerHTML = "";
+  
+  const grouped = {};
+  categories.forEach(cat => grouped[cat] = []);
+  const uncategorized = [];
+  
+  state.goals.forEach(g => {
+    if (categories.includes(g.life_area)) {
+      grouped[g.life_area].push(g);
+    } else {
+      uncategorized.push(g);
+    }
+  });
+  
+  function createGoalEl(g) {
+    const titleText = g.the_goal.trim();
+    const title = titleText ? (titleText.substring(0, 30) + (titleText.length > 30 ? "..." : "")) : "Untitled Goal";
+    const isActive = g.id === state.activeGoalId;
+    
+    const div = document.createElement("div");
+    div.className = `goal-item${isActive ? " active" : ""}`;
+    div.onclick = () => selectGoal(g.id);
+    
+    const span = document.createElement("span");
+    span.className = "goal-title";
+    span.textContent = title;
+    
+    const delBtn = document.createElement("button");
+    delBtn.className = "goal-delete-btn";
+    delBtn.innerHTML = "✕";
+    delBtn.title = "Delete goal";
+    delBtn.onclick = (e) => deleteGoal(g.id, e);
+    
+    div.appendChild(span);
+    div.appendChild(delBtn);
+    return div;
+  }
+  
+  categories.forEach(cat => {
+    const list = grouped[cat];
+    const catHeader = document.createElement("div");
+    catHeader.className = "cat-header";
+    catHeader.textContent = cat;
+    nav.appendChild(catHeader);
+    
+    if (list.length > 0) {
+      list.forEach(g => {
+        nav.appendChild(createGoalEl(g));
+      });
+    } else {
+      const empty = document.createElement("div");
+      empty.style.cssText = "font-size:12px; color:var(--muted); font-style:italic; padding:4px 10px;";
+      empty.textContent = "No goals";
+      nav.appendChild(empty);
+    }
+  });
+  
+  if (uncategorized.length > 0) {
+    const uncHeader = document.createElement("div");
+    uncHeader.className = "cat-header";
+    uncHeader.textContent = "Uncategorized";
+    nav.appendChild(uncHeader);
+    
+    uncategorized.forEach(g => {
+      nav.appendChild(createGoalEl(g));
+    });
+  }
+}
+
+function openMobileSidebar() {
+  document.getElementById("sidebar").classList.add("mobile-open");
+  document.getElementById("sidebarBackdrop").classList.add("show");
+}
+
+function closeMobileSidebar() {
+  document.getElementById("sidebar").classList.remove("mobile-open");
+  document.getElementById("sidebarBackdrop").classList.remove("show");
 }
 
 let savedTimeout;
@@ -391,6 +818,7 @@ function b64ToBytes(b64){
   return bytes;
 }
 
+// sanitize and prep filename
 function sanitize(s){ return s.trim().replace(/[^\w\- ]+/g,"").replace(/\s+/g,"_"); }
 
 function pdfReady(){ return typeof PDFLib!=="undefined" && !!window.GOAL_TEMPLATE_B64; }
@@ -428,8 +856,6 @@ async function buildFilledPdf(){
       }
     }catch(e){ /* field missing in template — skip */ }
   });
-  // pdf-lib writes appearance streams for every field we touched, so the values
-  // render in any viewer while the fields stay editable (form is left un-flattened).
   return doc.save();
 }
 
@@ -471,7 +897,6 @@ async function printPdf(){
         try{ iframe.contentWindow.focus(); iframe.contentWindow.print(); }
         catch(e){ window.open(url, "_blank"); } // popup fallback (e.g. cross-viewer quirks)
       }, 400);
-      // give the print dialog time before releasing the blob/iframe
       setTimeout(()=>{ URL.revokeObjectURL(url); iframe.remove(); }, 60000);
     };
     document.body.appendChild(iframe);
@@ -488,15 +913,21 @@ document.getElementById("downloadBtn").addEventListener("click", downloadPdf);
 document.getElementById("printBtn").addEventListener("click", printPdf);
 
 document.getElementById("resetBtn").addEventListener("click", ()=>{
-  document.querySelectorAll("[data-field]").forEach(elt=>{
-    if(elt.type==="checkbox") elt.checked=false; else elt.value="";
-  });
-  document.querySelector('[data-field="started"]').value = todayISO();
-  setStatus("");
-  try {
-    localStorage.removeItem(KEY);
-  } catch(e) {}
+  if (!confirm("Reset all fields of this goal to blank?")) return;
+  const activeGoal = state.goals.find(g => g.id === state.activeGoalId);
+  if (activeGoal) {
+    const blank = createBlankGoal();
+    Object.keys(blank).forEach(k => {
+      if (k !== "id") activeGoal[k] = blank[k];
+    });
+    saveGoals();
+    populateForm(activeGoal);
+  }
 });
+
+document.getElementById("newGoalBtn").addEventListener("click", handleNewGoal);
+document.getElementById("menuToggle").addEventListener("click", openMobileSidebar);
+document.getElementById("sidebarBackdrop").addEventListener("click", closeMobileSidebar);
 
 document.addEventListener("input", e => {
   if (e.target.hasAttribute("data-field")) {
@@ -511,9 +942,6 @@ document.addEventListener("change", e => {
 
 // init
 loadGoals();
-if (!document.querySelector('[data-field="started"]').value) {
-  document.querySelector('[data-field="started"]').value = todayISO();
-}
 </script>
 </body>
 </html>
