@@ -126,6 +126,7 @@
       <button class="primary" id="downloadBtn">Download my wheel (PNG)</button>
       <button class="ghost" id="resetBtn">Reset</button>
     </div>
+    <div class="hint" id="savedNote" style="margin-top:8px; text-align:center;">Auto-saves in this browser</div>
     <div class="tip" style="margin-top:14px;">
       <b>Tip:</b> drag a slider, or click directly on a wedge in the wheel to set that score. Aim to grow every spoke — while keeping it balanced.
     </div>
@@ -209,6 +210,45 @@ function drawPlot(){
     stroke:"#FFFFFF","stroke-width":2,"pointer-events":"none"})));
 }
 
+const KEY = "wheel_of_life_v1";
+
+function save() {
+  try {
+    const data = {
+      name: document.getElementById("nameInput").value,
+      date: document.getElementById("dateInput").value,
+      scores: scores
+    };
+    localStorage.setItem(KEY, JSON.stringify(data));
+    flashSaved();
+  } catch(e) {}
+}
+
+function load() {
+  try {
+    const r = localStorage.getItem(KEY);
+    if (r) {
+      const data = JSON.parse(r);
+      if (data.name !== undefined) document.getElementById("nameInput").value = data.name;
+      if (data.date !== undefined) document.getElementById("dateInput").value = data.date;
+      if (Array.isArray(data.scores)) {
+        for (let i = 0; i < scores.length && i < data.scores.length; i++) {
+          scores[i] = data.scores[i];
+        }
+      }
+    }
+  } catch(e) {}
+}
+
+let t;
+function flashSaved() {
+  const n = document.getElementById('savedNote');
+  if (!n) return;
+  n.textContent = "Saved ✓";
+  clearTimeout(t);
+  t = setTimeout(() => { n.textContent = "Auto-saves in this browser"; }, 1200);
+}
+
 // click on a wedge to set score by radius of click
 svg.addEventListener("click",e=>{
   const target=e.target.closest("path"); if(!target)return;
@@ -220,6 +260,7 @@ svg.addEventListener("click",e=>{
   let s=Math.round((dist-hub)/(rim-hub)*steps);
   s=Math.max(1,Math.min(steps,s));
   scores[i]=s; syncControls(); drawPlot();
+  save();
 });
 
 // sliders
@@ -231,7 +272,12 @@ function buildControls(){
     const lab=document.createElement("label"); lab.textContent=ar.name;
     const rng=document.createElement("input"); rng.type="range"; rng.min=1; rng.max=10; rng.value=scores[i];
     const val=document.createElement("span"); val.className="val"; val.textContent=scores[i]+"/10";
-    rng.addEventListener("input",()=>{scores[i]=+rng.value; val.textContent=scores[i]+"/10"; drawPlot();});
+    rng.addEventListener("input",()=>{
+      scores[i]=+rng.value;
+      val.textContent=scores[i]+"/10";
+      drawPlot();
+      save();
+    });
     row.append(lab,rng,val); controls.appendChild(row);
   });
 }
@@ -244,7 +290,11 @@ function syncControls(){
 
 document.getElementById("resetBtn").addEventListener("click",()=>{
   for(let i=0;i<scores.length;i++)scores[i]=5; syncControls(); drawPlot();
+  save();
 });
+
+document.getElementById("nameInput").addEventListener("input", save);
+document.getElementById("dateInput").addEventListener("input", save);
 
 // download as PNG (renders the SVG plus name/date onto a canvas)
 document.getElementById("downloadBtn").addEventListener("click",()=>{
@@ -281,9 +331,12 @@ document.getElementById("downloadBtn").addEventListener("click",()=>{
 });
 
 // init
+load();
 build(); buildControls();
 // prefill date
-document.getElementById("dateInput").value=new Date().toLocaleDateString();
+if(!document.getElementById("dateInput").value){
+  document.getElementById("dateInput").value=new Date().toLocaleDateString();
+}
 </script>
 </body>
 </html>

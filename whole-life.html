@@ -184,12 +184,12 @@
 
 <script>
 const AREAS = [
-  ["Health & Vitality","Fitness, nutrition, sleep, energy, and looking after your body and medical needs."],
-  ["Growth & Learning","New skills, knowledge, reading, mindset, and ongoing personal and professional development."],
-  ["Relationships & Community","Friendships, networks, giving back, and involvement in your community and wider culture."],
-  ["Purpose & Values","The principles you live by, inner peace, integrity, and a sense of meaning and direction."],
-  ["Career & Finances","Work, income, saving, investing, and building long-term financial security."],
+  ["Society & Community","Friendships, networks, giving back, and involvement in your community and wider culture."],
   ["Family & Home","Your closest relationships, home life, shared time, and the environment you live in."],
+  ["Work & Finances","Work, income, saving, investing, and building long-term financial security."],
+  ["Body & Health","Fitness, nutrition, sleep, energy, and looking after your body and medical needs."],
+  ["Mind & Learning","New skills, knowledge, reading, mindset, and ongoing personal and professional development."],
+  ["Ethics & Values","The principles you live by, inner peace, integrity, and a sense of meaning and direction."],
 ];
 const TYPES = ["","Short-Term","Medium-Term","Long-Term"];
 const STATUS = ["","Not Started","In Progress","Blocked","Completed"];
@@ -198,11 +198,43 @@ const KEY = "whole_life_goal_plan_v1";
 function blank(){return {priority:"",type:"",goal:"",date:"",status:""};}
 const ROWS = 10;
 function defaultData(){
-  return {meta:{name:"",created:"",reviewed:"",mission:""},
+  return {schemaVersion: 2,
+          meta:{name:"",created:"",reviewed:"",mission:""},
           areas:AREAS.map(()=>Array.from({length:ROWS},blank))};
 }
 function normalize(d){
-  if(!d||!d.areas) return defaultData();
+  if(!d) return defaultData();
+
+  // Migration to align categories and order with index.html
+  if(!d.schemaVersion || d.schemaVersion < 2){
+    const oldAreas = d.areas || [];
+    const newAreas = Array.from({length: 6}, () => []);
+
+    // Mapping from old index to new index:
+    // 0 (Health & Vitality) -> 3 (Body & Health)
+    // 1 (Growth & Learning) -> 4 (Mind & Learning)
+    // 2 (Relationships & Community) -> 0 (Society & Community)
+    // 3 (Purpose & Values) -> 5 (Ethics & Values)
+    // 4 (Career & Finances) -> 2 (Work & Finances)
+    // 5 (Family & Home) -> 1 (Family & Home)
+    const mapping = {
+      0: 3,
+      1: 4,
+      2: 0,
+      3: 5,
+      4: 2,
+      5: 1
+    };
+
+    for(let oldIdx = 0; oldIdx < 6; oldIdx++){
+      const newIdx = mapping[oldIdx];
+      newAreas[newIdx] = oldAreas[oldIdx] || [];
+    }
+
+    d.areas = newAreas;
+    d.schemaVersion = 2;
+  }
+
   if(!d.meta) d.meta={name:"",created:"",reviewed:"",mission:""};
   d.areas = AREAS.map((_,i)=>{
     const a = Array.isArray(d.areas[i]) ? d.areas[i] : [];
@@ -295,7 +327,7 @@ function exportJSON(){
 function importJSON(ev){
   const f=ev.target.files[0]; if(!f) return;
   const r=new FileReader();
-  r.onload=()=>{ try{ data=JSON.parse(r.result); renderMeta(); renderAreas(); save(); }
+  r.onload=()=>{ try{ data=normalize(JSON.parse(r.result)); renderMeta(); renderAreas(); save(); }
                  catch(e){ alert("Sorry, that file could not be read."); } };
   r.readAsText(f); ev.target.value="";
 }

@@ -79,7 +79,7 @@ A single, balanced overview that keeps goals live across every part of your life
 to the single-goal worksheet. Capture a **Personal Mission Statement**, review the **five habits** that
 make goals stick, then keep a running table of goals under each of the six life areas:
 
-- Six **life-area tables** (Health, Growth, Relationships, Purpose, Career, Family) — add or remove as
+- Six **life-area tables** (Society, Family, Work, Body, Mind, Ethics) — add or remove as
   many goal rows as you need, each with a **priority**, **goal type**, the **specific & measurable goal**,
   a **target date**, and a **status**.
 - **Auto-saves** as you type, straight into your browser (`localStorage`) on this device — reopen the

@@ -253,6 +253,7 @@
     <button class="ghost" id="resetBtn">Reset</button>
   </div>
   <div class="status" id="status"></div>
+  <div class="hint" id="savedNote">Auto-saves in this browser</div>
 
   <div class="banner">✓ When it's done, file this under your wins — a record of what you finished.</div>
 
@@ -332,8 +333,51 @@ function winAnsiSafe(s){
   return out;
 }
 
-// prefill "Started" with today's date, like the wheel page prefills its date
-document.querySelector('[data-field="started"]').value = todayISO();
+const KEY = "goals_worksheet_v1";
+
+function saveGoals() {
+  try {
+    const data = {};
+    document.querySelectorAll("[data-field]").forEach(elt => {
+      const name = elt.getAttribute("data-field");
+      if (elt.type === "checkbox") {
+        data[name] = elt.checked;
+      } else {
+        data[name] = elt.value;
+      }
+    });
+    localStorage.setItem(KEY, JSON.stringify(data));
+    flashSaved();
+  } catch(e) {}
+}
+
+function loadGoals() {
+  try {
+    const r = localStorage.getItem(KEY);
+    if (r) {
+      const data = JSON.parse(r);
+      document.querySelectorAll("[data-field]").forEach(elt => {
+        const name = elt.getAttribute("data-field");
+        if (data[name] !== undefined) {
+          if (elt.type === "checkbox") {
+            elt.checked = data[name];
+          } else {
+            elt.value = data[name];
+          }
+        }
+      });
+    }
+  } catch(e) {}
+}
+
+let savedTimeout;
+function flashSaved() {
+  const n = document.getElementById('savedNote');
+  if (!n) return;
+  n.textContent = "Saved ✓";
+  clearTimeout(savedTimeout);
+  savedTimeout = setTimeout(() => { n.textContent = "Auto-saves in this browser"; }, 1200);
+}
 
 function setStatus(msg){ document.getElementById("status").textContent = msg || ""; }
 
@@ -446,7 +490,27 @@ document.getElementById("resetBtn").addEventListener("click", ()=>{
   });
   document.querySelector('[data-field="started"]').value = todayISO();
   setStatus("");
+  try {
+    localStorage.removeItem(KEY);
+  } catch(e) {}
 });
+
+document.addEventListener("input", e => {
+  if (e.target.hasAttribute("data-field")) {
+    saveGoals();
+  }
+});
+document.addEventListener("change", e => {
+  if (e.target.hasAttribute("data-field")) {
+    saveGoals();
+  }
+});
+
+// init
+loadGoals();
+if (!document.querySelector('[data-field="started"]').value) {
+  document.querySelector('[data-field="started"]').value = todayISO();
+}
 </script>
 </body>
 </html>
