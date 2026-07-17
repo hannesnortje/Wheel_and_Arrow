@@ -299,6 +299,20 @@
     background: rgba(181,72,46,0.1);
   }
 
+  /* Sidebar footer buttons styling */
+  .sidebar-footer button {
+    font-family: inherit;
+    font-weight: bold;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .sidebar-footer .clear-btn {
+    color: var(--plot);
+    border-color: var(--plot);
+  }
+  .sidebar-footer .clear-btn:hover {
+    background: rgba(181, 72, 46, 0.05);
+  }
+
   /* ===== tablet / desktop ===== */
   @media (hover:hover) and (pointer:fine){ button:hover{filter:brightness(1.06);} }
   @media (min-width:760px){
@@ -347,6 +361,12 @@
       New Goal plan
     </button>
     <div id="sidebarNav"></div>
+    <div class="sidebar-footer" style="margin-top:20px; padding-top:12px; border-top:1px solid #E2EAEC; display:flex; flex-direction:column; gap:8px;">
+      <button class="ghost" id="exportBtn" style="font-size:12.5px; padding:8px 10px; width:100%; border-radius:8px;">⬇ Export JSON</button>
+      <button class="ghost" id="importBtn" style="font-size:12.5px; padding:8px 10px; width:100%; border-radius:8px;">⬆ Load JSON</button>
+      <input type="file" id="importFile" accept="application/json" style="display:none">
+      <button class="ghost clear-btn" id="clearAllBtn" style="font-size:12.5px; padding:8px 10px; width:100%; border-radius:8px; color:var(--plot); border-color:var(--plot);">✕ Clear all plans</button>
+    </div>
   </aside>
 
   <main class="main-content">
@@ -909,6 +929,70 @@ async function printPdf(){
   }
 }
 
+function exportJSON() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type: "application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "my-goals-worksheet.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importJSON(ev) {
+  const f = ev.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const parsed = JSON.parse(r.result);
+      let data = parsed;
+      // Handle legacy format migration
+      if (data && !data.goals) {
+        const migrated = {
+          id: "migrated_" + Date.now(),
+          ...data
+        };
+        data = {
+          goals: [migrated],
+          activeGoalId: migrated.id
+        };
+      }
+      
+      if (!data || !Array.isArray(data.goals) || data.goals.length === 0) {
+        throw new Error("Invalid format");
+      }
+      
+      state = data;
+      localStorage.setItem(KEY, JSON.stringify(state));
+      
+      const active = state.goals.find(g => g.id === state.activeGoalId) || state.goals[0];
+      state.activeGoalId = active.id;
+      
+      populateForm(active);
+      renderSidebar();
+      setStatus("Data loaded successfully!");
+      setTimeout(() => setStatus(""), 4000);
+    } catch(e) {
+      alert("Sorry, that file could not be read or is invalid.");
+    }
+  };
+  r.readAsText(f);
+  ev.target.value = "";
+}
+
+function clearAll() {
+  if (!confirm("This will delete ALL goal plans. Are you sure you want to start fresh?")) return;
+  const blank = createBlankGoal();
+  state = {
+    goals: [blank],
+    activeGoalId: blank.id
+  };
+  localStorage.setItem(KEY, JSON.stringify(state));
+  populateForm(blank);
+  renderSidebar();
+}
+
 document.getElementById("downloadBtn").addEventListener("click", downloadPdf);
 document.getElementById("printBtn").addEventListener("click", printPdf);
 
@@ -928,6 +1012,11 @@ document.getElementById("resetBtn").addEventListener("click", ()=>{
 document.getElementById("newGoalBtn").addEventListener("click", handleNewGoal);
 document.getElementById("menuToggle").addEventListener("click", openMobileSidebar);
 document.getElementById("sidebarBackdrop").addEventListener("click", closeMobileSidebar);
+
+document.getElementById("exportBtn").addEventListener("click", exportJSON);
+document.getElementById("importBtn").addEventListener("click", () => document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change", importJSON);
+document.getElementById("clearAllBtn").addEventListener("click", clearAll);
 
 document.addEventListener("input", e => {
   if (e.target.hasAttribute("data-field")) {
