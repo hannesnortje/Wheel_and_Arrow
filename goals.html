@@ -602,6 +602,7 @@ function createBlankGoal() {
   const newId = "goal_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
   const blankGoal = {
     id: newId,
+    name: "",
     life_area: "",
     started: todayISO(),
     target_date: "",
@@ -781,7 +782,7 @@ function renderSidebar() {
   });
   
   function createGoalEl(g) {
-    const titleText = g.the_goal.trim();
+    const titleText = (g.name || "").trim() || g.the_goal.trim();
     const title = titleText ? (titleText.substring(0, 30) + (titleText.length > 30 ? "..." : "")) : "Untitled Goal";
     const isActive = g.id === state.activeGoalId;
     
@@ -814,7 +815,7 @@ function renderSidebar() {
       const input = document.createElement("input");
       input.type = "text";
       input.className = "goal-edit-input";
-      input.value = g.the_goal || "";
+      input.value = g.name || (g.the_goal.trim() ? (g.the_goal.length > 50 ? g.the_goal.substring(0, 50) + "..." : g.the_goal) : "");
       
       div.replaceChild(input, span);
       delBtn.style.display = "none";
@@ -832,16 +833,9 @@ function renderSidebar() {
         if (finished) return;
         finished = true;
         
-        const newTitle = input.value.trim();
+        const newName = input.value.trim();
         if (save) {
-          g.the_goal = newTitle;
-          
-          if (g.id === state.activeGoalId) {
-            const textarea = document.querySelector('[data-field="the_goal"]');
-            if (textarea) {
-              textarea.value = newTitle;
-            }
-          }
+          g.name = newName;
           
           localStorage.setItem(KEY, JSON.stringify(state));
           renderSidebar();
