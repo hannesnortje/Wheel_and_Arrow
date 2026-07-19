@@ -273,6 +273,22 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .goal-edit-input {
+    flex: 1;
+    font-family: inherit;
+    font-size: 13.5px;
+    padding: 2px 6px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--ink);
+    width: 100%;
+    outline: none;
+  }
+  .goal-edit-input:focus {
+    border-color: var(--deep);
+    box-shadow: 0 0 0 2px rgba(33, 80, 110, 0.2);
+  }
   .goal-delete-btn {
     border: none;
     background: transparent;
@@ -696,7 +712,16 @@ function selectGoal(id) {
   const activeGoal = state.goals.find(g => g.id === id);
   if (activeGoal) {
     populateForm(activeGoal);
-    renderSidebar();
+    
+    // Manually toggle active class in the sidebar instead of a full re-render
+    document.querySelectorAll(".goal-item").forEach(item => {
+      const itemId = item.getAttribute("data-id");
+      if (itemId === id) {
+        item.classList.add("active");
+      } else {
+        item.classList.remove("active");
+      }
+    });
   }
   closeMobileSidebar();
 }
@@ -762,6 +787,7 @@ function renderSidebar() {
     
     const div = document.createElement("div");
     div.className = `goal-item${isActive ? " active" : ""}`;
+    div.setAttribute("data-id", g.id);
     div.onclick = () => selectGoal(g.id);
     
     const span = document.createElement("span");
@@ -773,6 +799,71 @@ function renderSidebar() {
     delBtn.innerHTML = "✕";
     delBtn.title = "Delete goal";
     delBtn.onclick = (e) => deleteGoal(g.id, e);
+    
+    // Double click to edit name inline
+    div.ondblclick = (e) => {
+      if (e.target.classList.contains("goal-delete-btn")) return;
+      
+      // Select it first if not active, without full sidebar re-render
+      if (state.activeGoalId !== g.id) {
+        selectGoal(g.id);
+      }
+      
+      if (div.querySelector(".goal-edit-input")) return;
+      
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "goal-edit-input";
+      input.value = g.the_goal || "";
+      
+      div.replaceChild(input, span);
+      delBtn.style.display = "none";
+      
+      input.focus();
+      input.select();
+      
+      // Prevent input click/interactivity from bubbling up and triggering selectGoal or double-click again
+      input.onclick = (ev) => ev.stopPropagation();
+      input.onmousedown = (ev) => ev.stopPropagation();
+      input.ondblclick = (ev) => ev.stopPropagation();
+      
+      let finished = false;
+      const finishEdit = (save) => {
+        if (finished) return;
+        finished = true;
+        
+        const newTitle = input.value.trim();
+        if (save) {
+          g.the_goal = newTitle;
+          
+          if (g.id === state.activeGoalId) {
+            const textarea = document.querySelector('[data-field="the_goal"]');
+            if (textarea) {
+              textarea.value = newTitle;
+            }
+          }
+          
+          localStorage.setItem(KEY, JSON.stringify(state));
+          renderSidebar();
+          flashSaved();
+        } else {
+          div.replaceChild(span, input);
+          delBtn.style.display = "";
+        }
+      };
+      
+      input.onkeydown = (keyEvent) => {
+        if (keyEvent.key === "Enter") {
+          finishEdit(true);
+        } else if (keyEvent.key === "Escape") {
+          finishEdit(false);
+        }
+      };
+      
+      input.onblur = () => {
+        finishEdit(true);
+      };
+    };
     
     div.appendChild(span);
     div.appendChild(delBtn);
