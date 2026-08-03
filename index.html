@@ -79,12 +79,9 @@
     .namebar{flex-direction:row; gap:10px; justify-content:center; max-width:none;}
     .namebar input{width:auto;}
     #nameInput{width:280px;} #dateInput{width:170px;}
-    /* restore the side-by-side wheel + panel layout */
     .wrap{flex-direction:row; gap:26px; flex-wrap:wrap; justify-content:center; align-items:flex-start;}
-    /* let the wheel grow to fill the space beside the panel, not just shrink to content */
     .canvaswrap{flex:1 1 460px; align-self:flex-start; max-width:680px;}
     .panel{width:330px; min-width:280px;}
-    /* roomier inline control rows when space allows */
     .controls{gap:9px;}
     .ctl{display:flex; grid-template-columns:none; grid-template-areas:none;
       align-items:center; gap:10px;}
@@ -94,6 +91,30 @@
     .btns{flex-direction:row; flex-wrap:wrap;}
     button{width:auto; font-size:14px; padding:10px 16px;}
   }
+
+  /* Tutorial Modal */
+  .tut-modal-overlay{position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,25,35,0.5);
+    backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:999; display:none; align-items:center; justify-content:center; padding:16px;}
+  .tut-modal-overlay.show{display:flex;}
+  .tut-modal{background:#fff; border-radius:14px; max-width:580px; width:100%; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,0.2); position:relative; animation:tutFadeIn 0.25s ease-out;}
+  @keyframes tutFadeIn{from{opacity:0; transform:scale(0.96);} to{opacity:1; transform:scale(1);}}
+  .tut-close{position:absolute; top:16px; right:16px; border:none; background:transparent; font-size:18px; color:var(--muted); cursor:pointer; padding:4px 8px; border-radius:6px;}
+  .tut-close:hover{background:var(--bg); color:var(--ink);}
+  .tut-kicker{color:var(--teal); font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;}
+  .tut-title{margin:4px 0 12px; font-size:20px; color:var(--deep); font-family:Cambria,Georgia,serif;}
+  .tut-body{font-size:14.5px; color:var(--ink); line-height:1.55; min-height:140px;}
+  .tut-body ul{margin:8px 0; padding-left:20px;}
+  .tut-body li{margin-bottom:6px;}
+  .tut-footer{margin-top:20px; padding-top:14px; border-top:1px solid #E2EAEC; display:flex; flex-direction:column; gap:12px;}
+  @media (min-width: 520px){
+    .tut-footer{flex-direction:row; align-items:center; justify-content:space-between;}
+  }
+  .tut-dots{display:flex; gap:6px; align-items:center;}
+  .tut-dot{width:8px; height:8px; border-radius:50%; background:#d0dcd3; transition:all 0.2s ease;}
+  .tut-dot.active{width:20px; border-radius:4px; background:var(--deep);}
+  .tut-btns{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .tut-btns button{width:auto; padding:7px 14px; font-size:13px;}
+  .tut-skip{font-size:12px; color:var(--muted); display:flex; align-items:center; gap:4px; margin-right:auto; cursor:pointer;}
 </style>
 </head>
 <body>
@@ -124,6 +145,8 @@
     </div>
     <div class="btns">
       <button class="primary" id="downloadBtn">Download my wheel (PNG)</button>
+      <button class="ghost" id="tutBtn">❓ Tutorial</button>
+      <button class="ghost" id="sampleWheelBtn">✨ Load Sample Wheel</button>
       <button class="ghost" id="resetBtn">Reset</button>
     </div>
     <div class="hint" id="savedNote" style="margin-top:8px; text-align:center;">Auto-saves in this browser</div>
@@ -296,6 +319,9 @@ document.getElementById("resetBtn").addEventListener("click",()=>{
   save();
 });
 
+document.getElementById("tutBtn").addEventListener("click", () => openTutorial(0));
+document.getElementById("sampleWheelBtn").addEventListener("click", loadSampleWheel);
+
 document.getElementById("nameInput").addEventListener("input", save);
 document.getElementById("dateInput").addEventListener("input", save);
 
@@ -333,6 +359,106 @@ document.getElementById("downloadBtn").addEventListener("click",()=>{
   img.src=url;
 });
 
+/* ---- Tutorial Guidance & Sample Wheel ---- */
+const TUTORIAL_SLIDES = [
+  {
+    title: "1. Your Current Reality",
+    content: `<p>The Wheel of Life is a visual diagnostic tool representing your satisfaction across the 6 essential areas of your life.</p>
+              <p>Score each area from <b>1</b> (at the centre — complete dissatisfaction) to <b>10</b> (at the rim — total satisfaction) against your own authentic standards.</p>`
+  },
+  {
+    title: "2. Plotting Your Wheel",
+    content: `<p>There are two easy ways to set your scores:</p>
+              <ul>
+                <li><b>Sliders</b>: Drag the sliders under <i>Your scores</i> to adjust each area.</li>
+                <li><b>Direct Wheel Click</b>: Click directly anywhere on the wheel's colored wedges to set that spoke's score instantly.</li>
+              </ul>`
+  },
+  {
+    title: "3. The Golden Lesson: Balance",
+    content: `<p>Is your wheel round and full, or jagged and flat?</p>
+              <p>A wheel that scores <b>9 in Work &amp; Finances</b> but <b>2 in Body &amp; Health</b> makes for a very bumpy, unstable ride. The goal is to expand your wheel outwardly while keeping it balanced across all spokes!</p>`
+  },
+  {
+    title: "4. Bridging Being to Becoming",
+    content: `<p>Once you identify your current reality on the wheel, take action:</p>
+              <ul>
+                <li><b>Plan a Goal</b>: Use the <i>Goal Planning Worksheet</i> to turn an intention into a dated, trackable SMART plan.</li>
+                <li><b>My Whole-Life Plan</b>: Formulate balanced goals across all 6 areas in a single master framework.</li>
+                <li><b>Download PNG 📸</b>: Export a high-resolution image of your wheel diagnostic to track your growth over time.</li>
+              </ul>`
+  }
+];
+
+let tutSlideIndex = 0;
+
+function openTutorial(slideIndex = 0){
+  tutSlideIndex = slideIndex;
+  renderTutorialSlide();
+  document.getElementById("tutModal").classList.add("show");
+}
+
+function closeTutorial(){
+  document.getElementById("tutModal").classList.remove("show");
+  const dontShow = document.getElementById("tutDontShow").checked;
+  if(dontShow){
+    try{ localStorage.setItem("index_tut_skip_v1", "true"); }catch(e){}
+  }
+}
+
+function tutNext(){
+  if(tutSlideIndex < TUTORIAL_SLIDES.length - 1){
+    tutSlideIndex++;
+    renderTutorialSlide();
+  } else {
+    closeTutorial();
+  }
+}
+
+function tutPrev(){
+  if(tutSlideIndex > 0){
+    tutSlideIndex--;
+    renderTutorialSlide();
+  }
+}
+
+function renderTutorialSlide(){
+  const s = TUTORIAL_SLIDES[tutSlideIndex];
+  document.getElementById("tutTitle").textContent = s.title;
+  document.getElementById("tutBody").innerHTML = s.content;
+
+  const dotsHost = document.getElementById("tutDots");
+  dotsHost.innerHTML = TUTORIAL_SLIDES.map((_, i) => `<div class="tut-dot${i === tutSlideIndex ? " active" : ""}"></div>`).join("");
+
+  document.getElementById("tutPrevBtn").style.display = tutSlideIndex === 0 ? "none" : "inline-block";
+  document.getElementById("tutNextBtn").textContent = tutSlideIndex === TUTORIAL_SLIDES.length - 1 ? "Finish ✓" : "Next →";
+}
+
+function checkFirstVisitTutorial(){
+  try{
+    const skip = localStorage.getItem("index_tut_skip_v1");
+    if(!skip){
+      setTimeout(() => openTutorial(0), 400);
+    }
+  }catch(e){}
+}
+
+function loadSampleWheel(){
+  const sampleScores = [7, 6, 8, 4, 7, 5];
+  for(let i=0; i<scores.length; i++){
+    scores[i] = sampleScores[i];
+  }
+  document.getElementById("nameInput").value = "Sample Leadership Profile";
+  syncControls();
+  drawPlot();
+  save();
+  const savedNote = document.getElementById("savedNote");
+  if(savedNote){
+    savedNote.textContent = "Loaded sample wheel diagnostic!";
+    setTimeout(() => { savedNote.textContent = "Auto-saves in this browser"; }, 3000);
+  }
+}
+
 // init
 load();
 build(); buildControls();
@@ -340,6 +466,25 @@ build(); buildControls();
 if(!document.getElementById("dateInput").value){
   document.getElementById("dateInput").value=new Date().toLocaleDateString();
 }
+checkFirstVisitTutorial();
 </script>
+
+<!-- Tutorial Modal HTML -->
+<div class="tut-modal-overlay" id="tutModal">
+  <div class="tut-modal">
+    <button class="tut-close" onclick="closeTutorial()" aria-label="Close tutorial">✕</button>
+    <div class="tut-kicker">Quick Guide</div>
+    <h3 class="tut-title" id="tutTitle">1. Your Current Reality</h3>
+    <div class="tut-body" id="tutBody"></div>
+    <div class="tut-footer">
+      <div class="tut-dots" id="tutDots"></div>
+      <div class="tut-btns">
+        <label class="tut-skip"><input type="checkbox" id="tutDontShow"> Don't show on startup</label>
+        <button class="btn ghost" id="tutPrevBtn" onclick="tutPrev()">Previous</button>
+        <button class="btn" id="tutNextBtn" onclick="tutNext()">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
