@@ -315,6 +315,104 @@
     background: rgba(181,72,46,0.1);
   }
 
+  .sidebar-tabs {
+    display: flex;
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 3px;
+    margin-bottom: 12px;
+    gap: 2px;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    width: auto;
+  }
+  .tab-btn:hover {
+    color: var(--deep);
+  }
+  .tab-btn.active {
+    background: #fff;
+    color: var(--deep);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  .goal-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .goal-item:hover .goal-actions {
+    opacity: 1;
+  }
+  .goal-action-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 4px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .goal-item.active .goal-action-btn {
+    color: rgba(255,255,255,0.75);
+  }
+  .goal-item.active .goal-action-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+  }
+  .goal-action-btn:hover {
+    color: var(--deep);
+    background: rgba(33,80,110,0.1);
+  }
+  .goal-action-btn.del-btn:hover {
+    color: var(--plot);
+    background: rgba(181,72,46,0.1);
+  }
+
+  .archived-banner {
+    display: none;
+    background: #FFF8E7;
+    border: 1px solid #FFE0B2;
+    color: #8C6D1F;
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin-bottom: 14px;
+    font-weight: bold;
+    font-size: 13.5px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .archived-banner.show {
+    display: flex;
+  }
+  .archived-banner button {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 12px;
+    background: #8C6D1F;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .archived-banner button:hover {
+    background: #735917;
+  }
+
   /* Sidebar footer buttons styling */
   .sidebar-footer button {
     font-family: inherit;
@@ -376,6 +474,10 @@
       </svg>
       New Goal plan
     </button>
+    <div class="sidebar-tabs">
+      <button class="tab-btn active" id="tabActive">Active (<span id="activeCount">0</span>)</button>
+      <button class="tab-btn" id="tabArchived">Archived (<span id="archivedCount">0</span>)</button>
+    </div>
     <div id="sidebarNav"></div>
     <div class="sidebar-footer" style="margin-top:20px; padding-top:12px; border-top:1px solid #E2EAEC; display:flex; flex-direction:column; gap:8px;">
       <button class="ghost" id="exportBtn" style="font-size:12.5px; padding:8px 10px; width:100%; border-radius:8px;">⬇ Export JSON</button>
@@ -396,6 +498,10 @@
     </div>
 
     <div class="page">
+      <div class="archived-banner" id="archivedBanner">
+        <span>📦 This goal plan is archived.</span>
+        <button id="unarchiveCurrentBtn">Restore to Active</button>
+      </div>
       <div class="hband">
     <h1>Goal Planning Worksheet</h1>
     <div class="sub">Turn an intention into a dated, trackable plan.</div>
@@ -597,6 +703,7 @@ let state = {
   goals: [],
   activeGoalId: ""
 };
+let sidebarTab = "active";
 
 function createBlankGoal() {
   const newId = "goal_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
@@ -619,7 +726,8 @@ function createBlankGoal() {
     worth_cost_no: false,
     worth_cost_later: false,
     reminders: "",
-    picture_success: ""
+    picture_success: "",
+    archived: false
   };
   for(let i=1; i<=ACTION_ROWS; i++) {
     blankGoal[`action_${i}`] = "";
@@ -658,6 +766,10 @@ function loadGoals() {
     };
   }
   
+  state.goals.forEach(g => {
+    if (typeof g.archived === "undefined") g.archived = false;
+  });
+  
   const active = state.goals.find(g => g.id === state.activeGoalId) || state.goals[0];
   state.activeGoalId = active.id;
   populateForm(active);
@@ -674,6 +786,10 @@ function populateForm(goal) {
       elt.value = val || "";
     }
   });
+  const banner = document.getElementById("archivedBanner");
+  if (banner) {
+    banner.classList.toggle("show", !!goal.archived);
+  }
   setStatus("");
 }
 
@@ -698,6 +814,7 @@ function saveGoals() {
 }
 
 function handleNewGoal() {
+  sidebarTab = "active";
   const newGoal = createBlankGoal();
   state.goals.push(newGoal);
   state.activeGoalId = newGoal.id;
@@ -725,6 +842,47 @@ function selectGoal(id) {
     });
   }
   closeMobileSidebar();
+}
+
+function archiveGoal(id, event) {
+  if (event) event.stopPropagation();
+  const g = state.goals.find(x => x.id === id);
+  if (!g) return;
+  g.archived = true;
+
+  if (state.activeGoalId === id) {
+    const activeGoals = state.goals.filter(x => !x.archived);
+    if (activeGoals.length > 0) {
+      state.activeGoalId = activeGoals[0].id;
+    } else {
+      const blank = createBlankGoal();
+      state.goals.push(blank);
+      state.activeGoalId = blank.id;
+    }
+  }
+
+  localStorage.setItem(KEY, JSON.stringify(state));
+  renderSidebar();
+  const activeGoal = state.goals.find(x => x.id === state.activeGoalId);
+  if (activeGoal) populateForm(activeGoal);
+}
+
+function unarchiveGoal(id, event) {
+  if (event) event.stopPropagation();
+  const g = state.goals.find(x => x.id === id);
+  if (!g) return;
+  g.archived = false;
+
+  state.activeGoalId = id;
+  sidebarTab = "active";
+  localStorage.setItem(KEY, JSON.stringify(state));
+  renderSidebar();
+  populateForm(g);
+}
+
+function switchSidebarTab(tab) {
+  sidebarTab = tab;
+  renderSidebar();
 }
 
 function deleteGoal(id, event) {
@@ -766,14 +924,29 @@ function renderSidebar() {
     "Ethics & Values"
   ];
   
+  const activeGoals = state.goals.filter(g => !g.archived);
+  const archivedGoals = state.goals.filter(g => !!g.archived);
+
+  const activeCountEl = document.getElementById("activeCount");
+  const archivedCountEl = document.getElementById("archivedCount");
+  if (activeCountEl) activeCountEl.textContent = activeGoals.length;
+  if (archivedCountEl) archivedCountEl.textContent = archivedGoals.length;
+
+  const tabActiveBtn = document.getElementById("tabActive");
+  const tabArchivedBtn = document.getElementById("tabArchived");
+  if (tabActiveBtn) tabActiveBtn.classList.toggle("active", sidebarTab === "active");
+  if (tabArchivedBtn) tabArchivedBtn.classList.toggle("active", sidebarTab === "archived");
+
   const nav = document.getElementById("sidebarNav");
   nav.innerHTML = "";
+
+  const visibleGoals = sidebarTab === "archived" ? archivedGoals : activeGoals;
   
   const grouped = {};
   categories.forEach(cat => grouped[cat] = []);
   const uncategorized = [];
   
-  state.goals.forEach(g => {
+  visibleGoals.forEach(g => {
     if (categories.includes(g.life_area)) {
       grouped[g.life_area].push(g);
     } else {
@@ -795,15 +968,35 @@ function renderSidebar() {
     span.className = "goal-title";
     span.textContent = title;
     
+    const actionsDiv = document.createElement("div");
+    actionsDiv.className = "goal-actions";
+
+    if (!g.archived) {
+      const archiveBtn = document.createElement("button");
+      archiveBtn.className = "goal-action-btn";
+      archiveBtn.innerHTML = "📦";
+      archiveBtn.title = "Archive goal";
+      archiveBtn.onclick = (e) => archiveGoal(g.id, e);
+      actionsDiv.appendChild(archiveBtn);
+    } else {
+      const unarchiveBtn = document.createElement("button");
+      unarchiveBtn.className = "goal-action-btn";
+      unarchiveBtn.innerHTML = "📤";
+      unarchiveBtn.title = "Restore goal to Active";
+      unarchiveBtn.onclick = (e) => unarchiveGoal(g.id, e);
+      actionsDiv.appendChild(unarchiveBtn);
+    }
+    
     const delBtn = document.createElement("button");
-    delBtn.className = "goal-delete-btn";
+    delBtn.className = "goal-action-btn del-btn";
     delBtn.innerHTML = "✕";
     delBtn.title = "Delete goal";
     delBtn.onclick = (e) => deleteGoal(g.id, e);
-    
+    actionsDiv.appendChild(delBtn);
+
     // Double click to edit name inline
     div.ondblclick = (e) => {
-      if (e.target.classList.contains("goal-delete-btn")) return;
+      if (e.target.closest(".goal-actions")) return;
       
       // Select it first if not active, without full sidebar re-render
       if (state.activeGoalId !== g.id) {
@@ -818,7 +1011,7 @@ function renderSidebar() {
       input.value = g.name || (g.the_goal.trim() ? (g.the_goal.length > 50 ? g.the_goal.substring(0, 50) + "..." : g.the_goal) : "");
       
       div.replaceChild(input, span);
-      delBtn.style.display = "none";
+      actionsDiv.style.display = "none";
       
       input.focus();
       input.select();
@@ -842,7 +1035,7 @@ function renderSidebar() {
           flashSaved();
         } else {
           div.replaceChild(span, input);
-          delBtn.style.display = "";
+          actionsDiv.style.display = "";
         }
       };
       
@@ -860,7 +1053,7 @@ function renderSidebar() {
     };
     
     div.appendChild(span);
-    div.appendChild(delBtn);
+    div.appendChild(actionsDiv);
     return div;
   }
   
@@ -878,7 +1071,7 @@ function renderSidebar() {
     } else {
       const empty = document.createElement("div");
       empty.style.cssText = "font-size:12px; color:var(--muted); font-style:italic; padding:4px 10px;";
-      empty.textContent = "No goals";
+      empty.textContent = sidebarTab === "archived" ? "No archived goals" : "No goals";
       nav.appendChild(empty);
     }
   });
@@ -1095,6 +1288,13 @@ document.getElementById("resetBtn").addEventListener("click", ()=>{
 });
 
 document.getElementById("newGoalBtn").addEventListener("click", handleNewGoal);
+document.getElementById("tabActive").addEventListener("click", () => switchSidebarTab("active"));
+document.getElementById("tabArchived").addEventListener("click", () => switchSidebarTab("archived"));
+document.getElementById("unarchiveCurrentBtn").addEventListener("click", () => {
+  if (state.activeGoalId) {
+    unarchiveGoal(state.activeGoalId);
+  }
+});
 document.getElementById("menuToggle").addEventListener("click", openMobileSidebar);
 document.getElementById("sidebarBackdrop").addEventListener("click", closeMobileSidebar);
 
