@@ -109,10 +109,37 @@
   #areas_print .area .band{border-radius:0;}
   #areas_print .area .desc{border-bottom:none;}
 
+  /* Info Tooltip */
+  .tip-icon{display:inline-block; font-size:11px; color:var(--teal); margin-left:3px; cursor:help; font-weight:normal;}
+
+  /* Tutorial Modal */
+  .tut-modal-overlay{position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,25,35,0.5);
+    backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:999; display:none; align-items:center; justify-content:center; padding:16px;}
+  .tut-modal-overlay.show{display:flex;}
+  .tut-modal{background:#fff; border-radius:14px; max-width:560px; width:100%; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,0.2); position:relative; animation:tutFadeIn 0.25s ease-out;}
+  @keyframes tutFadeIn{from{opacity:0; transform:scale(0.96);} to{opacity:1; transform:scale(1);}}
+  .tut-close{position:absolute; top:16px; right:16px; border:none; background:transparent; font-size:18px; color:var(--muted); cursor:pointer; padding:4px 8px; border-radius:6px;}
+  .tut-close:hover{background:var(--bg); color:var(--ink);}
+  .tut-kicker{color:var(--teal); font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;}
+  .tut-title{margin:4px 0 12px; font-size:20px; color:var(--deep); font-family:Cambria,Georgia,serif;}
+  .tut-body{font-size:14.5px; color:var(--ink); line-height:1.55; min-height:140px;}
+  .tut-body ul{margin:8px 0; padding-left:20px;}
+  .tut-body li{margin-bottom:6px;}
+  .tut-footer{margin-top:20px; padding-top:14px; border-top:1px solid var(--hair); display:flex; flex-direction:column; gap:12px;}
+  @media (min-width: 520px){
+    .tut-footer{flex-direction:row; align-items:center; justify-content:space-between;}
+  }
+  .tut-dots{display:flex; gap:6px; align-items:center;}
+  .tut-dot{width:8px; height:8px; border-radius:50%; background:#d0dcd3; transition:all 0.2s ease;}
+  .tut-dot.active{width:20px; border-radius:4px; background:var(--deep);}
+  .tut-btns{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .tut-btns button{width:auto; padding:7px 14px; font-size:13px;}
+  .tut-skip{font-size:12px; color:var(--muted); display:flex; align-items:center; gap:4px; margin-right:auto; cursor:pointer;}
+
   /* Print */
   @media print{
     body{background:#fff;}
-    .toolbar,.addrow,button.rm,.saved,.pagelink,#areas{display:none !important;}
+    .toolbar,.addrow,button.rm,.saved,.pagelink,#areas,.tut-modal-overlay{display:none !important;}
     #areas_print{display:block !important;}
     .wrap{max-width:none; padding:0;}
     .area{break-inside:avoid;}
@@ -139,7 +166,8 @@
   </header>
 
   <div class="toolbar">
-    <button class="btn" onclick="printDoc()">🖨 Save as PDF / Print</button>
+    <button class="btn" onclick="openTutorial()">❓ Tutorial</button>
+    <button class="btn ghost" onclick="printDoc()">🖨 Save as PDF / Print</button>
     <button class="btn ghost" onclick="exportJSON()">⬇ Download my data</button>
     <button class="btn ghost" onclick="document.getElementById('imp').click()">⬆ Load data</button>
     <input type="file" id="imp" accept="application/json" style="display:none" onchange="importJSON(event)">
@@ -280,8 +308,12 @@ function renderAreas(){
           <col class="c-prio"><col class="c-type"><col><col class="c-date"><col class="c-status"><col class="c-x">
         </colgroup>
         <thead><tr>
-          <th>Priority</th><th>Goal type</th><th>Goal — specific &amp; measurable</th>
-          <th>Target date</th><th>Status</th><th></th>
+          <th>Priority <span class="tip-icon" title="Priority: 1 = highest, 5 = lowest">ⓘ</span></th>
+          <th>Goal type <span class="tip-icon" title="Short-Term (<1 yr), Medium-Term (1-3 yrs), Long-Term (3+ yrs)">ⓘ</span></th>
+          <th>Goal — specific &amp; measurable <span class="tip-icon" title="State clearly what outcome you will achieve">ⓘ</span></th>
+          <th>Target date <span class="tip-icon" title="Target date for completion">ⓘ</span></th>
+          <th>Status <span class="tip-icon" title="Not Started, In Progress, Blocked, Completed">ⓘ</span></th>
+          <th></th>
         </tr></thead>
         <tbody class="active-tbody"></tbody>
       </table>
@@ -434,8 +466,120 @@ function buildPrint(){
 function printDoc(){ buildPrint(); window.print(); }
 window.addEventListener("beforeprint", buildPrint);
 
+/* ---- Tutorial Guidance ---- */
+const TUTORIAL_SLIDES = [
+  {
+    title: "1. Your Personal Mission Statement",
+    content: `<p>Start by capturing what you most want your life to stand for in 1–2 sentences in the <b>Personal Mission Statement</b> box.</p>
+              <p>Your mission acts as a guiding compass so every goal you set aligns with your core values and long-term vision.</p>`
+  },
+  {
+    title: "2. The 6 Areas of Life",
+    content: `<p>Balanced living requires attention across all key areas of life:</p>
+              <ul>
+                <li><b>Society &amp; Community</b> (friendships, giving back)</li>
+                <li><b>Family &amp; Home</b> (relationships, living space)</li>
+                <li><b>Work &amp; Finances</b> (income, investments, career)</li>
+                <li><b>Body &amp; Health</b> (fitness, nutrition, energy)</li>
+                <li><b>Mind &amp; Learning</b> (skills, reading, mindset)</li>
+                <li><b>Ethics &amp; Values</b> (integrity, principles, meaning)</li>
+              </ul>`
+  },
+  {
+    title: "3. Goal Setting &amp; Priorities",
+    content: `<p>For each goal row:</p>
+              <ul>
+                <li><b>Priority (1–5)</b>: 1 = highest priority focus.</li>
+                <li><b>Goal Type</b>: Short-Term (&lt;1 yr), Medium-Term (1–3 yrs), or Long-Term (3+ yrs).</li>
+                <li><b>Specific &amp; Measurable</b>: State clearly what outcome you will achieve.</li>
+                <li><b>Target Date &amp; Status</b>: Set a deadline and update status as you progress.</li>
+              </ul>`
+  },
+  {
+    title: "4. Archiving, Backup &amp; Export",
+    content: `<p>Keep your workspace organized and secure:</p>
+              <ul>
+                <li><b>Archiving 📦</b>: Move completed or past goals out of your active view into the collapsible <i>Archived Goals</i> section. Restorable anytime with 📤.</li>
+                <li><b>Data Security ⬇</b>: Click <i>Download my data</i> to backup your plan to JSON. Everything stays private on your device.</li>
+                <li><b>Print &amp; PDF 🖨</b>: Generate a clean summary of your active goals.</li>
+              </ul>`
+  }
+];
+
+let tutSlideIndex = 0;
+
+function openTutorial(slideIndex = 0){
+  tutSlideIndex = slideIndex;
+  renderTutorialSlide();
+  document.getElementById("tutModal").classList.add("show");
+}
+
+function closeTutorial(){
+  document.getElementById("tutModal").classList.remove("show");
+  const dontShow = document.getElementById("tutDontShow").checked;
+  if(dontShow){
+    try{ localStorage.setItem("whole_life_tut_skip_v1", "true"); }catch(e){}
+  }
+}
+
+function tutNext(){
+  if(tutSlideIndex < TUTORIAL_SLIDES.length - 1){
+    tutSlideIndex++;
+    renderTutorialSlide();
+  } else {
+    closeTutorial();
+  }
+}
+
+function tutPrev(){
+  if(tutSlideIndex > 0){
+    tutSlideIndex--;
+    renderTutorialSlide();
+  }
+}
+
+function renderTutorialSlide(){
+  const s = TUTORIAL_SLIDES[tutSlideIndex];
+  document.getElementById("tutTitle").textContent = s.title;
+  document.getElementById("tutBody").innerHTML = s.content;
+
+  const dotsHost = document.getElementById("tutDots");
+  dotsHost.innerHTML = TUTORIAL_SLIDES.map((_, i) => `<div class="tut-dot${i === tutSlideIndex ? " active" : ""}"></div>`).join("");
+
+  document.getElementById("tutPrevBtn").style.display = tutSlideIndex === 0 ? "none" : "inline-block";
+  document.getElementById("tutNextBtn").textContent = tutSlideIndex === TUTORIAL_SLIDES.length - 1 ? "Finish ✓" : "Next →";
+}
+
+function checkFirstVisitTutorial(){
+  try{
+    const skip = localStorage.getItem("whole_life_tut_skip_v1");
+    if(!skip){
+      setTimeout(() => openTutorial(0), 400);
+    }
+  }catch(e){}
+}
+
 renderMeta();
 renderAreas();
+checkFirstVisitTutorial();
 </script>
+
+<!-- Tutorial Modal HTML -->
+<div class="tut-modal-overlay" id="tutModal">
+  <div class="tut-modal">
+    <button class="tut-close" onclick="closeTutorial()" aria-label="Close tutorial">✕</button>
+    <div class="tut-kicker">Quick Guide</div>
+    <h3 class="tut-title" id="tutTitle">1. Your Personal Mission Statement</h3>
+    <div class="tut-body" id="tutBody"></div>
+    <div class="tut-footer">
+      <div class="tut-dots" id="tutDots"></div>
+      <div class="tut-btns">
+        <label class="tut-skip"><input type="checkbox" id="tutDontShow"> Don't show on startup</label>
+        <button class="btn ghost" id="tutPrevBtn" onclick="tutPrev()">Previous</button>
+        <button class="btn" id="tutNextBtn" onclick="tutNext()">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
