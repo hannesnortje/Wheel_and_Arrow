@@ -449,12 +449,36 @@
     .adone,.h-done{flex:0 0 64px; justify-content:center; padding-bottom:0;}
   }
 
+  /* Tutorial Modal */
+  .tut-modal-overlay{position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,25,35,0.5);
+    backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:999; display:none; align-items:center; justify-content:center; padding:16px;}
+  .tut-modal-overlay.show{display:flex;}
+  .tut-modal{background:#fff; border-radius:14px; max-width:580px; width:100%; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,0.2); position:relative; animation:tutFadeIn 0.25s ease-out;}
+  @keyframes tutFadeIn{from{opacity:0; transform:scale(0.96);} to{opacity:1; transform:scale(1);}}
+  .tut-close{position:absolute; top:16px; right:16px; border:none; background:transparent; font-size:18px; color:var(--muted); cursor:pointer; padding:4px 8px; border-radius:6px;}
+  .tut-close:hover{background:var(--bg); color:var(--ink);}
+  .tut-kicker{color:var(--teal); font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;}
+  .tut-title{margin:4px 0 12px; font-size:20px; color:var(--deep); font-family:Cambria,Georgia,serif;}
+  .tut-body{font-size:14.5px; color:var(--ink); line-height:1.55; min-height:140px;}
+  .tut-body ul{margin:8px 0; padding-left:20px;}
+  .tut-body li{margin-bottom:6px;}
+  .tut-footer{margin-top:20px; padding-top:14px; border-top:1px solid #E2EAEC; display:flex; flex-direction:column; gap:12px;}
+  @media (min-width: 520px){
+    .tut-footer{flex-direction:row; align-items:center; justify-content:space-between;}
+  }
+  .tut-dots{display:flex; gap:6px; align-items:center;}
+  .tut-dot{width:8px; height:8px; border-radius:50%; background:#d0dcd3; transition:all 0.2s ease;}
+  .tut-dot.active{width:20px; border-radius:4px; background:var(--deep);}
+  .tut-btns{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .tut-btns button{width:auto; padding:7px 14px; font-size:13px;}
+  .tut-skip{font-size:12px; color:var(--muted); display:flex; align-items:center; gap:4px; margin-right:auto; cursor:pointer;}
+
   /* ===== print: clean worksheet, drop the on-screen controls ===== */
   @media print{
     *{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
     body{background:#fff; padding:10px;}
     .page{max-width:none;}
-    .backlink, .btns, .status, .hint{display:none !important;}
+    .backlink, .btns, .status, .hint, .tut-modal-overlay{display:none !important;}
     .card{box-shadow:none; border:1px solid #ccd6d8; margin-bottom:10px;}
     .hband{box-shadow:none;}
     .arow, .twocol, .hband, .ahead, .wq{break-inside:avoid;}
@@ -495,6 +519,10 @@
         </svg>
       </button>
       <a class="backlink" href="index.html">← Back to the Wheel</a>
+      <div style="margin-left:auto; display:flex; gap:8px;">
+        <button class="ghost" id="tutBtn" style="width:auto; padding:6px 12px; font-size:12.5px; border-radius:8px;">❓ Tutorial</button>
+        <button class="ghost" id="sampleGoalBtn" style="width:auto; padding:6px 12px; font-size:12.5px; border-radius:8px;">✨ Load Example Goal</button>
+      </div>
     </div>
 
     <div class="page">
@@ -530,24 +558,24 @@
   <div class="card">
     <h2 class="sec">The goal</h2>
     <p class="hint-line">Make it SMART — specific, measurable, attainable, relevant/realistic, and time-bound.</p>
-    <textarea data-field="the_goal" rows="4"></textarea>
+    <textarea data-field="the_goal" rows="4" placeholder='E.g. "I am saving 1,500 USD in a dedicated emergency fund by automating a 500 USD transfer on the 1st of October, November, and December."'></textarea>
   </div>
 
   <div class="card">
     <h2 class="sec">Why it matters</h2>
     <p class="hint-line">What I gain by reaching it — and what I avoid by letting it slide.</p>
-    <textarea data-field="why_matters" rows="4"></textarea>
+    <textarea data-field="why_matters" rows="4" placeholder="E.g. What I gain: Complete peace of mind, less stress in my marriage, and protection for my family from unexpected expenses.&#10;What I avoid: The anxiety of living paycheck-to-paycheck, high-interest debt, and arguments about money."></textarea>
   </div>
 
   <div class="card">
     <div class="twocol">
       <div>
         <h2 class="sec">What could get in the way</h2>
-        <textarea data-field="obstacles" rows="5"></textarea>
+        <textarea data-field="obstacles" rows="5" placeholder="E.g. 1. Impulse spending on weekend activities.&#10;2. Forgetting to transfer the funds manually."></textarea>
       </div>
       <div>
         <h2 class="sec">How I'll handle it</h2>
-        <textarea data-field="handling" rows="5"></textarea>
+        <textarea data-field="handling" rows="5" placeholder="E.g. 1. Set a strict cash-only weekend budget and leave cards at home.&#10;2. Set up an automatic recurring transfer on payday in the banking app."></textarea>
       </div>
     </div>
   </div>
@@ -564,13 +592,13 @@
   <div class="card">
     <h2 class="sec">Who should know</h2>
     <p class="hint-line">People whose support or awareness helps.</p>
-    <textarea data-field="who_should_know" rows="3"></textarea>
+    <textarea data-field="who_should_know" rows="3" placeholder="E.g. My spouse — to align household spending and keep each other accountable. My mentor — who checks in on my progress bi-weekly."></textarea>
   </div>
 
   <div class="card">
     <h2 class="sec">How I'll track progress</h2>
     <p class="hint-line">The check-in method that keeps this honest.</p>
-    <textarea data-field="track_progress" rows="3"></textarea>
+    <textarea data-field="track_progress" rows="3" placeholder="E.g. A habit-tracker app on my phone to tick off each transfer, plus a review of my account balance on the 1st of each month."></textarea>
   </div>
 
   <div class="card">
@@ -597,12 +625,12 @@
       <div>
         <h2 class="sec">Encouraging reminders</h2>
         <p class="hint-line">Short phrases that keep you motivated.</p>
-        <textarea data-field="reminders" rows="5"></textarea>
+        <textarea data-field="reminders" rows="5" placeholder='E.g. "Financial discipline is a form of self-respect."'></textarea>
       </div>
       <div>
         <h2 class="sec">Ways to picture success</h2>
         <p class="hint-line">Image or cue, and where to place it.</p>
-        <textarea data-field="picture_success" rows="5"></textarea>
+        <textarea data-field="picture_success" rows="5" placeholder="E.g. A printed screenshot of the savings account at 1,500 USD, taped inside my daily planner."></textarea>
       </div>
     </div>
   </div>
@@ -1303,6 +1331,9 @@ document.getElementById("importBtn").addEventListener("click", () => document.ge
 document.getElementById("importFile").addEventListener("change", importJSON);
 document.getElementById("clearAllBtn").addEventListener("click", clearAll);
 
+document.getElementById("tutBtn").addEventListener("click", () => openTutorial(0));
+document.getElementById("sampleGoalBtn").addEventListener("click", loadSampleGoal);
+
 document.addEventListener("input", e => {
   if (e.target.hasAttribute("data-field")) {
     saveGoals();
@@ -1314,8 +1345,153 @@ document.addEventListener("change", e => {
   }
 });
 
+/* ---- Tutorial Guidance & Sample Goal ---- */
+const TUTORIAL_SLIDES = [
+  {
+    title: "1. The Anatomy of a SMART Goal",
+    content: `<p>Write your goal in the <b>positive, active present tense</b> (“I am…”, “I do…”) rather than a distant wish (“I will…”).</p>
+              <p>Ensure it is Specific, Measurable, Attainable, Relevant/Realistic, and Time-bound with a definite target date.</p>`
+  },
+  {
+    title: "2. The Emotional Engine (Why It Matters)",
+    content: `<p>Goals fail without emotional commitment. Explicitly define two sides of motivation:</p>
+              <ul>
+                <li><b>What I Gain</b>: The positive peace, growth, or freedom achieved.</li>
+                <li><b>What I Avoid</b>: The pain, stress, debt, or regret prevented.</li>
+              </ul>`
+  },
+  {
+    title: "3. Pre-Planning Obstacles & Solutions",
+    content: `<p>Anticipate friction before it happens!</p>
+              <p>Name the barriers (time limits, temptations, fear) in <i>What could get in the way</i>, and assign an automatic strategic solution for each in <i>How I'll handle it</i>.</p>`
+  },
+  {
+    title: "4. Action Steps & Accountability",
+    content: `<p>Turn macro-goals into manageable daily commitments:</p>
+              <ul>
+                <li><b>Action Steps</b>: Break down the plan into clear steps with due dates.</li>
+                <li><b>Who Should Know</b>: Involve mentors, family, or partners for external accountability.</li>
+                <li><b>Tracking</b>: Define your regular review method (e.g., Sunday evening journal audit).</li>
+              </ul>`
+  },
+  {
+    title: "5. Archiving, PDF & Storage",
+    content: `<p>Organize and save your goal plans:</p>
+              <ul>
+                <li><b>Archiving 📦</b>: Clean up your sidebar by archiving completed goals. Access them anytime in the <i>Archived</i> tab.</li>
+                <li><b>Download PDF 📄</b>: Download an editable PDF copy to keep or print.</li>
+                <li><b>JSON Backup ⬇</b>: Backup your plans to JSON — everything stays 100% private on your device.</li>
+              </ul>`
+  }
+];
+
+let tutSlideIndex = 0;
+
+function openTutorial(slideIndex = 0){
+  tutSlideIndex = slideIndex;
+  renderTutorialSlide();
+  document.getElementById("tutModal").classList.add("show");
+}
+
+function closeTutorial(){
+  document.getElementById("tutModal").classList.remove("show");
+  const dontShow = document.getElementById("tutDontShow").checked;
+  if(dontShow){
+    try{ localStorage.setItem("goals_tut_skip_v1", "true"); }catch(e){}
+  }
+}
+
+function tutNext(){
+  if(tutSlideIndex < TUTORIAL_SLIDES.length - 1){
+    tutSlideIndex++;
+    renderTutorialSlide();
+  } else {
+    closeTutorial();
+  }
+}
+
+function tutPrev(){
+  if(tutSlideIndex > 0){
+    tutSlideIndex--;
+    renderTutorialSlide();
+  }
+}
+
+function renderTutorialSlide(){
+  const s = TUTORIAL_SLIDES[tutSlideIndex];
+  document.getElementById("tutTitle").textContent = s.title;
+  document.getElementById("tutBody").innerHTML = s.content;
+
+  const dotsHost = document.getElementById("tutDots");
+  dotsHost.innerHTML = TUTORIAL_SLIDES.map((_, i) => `<div class="tut-dot${i === tutSlideIndex ? " active" : ""}"></div>`).join("");
+
+  document.getElementById("tutPrevBtn").style.display = tutSlideIndex === 0 ? "none" : "inline-block";
+  document.getElementById("tutNextBtn").textContent = tutSlideIndex === TUTORIAL_SLIDES.length - 1 ? "Finish ✓" : "Next →";
+}
+
+function checkFirstVisitTutorial(){
+  try{
+    const skip = localStorage.getItem("goals_tut_skip_v1");
+    if(!skip){
+      setTimeout(() => openTutorial(0), 400);
+    }
+  }catch(e){}
+}
+
+function loadSampleGoal(){
+  sidebarTab = "active";
+  const sample = createBlankGoal();
+  sample.name = "Emergency Savings Fund";
+  sample.life_area = "Work & Finances";
+  sample.started = todayISO();
+  sample.target_date = "2025-12-31";
+  sample.the_goal = "I am saving 1,500 USD in a dedicated emergency fund by automating a 500 USD transfer on the 1st of October, November, and December.";
+  sample.why_matters = "What I gain: Complete peace of mind, less stress in my marriage, and protection for my family from unexpected expenses without relying on credit cards.\nWhat I avoid: The anxiety of living paycheck-to-paycheck, the pain of high-interest debt, and arguments about money at home.";
+  sample.obstacles = "1. Impulse spending on weekend activities.\n2. Forgetting to transfer the funds manually.";
+  sample.handling = "1. Set a strict cash-only weekend budget and leave the cards at home.\n2. Set up an automatic recurring transfer on payday in the banking app.";
+  sample.action_1 = "Log into the banking app and set up the automatic 500 USD transfer.";
+  sample.due_1 = "2025-10-01"; sample.reviewed_1 = "2025-10-01"; sample.done_1 = true;
+  sample.action_2 = "Audit the bank statement every Sunday evening.";
+  sample.due_2 = "2025-10-05"; sample.reviewed_2 = "2025-10-05"; sample.done_2 = true;
+  sample.action_3 = "Cut non-essential subscriptions (saving ~40 USD / month).";
+  sample.due_3 = "2025-10-05"; sample.reviewed_3 = "2025-10-05"; sample.done_3 = true;
+  sample.who_should_know = "• My spouse — to align household spending and keep each other accountable.\n• My mentor — who checks in on my progress at our bi-weekly meetings.";
+  sample.track_progress = "A habit-tracker app on my phone to tick off each transfer, plus a review of my account balance on the 1st of each month.";
+  sample.worth_value_yes = true;
+  sample.worth_cost_yes = true;
+  sample.reminders = "Financial discipline is a form of self-respect.";
+  sample.picture_success = "A printed screenshot of the savings account at 1,500 USD, taped inside my daily planner.";
+
+  state.goals.push(sample);
+  state.activeGoalId = sample.id;
+  localStorage.setItem(KEY, JSON.stringify(state));
+  renderSidebar();
+  populateForm(sample);
+  setStatus("Loaded sample goal plan from 'The Wheel and the Arrow'!");
+  setTimeout(() => setStatus(""), 4000);
+}
+
 // init
 loadGoals();
+checkFirstVisitTutorial();
 </script>
+
+<!-- Tutorial Modal HTML -->
+<div class="tut-modal-overlay" id="tutModal">
+  <div class="tut-modal">
+    <button class="tut-close" onclick="closeTutorial()" aria-label="Close tutorial">✕</button>
+    <div class="tut-kicker">Quick Guide</div>
+    <h3 class="tut-title" id="tutTitle">1. The Anatomy of a SMART Goal</h3>
+    <div class="tut-body" id="tutBody"></div>
+    <div class="tut-footer">
+      <div class="tut-dots" id="tutDots"></div>
+      <div class="tut-btns">
+        <label class="tut-skip"><input type="checkbox" id="tutDontShow"> Don't show on startup</label>
+        <button class="btn ghost" id="tutPrevBtn" onclick="tutPrev()">Previous</button>
+        <button class="btn" id="tutNextBtn" onclick="tutNext()">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
