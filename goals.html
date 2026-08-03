@@ -455,8 +455,8 @@
   .tut-modal-overlay.show{display:flex;}
   .tut-modal{background:#fff; border-radius:14px; max-width:580px; width:100%; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,0.2); position:relative; animation:tutFadeIn 0.25s ease-out;}
   @keyframes tutFadeIn{from{opacity:0; transform:scale(0.96);} to{opacity:1; transform:scale(1);}}
-  .tut-close{position:absolute; top:16px; right:16px; border:none; background:transparent; font-size:18px; color:var(--muted); cursor:pointer; padding:4px 8px; border-radius:6px;}
-  .tut-close:hover{background:var(--bg); color:var(--ink);}
+  .tut-close{position:absolute; top:14px; right:14px; width:32px !important; height:32px !important; display:flex !important; align-items:center; justify-content:center; border:none; background:transparent; font-size:18px; line-height:1; color:var(--muted); cursor:pointer; padding:0; border-radius:50%; transition:background 0.15s ease, color 0.15s ease;}
+  .tut-close:hover{background:rgba(0,0,0,0.06); color:var(--ink);}
   .tut-kicker{color:var(--teal); font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;}
   .tut-title{margin:4px 0 12px; font-size:20px; color:var(--deep); font-family:Cambria,Georgia,serif;}
   .tut-body{font-size:14.5px; color:var(--ink); line-height:1.55; min-height:140px;}
