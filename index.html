@@ -52,14 +52,15 @@
   /* stacked control rows give the slider full width and big touch target */
   .ctl{display:grid; grid-template-columns:1fr auto; grid-template-areas:"label val" "slider slider";
     align-items:center; gap:6px 10px;}
-  .ctl label{grid-area:label; font-weight:bold; font-size:14px;}
-  .ctl input[type=range]{grid-area:slider; width:100%; height:32px; accent-color:var(--deep); margin:0;}
-  .ctl .val{grid-area:val; text-align:right; font-weight:bold; font-variant-numeric:tabular-nums; color:var(--deep);}
+  .ctl label{grid-area:label; font-weight:bold; font-size:13.5px; color:var(--ink);}
+  .ctl input[type=range]{grid-area:slider; width:100%; height:28px; accent-color:var(--deep); margin:0;}
+  .ctl .val{grid-area:val; text-align:right; font-weight:bold; font-variant-numeric:tabular-nums; color:var(--deep); font-size:13.5px;}
   .tip{background:#FBF6EA; border-radius:10px; padding:12px 14px; font-size:13.5px; color:#5E4A1C;}
   .tip b{color:#7A5C16;}
-  /* full-width, tall, tappable buttons on mobile */
-  .btns{display:flex; flex-direction:column; gap:10px; margin-top:4px;}
-  button{font-family:inherit; font-size:16px; font-weight:bold; padding:14px 16px; border-radius:10px;
+  /* panel buttons grid */
+  .btns{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px;}
+  .btns .btn-full{grid-column:1 / -1; width:100%;}
+  button{font-family:inherit; font-size:14px; font-weight:bold; padding:10px 14px; border-radius:10px;
     border:none; cursor:pointer; width:100%; -webkit-tap-highlight-color:transparent;}
   .primary{background:var(--deep); color:#fff;}
   .ghost{background:#fff; color:var(--deep); border:1.5px solid var(--deep);}
@@ -81,15 +82,8 @@
     #nameInput{width:280px;} #dateInput{width:170px;}
     .wrap{flex-direction:row; gap:26px; flex-wrap:wrap; justify-content:center; align-items:flex-start;}
     .canvaswrap{flex:1 1 460px; align-self:flex-start; max-width:680px;}
-    .panel{width:330px; min-width:280px;}
-    .controls{gap:9px;}
-    .ctl{display:flex; grid-template-columns:none; grid-template-areas:none;
-      align-items:center; gap:10px;}
-    .ctl label{flex:0 0 130px; font-size:13.5px;}
-    .ctl input[type=range]{flex:1; width:auto; height:auto;}
-    .ctl .val{flex:0 0 44px;}
-    .btns{flex-direction:row; flex-wrap:wrap;}
-    button{width:auto; font-size:14px; padding:10px 16px;}
+    .panel{width:350px; min-width:300px;}
+    .controls{gap:12px;}
   }
 
   /* Tutorial Modal */
@@ -144,10 +138,10 @@
       <div class="controls" id="controls"></div>
     </div>
     <div class="btns">
-      <button class="primary" id="downloadBtn">Download my wheel (PNG)</button>
+      <button class="primary btn-full" id="downloadBtn">Download my wheel (PNG)</button>
       <button class="ghost" id="tutBtn">❓ Tutorial</button>
-      <button class="ghost" id="sampleWheelBtn">✨ Load Sample Wheel</button>
-      <button class="ghost" id="resetBtn">Reset</button>
+      <button class="ghost" id="sampleWheelBtn">✨ Load Sample</button>
+      <button class="ghost btn-full" id="resetBtn">Reset</button>
     </div>
     <div class="hint" id="savedNote" style="margin-top:8px; text-align:center;">Auto-saves in this browser</div>
     <div class="tip" style="margin-top:14px;">
