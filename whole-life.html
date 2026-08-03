@@ -80,11 +80,20 @@
   tbody td{padding:7px 8px; border-bottom:1px solid #EDF2F3; vertical-align:middle;}
   tbody tr:last-child td{border-bottom:none;}
   col.c-prio{width:78px;} col.c-type{width:135px;} col.c-date{width:150px;}
-  col.c-status{width:140px;} col.c-x{width:34px;}
+  col.c-status{width:140px;} col.c-x{width:60px;}
   input.prio{width:100%; text-align:center; padding:9px 4px;}
-  td.xcell{text-align:center;}
-  button.rm{border:none; background:transparent; color:var(--plot); font-size:16px; cursor:pointer; line-height:1;}
+  td.xcell{text-align:center; white-space:nowrap;}
+  button.rm, button.archive-btn{border:none; background:transparent; font-size:14px; cursor:pointer; line-height:1; padding:2px 4px;}
+  button.rm{color:var(--plot);}
   button.rm:hover{filter:brightness(.85);}
+  button.archive-btn{color:var(--muted);}
+  button.archive-btn:hover{color:var(--deep);}
+
+  .archive-details{margin-top:10px; border:1px dashed var(--line); border-radius:10px; padding:6px 12px; background:#FAFDFD;}
+  .archive-summary{font-weight:bold; font-size:13px; color:var(--muted); cursor:pointer; padding:4px 0;}
+  .archive-summary:hover{color:var(--deep);}
+  .archive-table{width:100%; border-collapse:collapse; margin-top:8px; border:1px solid var(--hair); border-radius:8px; overflow:hidden;}
+  .archive-table tr{background:#F4F8F9;}
   .addrow{padding:8px 0 2px;}
   button.add{border:1px dashed var(--teal); background:#fff; color:var(--deep);
     padding:8px 12px; border-radius:8px; font-size:13px; cursor:pointer; font-weight:bold; font-family:inherit;}
@@ -198,7 +207,7 @@ const TYPES = ["","Short-Term","Medium-Term","Long-Term"];
 const STATUS = ["","Not Started","In Progress","Blocked","Completed"];
 const KEY = "whole_life_goal_plan_v1";
 
-function blank(){return {priority:"",type:"",goal:"",date:"",status:""};}
+function blank(){return {priority:"",type:"",goal:"",date:"",status:"",archived:false};}
 const ROWS = 10;
 function defaultData(){
   return {schemaVersion: 2,
@@ -213,13 +222,6 @@ function normalize(d){
     const oldAreas = d.areas || [];
     const newAreas = Array.from({length: 6}, () => []);
 
-    // Mapping from old index to new index:
-    // 0 (Health & Vitality) -> 3 (Body & Health)
-    // 1 (Growth & Learning) -> 4 (Mind & Learning)
-    // 2 (Relationships & Community) -> 0 (Society & Community)
-    // 3 (Purpose & Values) -> 5 (Ethics & Values)
-    // 4 (Career & Finances) -> 2 (Work & Finances)
-    // 5 (Family & Home) -> 1 (Family & Home)
     const mapping = {
       0: 3,
       1: 4,
@@ -242,6 +244,7 @@ function normalize(d){
   d.areas = AREAS.map((_,i)=>{
     const a = Array.isArray(d.areas[i]) ? d.areas[i] : [];
     while(a.length < ROWS) a.push(blank());
+    a.forEach(g => { if(typeof g.archived === "undefined") g.archived = false; });
     return a;
   });
   return d;
@@ -272,7 +275,7 @@ function renderAreas(){
     wrap.innerHTML=`
       <div class="band">${ai+1}. ${a[0]}</div>
       <div class="desc">${a[1]}</div>
-      <table>
+      <table class="active-table">
         <colgroup>
           <col class="c-prio"><col class="c-type"><col><col class="c-date"><col class="c-status"><col class="c-x">
         </colgroup>
@@ -280,17 +283,39 @@ function renderAreas(){
           <th>Priority</th><th>Goal type</th><th>Goal — specific &amp; measurable</th>
           <th>Target date</th><th>Status</th><th></th>
         </tr></thead>
-        <tbody></tbody>
+        <tbody class="active-tbody"></tbody>
       </table>
-      <div class="addrow"><button class="add" onclick="addRow(${ai})">+ Add goal</button></div>`;
+      <div class="addrow"><button class="add" onclick="addRow(${ai})">+ Add goal</button></div>
+      <details class="archive-details">
+        <summary class="archive-summary">📦 Archived Goals (<span class="archive-count">0</span>)</summary>
+        <table class="archive-table">
+          <colgroup>
+            <col class="c-prio"><col class="c-type"><col><col class="c-date"><col class="c-status"><col class="c-x">
+          </colgroup>
+          <thead><tr>
+            <th>Priority</th><th>Goal type</th><th>Goal — specific &amp; measurable</th>
+            <th>Target date</th><th>Status</th><th></th>
+          </tr></thead>
+          <tbody class="archive-tbody"></tbody>
+        </table>
+      </details>`;
     host.appendChild(wrap);
-    renderBody(ai, wrap.querySelector("tbody"));
+    const activeTbody = wrap.querySelector(".active-tbody");
+    const archiveTbody = wrap.querySelector(".archive-tbody");
+    const archiveCountEl = wrap.querySelector(".archive-count");
+    renderBody(ai, activeTbody, archiveTbody, archiveCountEl);
   });
 }
 
-function renderBody(ai, tbody){
-  tbody.innerHTML="";
+function renderBody(ai, activeTbody, archiveTbody, archiveCountEl){
+  activeTbody.innerHTML="";
+  archiveTbody.innerHTML="";
+  let archivedCount = 0;
+
   data.areas[ai].forEach((g,ri)=>{
+    const isArchived = !!g.archived;
+    if(isArchived) archivedCount++;
+
     const tr=document.createElement("tr");
     tr.innerHTML=`
       <td><input class="prio" type="number" min="1" max="5" step="1" value="${g.priority}" title="1 = highest"></td>
@@ -298,15 +323,43 @@ function renderBody(ai, tbody){
       <td><input type="text" value="${escapeHtml(g.goal)}" placeholder="Write the goal…"></td>
       <td><input type="date" value="${g.date}"></td>
       <td><select>${opt(STATUS,g.status)}</select></td>
-      <td class="xcell"><button class="rm" title="Remove goal" onclick="removeRow(${ai},${ri})">✕</button></td>`;
+      <td class="xcell">
+        ${!isArchived ? `<button class="archive-btn" title="Archive goal" onclick="archiveRow(${ai},${ri})">📦</button>`
+                      : `<button class="archive-btn" title="Restore goal to active" onclick="unarchiveRow(${ai},${ri})">📤</button>`}
+        <button class="rm" title="Remove goal" onclick="removeRow(${ai},${ri})">✕</button>
+      </td>`;
     const [prio,type,goal,date,status]=tr.querySelectorAll("input,select");
     prio.oninput=()=>{g.priority=prio.value; save();};
     type.onchange=()=>{g.type=type.value; save();};
     goal.oninput=()=>{g.goal=goal.value; save();};
     date.oninput=()=>{g.date=date.value; save();};
-    status.onchange=()=>{g.status=status.value; save();};
-    tbody.appendChild(tr);
+    status.onchange=()=>{
+      g.status=status.value;
+      save();
+    };
+
+    if(isArchived){
+      archiveTbody.appendChild(tr);
+    } else {
+      activeTbody.appendChild(tr);
+    }
   });
+
+  if(archiveCountEl){
+    archiveCountEl.textContent = archivedCount;
+  }
+}
+
+function archiveRow(ai,ri){
+  data.areas[ai][ri].archived = true;
+  refresh(ai);
+  save();
+}
+
+function unarchiveRow(ai,ri){
+  data.areas[ai][ri].archived = false;
+  refresh(ai);
+  save();
 }
 
 function addRow(ai){ data.areas[ai].push(blank()); refresh(ai); save(); }
@@ -316,8 +369,12 @@ function removeRow(ai,ri){
   refresh(ai); save();
 }
 function refresh(ai){
-  const tbody=document.querySelectorAll(".area")[ai].querySelector("tbody");
-  renderBody(ai,tbody);
+  const areaEl = document.querySelectorAll(".area")[ai];
+  if(!areaEl) return;
+  const activeTbody = areaEl.querySelector(".active-tbody");
+  const archiveTbody = areaEl.querySelector(".archive-tbody");
+  const archiveCountEl = areaEl.querySelector(".archive-count");
+  renderBody(ai, activeTbody, archiveTbody, archiveCountEl);
 }
 
 function escapeHtml(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
@@ -340,8 +397,8 @@ function clearAll(){
 }
 
 /* ---- Dynamic print view ----
-   A category with 0–2 filled goals prints 3 lines (filled + blank writing lines);
-   a category with 3+ filled goals prints exactly those, with no empty lines. */
+   A category with 0–2 filled active goals prints 3 lines (filled + blank writing lines);
+   a category with 3+ filled active goals prints exactly those, with no empty lines. */
 function fmtDate(v){
   if(!v) return "";
   const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
@@ -353,7 +410,7 @@ function rowFilled(g){
 function buildPrint(){
   const host=document.getElementById("areas_print"); host.innerHTML="";
   AREAS.forEach((a,ai)=>{
-    const filled=data.areas[ai].filter(rowFilled);
+    const filled=data.areas[ai].filter(g => !g.archived && rowFilled(g));
     let rows=filled;
     if(filled.length<3) rows=filled.concat(Array.from({length:3-filled.length},blank));
     const body=rows.map(g=>`<tr>
