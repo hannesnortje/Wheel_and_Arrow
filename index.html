@@ -109,6 +109,16 @@
   .tut-btns{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
   .tut-btns button{width:auto; padding:7px 14px; font-size:13px;}
   .tut-skip{font-size:12px; color:var(--muted); display:flex; align-items:center; gap:4px; margin-right:auto; cursor:pointer;}
+
+  /* ===== print stylesheet ===== */
+  @media print{
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    body{background:#fff; padding:10px;}
+    .btns, .hint, .tip, .pagelink, .tut-modal-overlay, .kicker, footer{display:none !important;}
+    .wrap{flex-direction:row; gap:20px; max-width:none;}
+    .canvaswrap, .card{box-shadow:none; border:1px solid #ccd6d8;}
+    input[type=text]{border:none; background:transparent;}
+  }
 </style>
 </head>
 <body>
@@ -138,10 +148,14 @@
       <div class="controls" id="controls"></div>
     </div>
     <div class="btns">
-      <button class="primary btn-full" id="downloadBtn">Download my wheel (PNG)</button>
+      <button class="primary" id="downloadBtn">📸 Download PNG</button>
+      <button class="ghost" id="printBtn">🖨 Print / PDF</button>
+      <button class="ghost" id="exportBtn">⬇ Export JSON</button>
+      <button class="ghost" id="importBtn">⬆ Load JSON</button>
+      <input type="file" id="importFile" accept="application/json" style="display:none">
       <button class="ghost" id="tutBtn">❓ Tutorial</button>
       <button class="ghost" id="sampleWheelBtn">✨ Load Sample</button>
-      <button class="ghost btn-full" id="resetBtn">Reset</button>
+      <button class="ghost btn-full" id="resetBtn" style="color:var(--plot); border-color:var(--plot);">✕ Reset wheel</button>
     </div>
     <div class="hint" id="savedNote" style="margin-top:8px; text-align:center;">Auto-saves in this browser</div>
     <div class="tip" style="margin-top:14px;">
@@ -309,12 +323,18 @@ function syncControls(){
 }
 
 document.getElementById("resetBtn").addEventListener("click",()=>{
+  if(!confirm("Reset all wheel scores to 5?")) return;
   for(let i=0;i<scores.length;i++)scores[i]=5; syncControls(); drawPlot();
   save();
 });
 
 document.getElementById("tutBtn").addEventListener("click", () => openTutorial(0));
 document.getElementById("sampleWheelBtn").addEventListener("click", loadSampleWheel);
+
+document.getElementById("printBtn").addEventListener("click", () => window.print());
+document.getElementById("exportBtn").addEventListener("click", exportJSON);
+document.getElementById("importBtn").addEventListener("click", () => document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change", importJSON);
 
 document.getElementById("nameInput").addEventListener("input", save);
 document.getElementById("dateInput").addEventListener("input", save);
@@ -442,7 +462,9 @@ function loadSampleWheel(){
   for(let i=0; i<scores.length; i++){
     scores[i] = sampleScores[i];
   }
-  document.getElementById("nameInput").value = "Sample Leadership Profile";
+  if(!document.getElementById("nameInput").value.trim()){
+    document.getElementById("nameInput").value = "Sample Profile";
+  }
   syncControls();
   drawPlot();
   save();
@@ -451,6 +473,49 @@ function loadSampleWheel(){
     savedNote.textContent = "Loaded sample wheel diagnostic!";
     setTimeout(() => { savedNote.textContent = "Auto-saves in this browser"; }, 3000);
   }
+}
+
+function exportJSON() {
+  const name = document.getElementById("nameInput").value;
+  const date = document.getElementById("dateInput").value;
+  const data = {
+    schemaVersion: 1,
+    name: name,
+    date: date,
+    scores: scores
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  const n = name.trim();
+  a.download = (n ? n.replace(/\s+/g, "_") + "_" : "") + "Wheel_of_Life.json";
+  a.click();
+}
+
+function importJSON(ev) {
+  const f = ev.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data.name !== undefined) document.getElementById("nameInput").value = data.name;
+      if (data.date !== undefined) document.getElementById("dateInput").value = data.date;
+      if (Array.isArray(data.scores)) {
+        for (let i = 0; i < scores.length && i < data.scores.length; i++) {
+          scores[i] = data.scores[i];
+        }
+      }
+      syncControls();
+      drawPlot();
+      save();
+      flashSaved();
+    } catch(err) {
+      alert("Sorry, that file could not be read or is invalid.");
+    }
+  };
+  r.readAsText(f);
+  ev.target.value = "";
 }
 
 // init
