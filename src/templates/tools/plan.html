@@ -1,0 +1,76 @@
+<div class="tool plan-tool">
+  <header class="tool-head">
+    <p class="eyebrow">{{ T.eyebrow }}</p>
+    <h1>{{ T.h1 }}</h1>
+    <p class="sub">{{ T.sub }}</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar">
+    <button class="tbtn" type="button" data-act="tutorial">{{ T.tutorial }}</button>
+    <button class="tbtn ghost" type="button" data-act="print">{{ T.print }}</button>
+    <button class="tbtn ghost" type="button" data-act="export">{{ T.backup }}</button>
+    <button class="tbtn ghost" type="button" data-act="import">{{ T.restore }}</button>
+    <input type="file" id="plan-imp" accept="application/json,.json" hidden>
+    <button class="tbtn danger" type="button" data-act="clear">{{ T.clear }}</button>
+    <span class="saved-note" id="plan-saved" aria-live="polite">{{ T.autosave }}</span>
+  </div>
+
+  <div class="plan-screen">
+    <section class="tcard">
+      <div class="fld-row">
+        <label class="fld" for="plan-name">{{ T.name }}</label>
+        <input type="text" id="plan-name" data-meta="name" autocomplete="name">
+      </div>
+      <div class="grid2 plan-dates">
+        <div>
+          <label class="fld" for="plan-created">{{ T.created }}</label>
+          <input type="date" id="plan-created" data-meta="created">
+        </div>
+        <div>
+          <label class="fld" for="plan-reviewed">{{ T.reviewed }}</label>
+          <input type="date" id="plan-reviewed" data-meta="reviewed">
+        </div>
+      </div>
+    </section>
+
+    <section class="tcard">
+      <h2 class="mission-h"><label for="plan-mission">{{ T.mission_h }}</label> <small>{{ T.mission_small }}</small></h2>
+      <p class="hint">{{ T.mission_hint }}</p>
+      <textarea id="plan-mission" data-meta="mission" placeholder="{{ T.mission_ph }}"></textarea>
+    </section>
+
+    <section class="tcard habits" id="plan-habits">
+      <h2 class="sec-h">{{ T.habits_h }}</h2>
+      <ol>
+        {% for h in T.habits %}<li><b>{{ h[0] }}</b> {{ h[1] }}</li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <h2 class="sec-h plan-areas-h">{{ T.areas_h }}</h2>
+    <p class="hint">{{ T.areas_hint }}</p>
+    <p class="hint legend">{{ T.legend }}</p>
+    <div id="plan-areas"></div>
+
+    <p class="hint plan-foot">{{ T.foot }}</p>
+  </div>
+
+  <div id="plan-print" class="plan-print" aria-hidden="true"></div>
+
+  <div class="modal-bg plan-tut" id="plan-tut" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="plan-tut-title">
+      <button class="tbtn ghost icon plan-tut-x" type="button" data-tut="close" aria-label="{{ T.tut_close }}">✕</button>
+      <p class="eyebrow">{{ T.tut_kicker }}</p>
+      <h3 id="plan-tut-title"></h3>
+      <div class="plan-tut-body" id="plan-tut-body"></div>
+      <div class="plan-tut-dots" id="plan-tut-dots" aria-hidden="true"></div>
+      <div class="modal-foot">
+        <label class="plan-skip"><input type="checkbox" id="plan-tut-skip"> {{ T.tut_skip }}</label>
+        <span class="plan-tut-btns">
+          <button class="tbtn ghost" type="button" data-tut="prev">{{ T.tut_prev }}</button>
+          <button class="tbtn" type="button" data-tut="next">{{ T.tut_next }}</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
