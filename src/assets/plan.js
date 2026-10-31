@@ -78,8 +78,8 @@
     }
     return extra[pos];
   }
-  function options(list, labels, val) {
-    var out = '<option value="">' + esc(T.select) + '</option>', has = false;
+  function options(list, labels, val, empty) {
+    var out = '<option value="">' + esc(empty || T.select) + '</option>', has = false;
     list.forEach(function (o) { if (o === val) has = true; out += '<option value="' + esc(o) + '"' + (o === val ? ' selected' : '') + '>' + esc(labels ? (labels[o] || o) : o) + '</option>'; });
     if (val && !has) out += '<option value="' + esc(val) + '" selected>' + esc(labels ? (labels[val] || val) : val) + '</option>';
     return out;
@@ -96,7 +96,7 @@
     tr.className = 'goal-row' + (g.archived ? ' is-archived' : '');
     tr.innerHTML =
       '<td class="c-prio"><label class="cl" for="' + id + 'p">' + esc(T.col_prio) + '</label>' +
-        '<select id="' + id + 'p">' + options(PRIOS, null, g.priority) + '</select></td>' +
+        '<select id="' + id + 'p">' + options(PRIOS, null, g.priority, '–') + '</select></td>' +
       '<td class="c-type"><label class="cl" for="' + id + 't">' + esc(T.col_type) + '</label>' +
         '<select id="' + id + 't">' + options(TYPES, T.types, g.type) + '</select></td>' +
       '<td class="c-goal"><label class="cl" for="' + id + 'g">' + esc(T.col_goal) + '</label>' +

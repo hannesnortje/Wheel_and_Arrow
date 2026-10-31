@@ -1,4 +1,5 @@
 /* Whole-Life Goal Plan – only what the shared tool UI (style.css) does not cover */
+.plan-tool { color-scheme: light dark; }
 .plan-tool .fld-row { max-width: 28rem; margin-bottom: .8rem; }
 .plan-tool .plan-dates { max-width: 28rem; }
 .plan-tool .tool input[type=date], .plan-tool input[type=date] { min-width: 0; }
@@ -10,7 +11,8 @@
 .habits li { margin: 0 0 .55rem; line-height: 1.5; }
 .habits b { color: var(--sea); font-weight: 600; }
 .plan-areas-h { margin-top: 1.8rem; }
-.legend { font-size: .85rem; }
+.legend { font-size: .875rem; }
+.plan-tool .fld { font-size: .875rem; }
 .plan-foot { margin-top: 1.6rem; text-align: center; font-style: italic; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -25,15 +27,18 @@
 .goals-t { width: 100%; border-collapse: collapse; }
 .goals-t thead { display: none; }
 .goals-t, .goals-t tbody { display: block; }
-.goal-row { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem .7rem; padding: .85rem .9rem .9rem; border: 1px solid var(--rule); border-top: 0; background: var(--paper); }
+.goal-row { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem .6rem; padding: .85rem .8rem .9rem; border: 1px solid var(--rule); border-top: 0; background: var(--paper); }
 @media (prefers-color-scheme: light) { .goal-row { background: #fffdf9; } }
 .act-body .goal-row:last-child { border-radius: 0 0 .9rem .9rem; }
 .goal-row td { display: block; min-width: 0; padding: 0; }
 .goal-row .c-goal, .goal-row .c-x { grid-column: 1 / -1; }
 .goal-row .c-goal { order: -1; }
-.goal-row .cl { display: block; font: 600 .82rem/1.3 var(--sans); color: var(--ink-soft); margin: 0 0 .25rem; }
+.goal-row .cl { display: block; font: 600 .875rem/1.3 var(--sans); color: var(--ink-soft); margin: 0 0 .25rem; }
 .goal-row textarea { min-height: var(--tap); height: var(--tap); resize: none; overflow: hidden; line-height: 1.4; }
-.goal-row select, .goal-row input[type=date] { padding-left: .5rem; padding-right: .4rem; }
+.goal-row select, .goal-row input[type=date] { padding-left: .55rem; padding-right: .4rem; }
+.goal-row select { -webkit-appearance: none; appearance: none; padding-left: .5rem; padding-right: 1.25rem; text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%237d8b91' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .45rem center; background-size: .7rem auto; }
 .goal-row input[type=date] { -webkit-appearance: none; appearance: none; display: block; }
 .goal-row input[type=date]::-webkit-date-and-time-value { text-align: left; }
 .c-x { display: flex !important; gap: .5rem; justify-content: flex-end; }
@@ -54,10 +59,11 @@
   .goals-t { display: table; table-layout: fixed; border: 1px solid var(--rule); border-top: 0; }
   .goals-t thead { display: table-header-group; }
   .goals-t tbody { display: table-row-group; }
-  .goals-t th { font: 600 .78rem/1.3 var(--sans); letter-spacing: .02em; color: var(--ink-soft); text-align: left; padding: .55rem .45rem; background: var(--sea-tint); border-bottom: 1px solid var(--rule); }
-  .goals-t th:nth-child(1) { width: 6.2rem; } .goals-t th:nth-child(2) { width: 9.6rem; }
-  .goals-t th:nth-child(4) { width: 9.8rem; } .goals-t th:nth-child(5) { width: 10.4rem; } .goals-t th:nth-child(6) { width: 6.6rem; }
+  .goals-t th { font: 600 .875rem/1.3 var(--sans); letter-spacing: .02em; color: var(--ink-soft); text-align: left; padding: .55rem .45rem; background: var(--sea-tint); border-bottom: 1px solid var(--rule); }
+  .goals-t th:nth-child(1) { width: 6.2rem; } .goals-t th:nth-child(2) { width: 10.4rem; }
+  .goals-t th:nth-child(4) { width: 9.6rem; } .goals-t th:nth-child(5) { width: 9.6rem; } .goals-t th:nth-child(6) { width: 6.6rem; }
   .goals-t th .tip { color: var(--sea-2); font-weight: 400; cursor: help; }
+  .goals-t th { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .goal-row { display: table-row; padding: 0; border: 0; }
   .goal-row td { display: table-cell; padding: .4rem .45rem; vertical-align: top; border-bottom: 1px solid var(--rule); }
   .goal-row:last-child td { border-bottom: 0; }
@@ -113,5 +119,5 @@
   .plan-print th { font-weight: 600; background: #f1f4f5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .plan-print td { height: 20pt; }
   .plan-print td.pc { text-align: center; }
-  .plan-print .w-p { width: 16mm; } .plan-print .w-t { width: 27mm; } .plan-print .w-d { width: 24mm; } .plan-print .w-s { width: 27mm; }
+  .plan-print .w-p { width: 19mm; } .plan-print .w-t { width: 27mm; } .plan-print .w-d { width: 24mm; } .plan-print .w-s { width: 27mm; }
 }
