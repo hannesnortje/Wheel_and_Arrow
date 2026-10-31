@@ -1,0 +1,63 @@
+<div class="tool wheel-tool">
+  <header class="tool-head">
+    <p class="eyebrow">{{ T.eyebrow }}</p>
+    <h1>{{ T.h1 }}</h1>
+    <p class="sub">{{ T.sub }}</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar" aria-label="{{ T.title }}">
+    <button class="tbtn" type="button" id="wPng">{{ T.png }}</button>
+    <button class="tbtn ghost" type="button" id="wPrint">{{ T.print }}</button>
+    <button class="tbtn ghost" type="button" id="wTut">{{ T.tutorial }}</button>
+    <button class="tbtn ghost" type="button" id="wSample">{{ T.sample }}</button>
+    <button class="tbtn ghost" type="button" id="wExport">{{ T.backup }}</button>
+    <button class="tbtn ghost" type="button" id="wImport">{{ T.restore }}</button>
+    <button class="tbtn danger" type="button" id="wClear">{{ T['clear'] }}</button>
+    <input type="file" id="wFile" accept="application/json,.json" hidden>
+  </div>
+
+  <div class="grid2 w-who">
+    <div><label class="fld" for="wName">{{ T.name }}</label><input type="text" id="wName" placeholder="{{ T.name_ph }}" autocomplete="name"></div>
+    <div><label class="fld" for="wDate">{{ T.date }}</label><input type="text" id="wDate" placeholder="{{ T.date_ph }}"></div>
+  </div>
+  <h2 class="print-only w-print-h">{{ T.print_h }}</h2>
+  <p class="print-only w-print-meta" id="wPrintMeta"></p>
+
+  <div class="w-layout">
+    <section class="tcard w-wheelcard">
+      <div class="w-wheel" id="wWheel"></div>
+      <div class="w-info" id="wInfo" aria-live="polite"><p class="hint">{{ T.pick_hint }}</p></div>
+      <p class="hint w-tap">{{ T.tap_hint }}</p>
+      <p class="w-next"><a href="goals.html">{{ T.next_step }}</a></p>
+    </section>
+
+    <section class="w-panel">
+      <div class="tcard">
+        <div class="w-scores-h">
+          <h2 class="sec-h">{{ T.scores_h }}</h2>
+          <span class="hint">{{ T.scale }}</span>
+        </div>
+        <div id="wControls" class="w-controls"></div>
+        <ul class="print-only w-print-list" id="wPrintList"></ul>
+      </div>
+      <p class="status-line" id="wSaved">{{ T.saved_idle }}</p>
+      <p class="hint w-balance">{{ T.balance }}</p>
+      <p class="hint">{{ T.private }}</p>
+    </section>
+  </div>
+
+  <div class="modal-bg" id="wTutModal" hidden>
+    <div class="modal w-tut" role="dialog" aria-modal="true" aria-labelledby="wTutTitle">
+      <button class="tbtn ghost icon w-tut-x" type="button" id="wTutX" aria-label="{{ T.tut_close }}">✕</button>
+      <p class="eyebrow">{{ T.tut_kicker }}</p>
+      <h3 id="wTutTitle"></h3>
+      <div class="w-tut-body" id="wTutBody"></div>
+      <div class="w-tut-dots" id="wTutDots" aria-hidden="true"></div>
+      <label class="w-tut-skip"><input type="checkbox" id="wTutDont"> {{ T.tut_dont }}</label>
+      <div class="modal-foot">
+        <button class="tbtn ghost" type="button" id="wTutPrev">{{ T.tut_prev }}</button>
+        <button class="tbtn" type="button" id="wTutNext">{{ T.tut_next }}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+/* Wheel of Life – tool styles (shared UI comes from style.css) */
+.wheel-tool {
+  --w0: #16465a; --w1: #21607a; --w2: #2e7a93; --w3: #4a95aa; --w4: #74b0c0; --w5: #a3cbd5;
+  --w-line: rgba(255,255,255,.75); --w-hub: #fffdf9; --w-sel: var(--sand);
+}
+@media (prefers-color-scheme: dark) {
+  .wheel-tool {
+    --w0: #1f5a70; --w1: #276a82; --w2: #307a93; --w3: #3d8ba3; --w4: #4f9db3; --w5: #66afc3;
+    --w-line: rgba(18,25,29,.55); --w-hub: var(--paper);
+  }
+}
+.w-who { margin: 0 0 1rem; }
+.w-layout { display: grid; gap: 1rem; align-items: start; }
+@media (min-width: 52rem) { .w-layout { grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 1fr); } }
+.w-wheelcard { padding: .9rem .6rem 1rem; }
+@media (min-width: 30rem) { .w-wheelcard { padding: 1rem 1rem 1.1rem; } }
+.w-wheel { width: 100%; max-width: 40rem; margin: 0 auto; }
+.w-svg { display: block; width: 100%; height: auto; touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+.w-seg { cursor: pointer; stroke: var(--w-line); stroke-width: 1.5; }
+.w-seg-0, .w-sw-0 { fill: var(--w0); background: var(--w0); }
+.w-seg-1, .w-sw-1 { fill: var(--w1); background: var(--w1); }
+.w-seg-2, .w-sw-2 { fill: var(--w2); background: var(--w2); }
+.w-seg-3, .w-sw-3 { fill: var(--w3); background: var(--w3); }
+.w-seg-4, .w-sw-4 { fill: var(--w4); background: var(--w4); }
+.w-seg-5, .w-sw-5 { fill: var(--w5); background: var(--w5); }
+.w-ring { fill: none; stroke: var(--w-line); stroke-width: .8; }
+.w-ring.mid { stroke-width: 1.3; }
+.w-spoke { stroke: var(--w-line); stroke-width: 2; }
+.w-hub { fill: var(--w-hub); }
+.w-selring { fill: none; stroke: var(--w-sel); stroke-width: 3.5; stroke-linejoin: round; }
+.w-poly { fill: var(--plot); fill-opacity: .3; stroke: var(--plot); stroke-width: 3; stroke-linejoin: round; }
+.w-pt { fill: var(--plot); stroke: var(--w-hub); stroke-width: 2; }
+.w-lab { cursor: pointer; outline: none; }
+.w-lab text { font-family: var(--sans); font-weight: 600; fill: var(--ink); }
+.w-lab .w-labscore { font-weight: 700; fill: var(--plot); }
+.w-lab.sel text { fill: var(--sea); }
+.w-hit { fill: transparent; }
+.w-lab:focus-visible .w-hit { stroke: var(--sand); stroke-width: 2; rx: 6; }
+
+.w-info { min-height: 3.2rem; margin: .7rem .3rem 0; }
+.w-info .hint { margin: 0; }
+.w-info-h { margin: 0 0 .15rem; font-weight: 600; display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.w-info-h b { color: var(--plot); }
+.w-info-d { margin: 0; color: var(--ink-soft); font-family: var(--serif); }
+.w-tap { margin: .8rem .3rem 0; font-size: .88rem; }
+.w-next { margin: .9rem .3rem 0; }
+.w-next a { display: inline-flex; align-items: center; min-height: var(--tap); font-weight: 600; }
+
+.w-scores-h { display: flex; justify-content: space-between; align-items: baseline; gap: .3rem 1rem; flex-wrap: wrap; margin-bottom: .4rem; }
+.w-scores-h .sec-h, .w-scores-h .hint { margin: 0; }
+.w-controls { display: flex; flex-direction: column; gap: .35rem; }
+.w-ctl { padding: .35rem .4rem .2rem; border-radius: .7rem; }
+.w-ctl.sel { background: var(--sea-tint); }
+.w-ctl-top { display: flex; justify-content: space-between; align-items: center; gap: .6rem; }
+.w-ctl-name { font-weight: 600; font-size: .98rem; display: flex; align-items: center; gap: .5rem; min-width: 0; }
+.w-swatch { width: .85rem; height: .85rem; border-radius: 3px; flex: none; }
+.w-val { font-weight: 700; color: var(--plot); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.w-ctl-row { display: grid; grid-template-columns: var(--tap) 1fr var(--tap); gap: .4rem; align-items: center; }
+.w-step { font-size: 1.3rem; line-height: 1; }
+.w-ctl-row input[type=range] { margin: 0; }
+.w-balance { margin-top: .9rem; font-style: italic; font-family: var(--serif); }
+
+/* tutorial */
+.w-tut { position: relative; }
+.w-tut-x { position: absolute; top: .7rem; right: .7rem; border-color: transparent; font-size: 1.1rem; }
+.w-tut-body { font-size: 1rem; line-height: 1.55; min-height: 9rem; }
+.w-tut-body ul { padding-left: 1.2rem; margin: .5rem 0; }
+.w-tut-body li { margin-bottom: .4rem; }
+.w-tut-dots { display: flex; gap: .4rem; margin: .8rem 0 .4rem; }
+.w-tut-dots span { width: .5rem; height: .5rem; border-radius: 1rem; background: var(--rule); transition: width .2s; }
+.w-tut-dots span.on { width: 1.3rem; background: var(--sea); }
+.w-tut-skip { display: flex; align-items: center; gap: .5rem; min-height: var(--tap); font-size: .9rem; color: var(--ink-soft); cursor: pointer; }
+
+/* print */
+.print-only { display: none; }
+@media print {
+  .wheel-tool {
+    --w0: #16465a; --w1: #21607a; --w2: #2e7a93; --w3: #4a95aa; --w4: #74b0c0; --w5: #a3cbd5;
+    --w-line: rgba(255,255,255,.75); --w-hub: #fff; --plot: #b5482e; --ink: #000; --sea: #16465a;
+  }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .tbar, .w-who, .w-controls, .w-tap, .w-next, .w-info, .status-line, .hint, .modal-bg, .eyebrow, .tool-head .sub { display: none !important; }
+  .print-only { display: block; }
+  .tool { padding: 0; }
+  .tool-head { display: none; }
+  .w-print-h { font: 600 20pt/1.2 var(--serif); margin: 0; }
+  .w-selring { display: none; }
+  .w-lab.sel text { fill: #000; }
+  .w-print-meta { margin: .2rem 0 .6rem; font-size: 11pt; }
+  .w-layout { display: block; }
+  .tcard { border: 0; padding: 0; background: none; }
+  .w-wheel { max-width: 15cm; }
+  .w-print-list { list-style: none; padding: 0; margin: .4rem 0 0; columns: 2; font-size: 11pt; }
+  .w-print-list li { display: flex; justify-content: space-between; gap: 1rem; padding: .15rem 0; border-bottom: 1px solid #ccc; break-inside: avoid; }
+  .w-balance { display: block !important; font-size: 10pt; }
+}
