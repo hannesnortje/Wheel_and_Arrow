@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wheel of Life · The Wheel and the Arrow</title>
+<meta name="description" content="Personal leadership and goal setting">
+<meta property="og:title" content="Wheel of Life · The Wheel and the Arrow">
+<meta property="og:description" content="Personal leadership and goal setting">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/wheel.css"><script>window.APP = {"root": "../", "lang": "en", "langs": ["de", "en", "af"], "page": "wheel"};</script>
+</head>
+<body data-lang="en" data-page="wheel">
+<a class="skip" href="#main">↓</a>
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="../en/index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 7v20M4.3 12l17.4 10M4.3 22l17.4-10" stroke="currentColor" stroke-width="1.2" opacity=".55"/><path d="M13 17L29 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M29 4l-5.5 .6M29 4l-.6 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>      <span>The Wheel and the Arrow</span>
+    </a>
+    <nav class="langs" aria-label="Language">
+<a href="../de/wheel.html" lang="de" data-set-lang="de">DE</a><a href="../en/wheel.html" lang="en" data-set-lang="en" aria-current="true">EN</a><a href="../af/wheel.html" lang="af" data-set-lang="af">AF</a>    </nav>
+  </div>
+</header>
+<div class="drawer-overlay" data-drawer-close hidden></div>
+<nav id="drawer" class="drawer" aria-label="Menu" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <span class="drawer-title">Menu</span>
+    <button class="icon-btn" type="button" data-drawer-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <ul class="drawer-links">
+<li><a href="index.html">Home</a></li><li><a href="booklet.html">Read the booklet</a></li><li><a href="wheel.html" aria-current="page">Wheel of Life</a></li><li><a href="goals.html">Goal Planning Worksheet</a></li><li><a href="plan.html">Whole-Life Goal Plan</a></li>  </ul>
+  <section class="drawer-sec">
+    <h2>Downloads</h2>
+    <ul class="drawer-links small">
+      <li><a href="../pdf/wheel-and-arrow-en.pdf">Booklet (PDF, A5)</a></li>
+      <li><a href="slides.html">Present the slides</a></li>
+      <li><a href="../pdf/wheel-and-arrow-slides-en.pdf">Slides (PDF)</a></li>
+      <li><a href="../pdf/wheel-and-arrow-notes-en.pdf">Leader's notes (PDF)</a></li>
+      <li><a href="../pdf/goal-worksheet-en.pdf">Blank goal worksheet (PDF)</a></li>
+    </ul>
+  </section>
+  <section class="drawer-sec">
+    <h2>Language</h2>
+    <div class="langs drawer-langs">
+<a href="../de/wheel.html" lang="de" data-set-lang="de">Deutsch</a><a href="../en/wheel.html" lang="en" data-set-lang="en" aria-current="true">English</a><a href="../af/wheel.html" lang="af" data-set-lang="af">Afrikaans</a>    </div>
+  </section>
+  <ul class="drawer-links small foot">
+    <li><a href="about.html">About</a></li>
+    <li><a href="legal.html">Imprint & privacy</a></li>
+  </ul>
+</nav>
+<main id="main" class="">
+<div class="tool wheel-tool">
+  <header class="tool-head">
+    <p class="eyebrow">Wheel of Life · Interactive</p>
+    <h1>Plot your wheel</h1>
+    <p class="sub">Score each area from 1 (centre) to 10 (rim). The shape draws itself.</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar" aria-label="Wheel of Life">
+    <button class="tbtn" type="button" id="wPng">Download PNG</button>
+    <button class="tbtn ghost" type="button" id="wPrint">Print / PDF</button>
+    <button class="tbtn ghost" type="button" id="wTut">Tutorial</button>
+    <button class="tbtn ghost" type="button" id="wSample">Load sample</button>
+    <button class="tbtn ghost" type="button" id="wExport">Download my data</button>
+    <button class="tbtn ghost" type="button" id="wImport">Load data</button>
+    <button class="tbtn danger" type="button" id="wClear">Clear all</button>
+    <input type="file" id="wFile" accept="application/json,.json" hidden>
+  </div>
+
+  <div class="grid2 w-who">
+    <div><label class="fld" for="wName">Your name</label><input type="text" id="wName" placeholder="Your name" autocomplete="name"></div>
+    <div><label class="fld" for="wDate">Date</label><input type="text" id="wDate" placeholder="Date"></div>
+  </div>
+  <h2 class="print-only w-print-h">My Wheel of Life</h2>
+  <p class="print-only w-print-meta" id="wPrintMeta"></p>
+
+  <div class="w-layout">
+    <section class="tcard w-wheelcard">
+      <div class="w-wheel" id="wWheel"></div>
+      <div class="w-info" id="wInfo" aria-live="polite"><p class="hint">Tap an area of the wheel to see what it covers.</p></div>
+      <p class="hint w-tap">Tip: drag the sliders, or tap a wedge of the wheel – nearer the centre is a lower score, nearer the rim a higher one.</p>
+      <p class="w-next"><a href="goals.html">Next step: plan a goal on the Goal Planning Worksheet →</a></p>
+    </section>
+
+    <section class="w-panel">
+      <div class="tcard">
+        <div class="w-scores-h">
+          <h2 class="sec-h">Your scores</h2>
+          <span class="hint">1 = centre · 10 = rim</span>
+        </div>
+        <div id="wControls" class="w-controls"></div>
+        <ul class="print-only w-print-list" id="wPrintList"></ul>
+      </div>
+      <p class="status-line" id="wSaved">Saves automatically in this browser</p>
+      <p class="hint w-balance">Is your wheel round and full, or jagged and flat? A wheel that scores 9 in one area but 2 in another makes for a very bumpy ride.</p>
+      <p class="hint">Nothing is uploaded – everything stays on your device. Use “Download my data” or “Download PNG” to keep a copy.</p>
+    </section>
+  </div>
+
+  <div class="modal-bg" id="wTutModal" hidden>
+    <div class="modal w-tut" role="dialog" aria-modal="true" aria-labelledby="wTutTitle">
+      <button class="tbtn ghost icon w-tut-x" type="button" id="wTutX" aria-label="Close">✕</button>
+      <p class="eyebrow">Quick guide</p>
+      <h3 id="wTutTitle"></h3>
+      <div class="w-tut-body" id="wTutBody"></div>
+      <div class="w-tut-dots" id="wTutDots" aria-hidden="true"></div>
+      <label class="w-tut-skip"><input type="checkbox" id="wTutDont"> Don't show on startup</label>
+      <div class="modal-foot">
+        <button class="tbtn ghost" type="button" id="wTutPrev">Back</button>
+        <button class="tbtn" type="button" id="wTutNext">Next →</button>
+      </div>
+    </div>
+  </div>
+</div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Dr. Johannes A. Nortjé · No cookies, no tracking – your entries stay on this device.</p>
+    <p><a href="about.html">About</a> · <a href="legal.html">Imprint & privacy</a></p>
+  </div>
+</footer>
+<button class="update-toast" type="button" data-update hidden>A new version is ready – tap to refresh</button>
+<script src="../assets/app.js"></script>
+<script>window.T = {"title": "Wheel of Life", "eyebrow": "Wheel of Life · Interactive", "h1": "Plot your wheel", "sub": "Score each area from 1 (centre) to 10 (rim). The shape draws itself.", "name": "Your name", "date": "Date", "name_ph": "Your name", "date_ph": "Date", "tutorial": "Tutorial", "sample": "Load sample", "png": "Download PNG", "print": "Print / PDF", "backup": "Download my data", "restore": "Load data", "clear": "Clear all", "saved_idle": "Saves automatically in this browser", "saved": "Saved ✓", "sample_loaded": "Sample wheel loaded.", "imported": "Data loaded ✓", "scores_h": "Your scores", "scale": "1 = centre · 10 = rim", "minus": "Lower score for {area}", "plus": "Raise score for {area}", "wheel_label": "Wheel of Life: {list}", "tap_hint": "Tip: drag the sliders, or tap a wedge of the wheel – nearer the centre is a lower score, nearer the rim a higher one.", "pick_hint": "Tap an area of the wheel to see what it covers.", "out_of": "/10", "next_step": "Next step: plan a goal on the Goal Planning Worksheet →", "balance": "Is your wheel round and full, or jagged and flat? A wheel that scores 9 in one area but 2 in another makes for a very bumpy ride.", "private": "Nothing is uploaded – everything stays on your device. Use “Download my data” or “Download PNG” to keep a copy.", "png_title": "My Wheel of Life", "file_base": "Wheel_of_Life", "sample_name": "Sample profile", "confirm_clear": "Clear your name, date and all scores? (All scores go back to 5.)", "bad_file": "Sorry, that file could not be read or is not a wheel file.", "print_h": "My Wheel of Life", "tut_kicker": "Quick guide", "tut_close": "Close", "tut_prev": "Back", "tut_next": "Next →", "tut_done": "Finish ✓", "tut_dont": "Don't show on startup", "tut": [["1. Where you stand today", "<p>The Wheel of Life is a simple picture of how satisfied you are in the six areas of your life.</p><p>Score each area from <b>1</b> (at the centre – not satisfied at all) to <b>10</b> (at the rim – fully satisfied), measured against your own honest standard.</p>"], ["2. Plotting your wheel", "<p>There are two easy ways to set your scores:</p><ul><li><b>Sliders</b>: drag the slider for each area under <i>Your scores</i>, or use − and +.</li><li><b>Tap the wheel</b>: tap anywhere on a coloured wedge to set that area's score at once.</li></ul>"], ["3. The lesson: balance", "<p>Is your wheel round and full, or jagged and flat?</p><p>A wheel that scores <b>9 in {work}</b> but <b>2 in {body}</b> makes for a very bumpy, unstable ride. The aim is to grow your wheel outwards while keeping it balanced across all six spokes.</p>"], ["4. From being to becoming", "<p>Once you see where you stand, take a step:</p><ul><li><b>Plan a goal</b>: the <i>Goal Planning Worksheet</i> turns an intention into a dated, trackable SMART plan.</li><li><b>Whole-Life Goal Plan</b>: set balanced goals across all six areas in one plan.</li><li><b>Download PNG</b>: save a picture of your wheel so you can track your growth over time.</li></ul>"]], "_areas": [["ethics", "Ethics & Values", "Your convictions, your spiritual life and the principles you live by."], ["mind", "Mind & Learning", "How you grow in knowledge, understanding and skill."], ["society", "Society & Community", "Friendships, service and your place among other people."], ["body", "Body & Health", "Energy, fitness, food and rest."], ["family", "Family & Home", "Your spouse, your children and the home you share."], ["work", "Work & Finances", "Your calling at work, how you do it, and how you handle money."]], "_lang": "en"};</script>
+<script src="../assets/wheel.js"></script>
+</body>
+</html>

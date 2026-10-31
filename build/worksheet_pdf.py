@@ -26,7 +26,7 @@ from build import EX_LABELS, SRC, env, example_data, load_json  # noqa: E402
 from strings import LANGS, STRINGS  # noqa: E402
 
 GOALS_JSON = SRC / "i18n" / "goals.json"
-AUTHOR = "Dr. Johannes A. Nortjé"
+AUTHOR = "Dr. Johannes (Hannes) A. Nortjé"  # byline; copyright lines keep the plain name
 MONTHS = {"jan": 1, "feb": 2, "mar": 3, "mär": 3, "maa": 3, "apr": 4, "may": 5, "mai": 5, "mei": 5, "jun": 6, "jul": 7,
           "aug": 8, "sep": 9, "oct": 10, "okt": 10, "nov": 11, "dec": 12, "dez": 12, "des": 12}
 YES = {"yes", "ja"}

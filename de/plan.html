@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ganzheitlicher Zielplan · Das Rad und der Pfeil</title>
+<meta name="description" content="Persönliche Leiterschaft und Zielsetzung">
+<meta property="og:title" content="Ganzheitlicher Zielplan · Das Rad und der Pfeil">
+<meta property="og:description" content="Persönliche Leiterschaft und Zielsetzung">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/plan.css"><script>window.APP = {"root": "../", "lang": "de", "langs": ["de", "en", "af"], "page": "plan"};</script>
+</head>
+<body data-lang="de" data-page="plan">
+<a class="skip" href="#main">↓</a>
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Menü">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="../de/index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 7v20M4.3 12l17.4 10M4.3 22l17.4-10" stroke="currentColor" stroke-width="1.2" opacity=".55"/><path d="M13 17L29 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M29 4l-5.5 .6M29 4l-.6 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>      <span>Das Rad und der Pfeil</span>
+    </a>
+    <nav class="langs" aria-label="Sprache">
+<a href="../de/plan.html" lang="de" data-set-lang="de" aria-current="true">DE</a><a href="../en/plan.html" lang="en" data-set-lang="en">EN</a><a href="../af/plan.html" lang="af" data-set-lang="af">AF</a>    </nav>
+  </div>
+</header>
+<div class="drawer-overlay" data-drawer-close hidden></div>
+<nav id="drawer" class="drawer" aria-label="Menü" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <span class="drawer-title">Menü</span>
+    <button class="icon-btn" type="button" data-drawer-close aria-label="Schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <ul class="drawer-links">
+<li><a href="index.html">Start</a></li><li><a href="booklet.html">Das Heft lesen</a></li><li><a href="wheel.html">Lebensrad</a></li><li><a href="goals.html">Zielplanungsblatt</a></li><li><a href="plan.html" aria-current="page">Ganzheitlicher Zielplan</a></li>  </ul>
+  <section class="drawer-sec">
+    <h2>Downloads</h2>
+    <ul class="drawer-links small">
+      <li><a href="../pdf/wheel-and-arrow-de.pdf">Heft (PDF, A5)</a></li>
+      <li><a href="slides.html">Folien präsentieren</a></li>
+      <li><a href="../pdf/wheel-and-arrow-slides-de.pdf">Folien (PDF)</a></li>
+      <li><a href="../pdf/wheel-and-arrow-notes-de.pdf">Notizen für Leitende (PDF)</a></li>
+      <li><a href="../pdf/goal-worksheet-de.pdf">Leeres Zielplanungsblatt (PDF)</a></li>
+    </ul>
+  </section>
+  <section class="drawer-sec">
+    <h2>Sprache</h2>
+    <div class="langs drawer-langs">
+<a href="../de/plan.html" lang="de" data-set-lang="de" aria-current="true">Deutsch</a><a href="../en/plan.html" lang="en" data-set-lang="en">English</a><a href="../af/plan.html" lang="af" data-set-lang="af">Afrikaans</a>    </div>
+  </section>
+  <ul class="drawer-links small foot">
+    <li><a href="about.html">Über</a></li>
+    <li><a href="legal.html">Impressum & Datenschutz</a></li>
+  </ul>
+</nav>
+<main id="main" class="">
+<div class="tool plan-tool">
+  <header class="tool-head">
+    <p class="eyebrow">Ganzheitlicher Zielplan</p>
+    <h1>Mein ganzheitlicher Zielplan</h1>
+    <p class="sub">Ein ausgewogener Rahmen, um Ziele in allen Bereichen meines Lebens zu setzen und zu verfolgen</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar">
+    <button class="tbtn" type="button" data-act="tutorial">Anleitung</button>
+    <button class="tbtn ghost" type="button" data-act="print">Als PDF speichern / Drucken</button>
+    <button class="tbtn ghost" type="button" data-act="export">Daten sichern</button>
+    <button class="tbtn ghost" type="button" data-act="import">Daten laden</button>
+    <input type="file" id="plan-imp" accept="application/json,.json" hidden>
+    <button class="tbtn danger" type="button" data-act="clear">Alles löschen</button>
+    <span class="saved-note" id="plan-saved" aria-live="polite">Speichert automatisch in diesem Browser</span>
+  </div>
+
+  <div class="plan-screen">
+    <section class="tcard">
+      <div class="fld-row">
+        <label class="fld" for="plan-name">Name</label>
+        <input type="text" id="plan-name" data-meta="name" autocomplete="name">
+      </div>
+      <div class="grid2 plan-dates">
+        <div>
+          <label class="fld" for="plan-created">Erstellt am</label>
+          <input type="date" id="plan-created" data-meta="created">
+        </div>
+        <div>
+          <label class="fld" for="plan-reviewed">Zuletzt überprüft</label>
+          <input type="date" id="plan-reviewed" data-meta="reviewed">
+        </div>
+      </div>
+    </section>
+
+    <section class="tcard">
+      <h2 class="mission-h"><label for="plan-mission">Mein persönliches Leitbild</label> <small>(Mein Leitprinzip)</small></h2>
+      <p class="hint">Halte in ein oder zwei Sätzen fest, wofür dein Leben vor allem stehen und was aus dir werden soll. Dein Leitbild bildet die Leitplanken und Grenzen, in die alle deine Ziele passen und in denen sie sich bewegen müssen.</p>
+      <textarea id="plan-mission" data-meta="mission" placeholder="Z. B.: Verwurzelt in meiner Identität als hingegebener Bewahrer und Bürger des neuen Himmels und der neuen Erde ist es meine Mission, mit einer ewigen Perspektive zu leben und meinen letzten Sinn in Gott zu finden. Ich verzichte darauf, nach irdischem Ansehen zu streben, und verpflichte mich, ein christusähnlicher Ehepartner und Elternteil zu sein; ein weiser Hüter der Gesundheit und der Mittel unserer Familie; und ein freudiger Diener, der seine Gaben einsetzt, um meine Gemeinde und mein Umfeld aufzubauen – und so die Berufung zu erfüllen, die Gott mir anvertraut hat."></textarea>
+    </section>
+
+    <section class="tcard habits" id="plan-habits">
+      <h2 class="sec-h">Fünf Gewohnheiten, mit denen es gelingt</h2>
+      <ol>
+<li><b>Schreib es auf.</b> Ziele, die nur in deinem Kopf bleiben, bleiben vage. Wenn du sie in klare Worte fasst, werden sie schärfer, und aus einer Absicht wird eine echte Verpflichtung.</li>
+<li><b>Schau oft wieder hinein.</b> Lies deinen Plan regelmäßig durch – gleich am Morgen funktioniert gut –, damit er weiter deine Aufmerksamkeit und deine täglichen Entscheidungen lenkt.</li>
+<li><b>Bleib im Gleichgewicht.</b> Versuche, in jedem Bereich mindestens ein aktives Ziel zu haben. Große Fortschritte in einem Lebensbereich machen es selten wett, wenn du einen anderen vernachlässigst.</li>
+<li><b>Zerlege die großen Ziele.</b> Lege für deine wichtigsten Prioritäten den nächsten konkreten Schritt fest, die Hindernisse, mit denen du rechnest, und wie du mit ihnen umgehen willst.</li>
+<li><b>Gib jedem Ziel einen Termin.</b> Ein Zieldatum schafft Fokus und Verbindlichkeit. Wenn sich dein Leben ändert, verschiebe das Datum – einen Zeitplan anzupassen ist gesund; das Ziel stillschweigend aufzugeben nicht.</li>
+      </ol>
+    </section>
+
+    <h2 class="sec-h plan-areas-h">Die Bereiche meines Lebens</h2>
+    <p class="hint">Wähle eine Zielart und eine Priorität, formuliere das Ziel so, dass es spezifisch und messbar ist, gib ein Zieldatum an und aktualisiere den Status unterwegs. Füge so viele Zeilen hinzu, wie du brauchst.</p>
+    <p class="hint legend">Priorität: 1 = am höchsten, 5 = am niedrigsten · Kurzfristig: unter 1 Jahr · Mittelfristig: 1–3 Jahre · Langfristig: über 3 Jahre</p>
+    <div id="plan-areas"></div>
+
+    <p class="hint plan-foot">Deine Eingaben werden automatisch in diesem Browser auf diesem Gerät gespeichert. Mit „Daten sichern“ legst du eine Sicherung an oder nimmst sie auf ein anderes Gerät mit; mit „Als PDF speichern / Drucken“ bekommst du einen Ausdruck.</p>
+  </div>
+
+  <div id="plan-print" class="plan-print" aria-hidden="true"></div>
+
+  <div class="modal-bg plan-tut" id="plan-tut" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="plan-tut-title">
+      <button class="tbtn ghost icon plan-tut-x" type="button" data-tut="close" aria-label="Anleitung schließen">✕</button>
+      <p class="eyebrow">Kurzanleitung</p>
+      <h3 id="plan-tut-title"></h3>
+      <div class="plan-tut-body" id="plan-tut-body"></div>
+      <div class="plan-tut-dots" id="plan-tut-dots" aria-hidden="true"></div>
+      <div class="modal-foot">
+        <label class="plan-skip"><input type="checkbox" id="plan-tut-skip"> Beim Start nicht mehr zeigen</label>
+        <span class="plan-tut-btns">
+          <button class="tbtn ghost" type="button" data-tut="prev">Zurück</button>
+          <button class="tbtn" type="button" data-tut="next">Weiter →</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Dr. Johannes A. Nortjé · Keine Cookies, kein Tracking – deine Eingaben bleiben auf diesem Gerät.</p>
+    <p><a href="about.html">Über</a> · <a href="legal.html">Impressum & Datenschutz</a></p>
+  </div>
+</footer>
+<button class="update-toast" type="button" data-update hidden>Eine neue Version ist da – tippen zum Aktualisieren</button>
+<script src="../assets/app.js"></script>
+<script>window.T = {"title": "Ganzheitlicher Zielplan", "eyebrow": "Ganzheitlicher Zielplan", "h1": "Mein ganzheitlicher Zielplan", "sub": "Ein ausgewogener Rahmen, um Ziele in allen Bereichen meines Lebens zu setzen und zu verfolgen", "tutorial": "Anleitung", "print": "Als PDF speichern / Drucken", "backup": "Daten sichern", "restore": "Daten laden", "clear_all": "Alles löschen", "autosave": "Speichert automatisch in diesem Browser", "saved": "Gespeichert ✓", "name": "Name", "created": "Erstellt am", "reviewed": "Zuletzt überprüft", "mission_h": "Mein persönliches Leitbild", "mission_small": "(Mein Leitprinzip)", "mission_hint": "Halte in ein oder zwei Sätzen fest, wofür dein Leben vor allem stehen und was aus dir werden soll. Dein Leitbild bildet die Leitplanken und Grenzen, in die alle deine Ziele passen und in denen sie sich bewegen müssen.", "mission_ph": "Z. B.: Verwurzelt in meiner Identität als hingegebener Bewahrer und Bürger des neuen Himmels und der neuen Erde ist es meine Mission, mit einer ewigen Perspektive zu leben und meinen letzten Sinn in Gott zu finden. Ich verzichte darauf, nach irdischem Ansehen zu streben, und verpflichte mich, ein christusähnlicher Ehepartner und Elternteil zu sein; ein weiser Hüter der Gesundheit und der Mittel unserer Familie; und ein freudiger Diener, der seine Gaben einsetzt, um meine Gemeinde und mein Umfeld aufzubauen – und so die Berufung zu erfüllen, die Gott mir anvertraut hat.", "habits_h": "Fünf Gewohnheiten, mit denen es gelingt", "habits": [["Schreib es auf.", "Ziele, die nur in deinem Kopf bleiben, bleiben vage. Wenn du sie in klare Worte fasst, werden sie schärfer, und aus einer Absicht wird eine echte Verpflichtung."], ["Schau oft wieder hinein.", "Lies deinen Plan regelmäßig durch – gleich am Morgen funktioniert gut –, damit er weiter deine Aufmerksamkeit und deine täglichen Entscheidungen lenkt."], ["Bleib im Gleichgewicht.", "Versuche, in jedem Bereich mindestens ein aktives Ziel zu haben. Große Fortschritte in einem Lebensbereich machen es selten wett, wenn du einen anderen vernachlässigst."], ["Zerlege die großen Ziele.", "Lege für deine wichtigsten Prioritäten den nächsten konkreten Schritt fest, die Hindernisse, mit denen du rechnest, und wie du mit ihnen umgehen willst."], ["Gib jedem Ziel einen Termin.", "Ein Zieldatum schafft Fokus und Verbindlichkeit. Wenn sich dein Leben ändert, verschiebe das Datum – einen Zeitplan anzupassen ist gesund; das Ziel stillschweigend aufzugeben nicht."]], "areas_h": "Die Bereiche meines Lebens", "areas_hint": "Wähle eine Zielart und eine Priorität, formuliere das Ziel so, dass es spezifisch und messbar ist, gib ein Zieldatum an und aktualisiere den Status unterwegs. Füge so viele Zeilen hinzu, wie du brauchst.", "legend": "Priorität: 1 = am höchsten, 5 = am niedrigsten · Kurzfristig: unter 1 Jahr · Mittelfristig: 1–3 Jahre · Langfristig: über 3 Jahre", "col_prio": "Priorität", "col_type": "Zielart", "col_goal": "Ziel – spezifisch & messbar", "col_date": "Zieldatum", "col_status": "Status", "col_actions": "Aktionen", "tip_prio": "Priorität: 1 = am höchsten, 5 = am niedrigsten", "tip_type": "Kurzfristig (unter 1 Jahr), mittelfristig (1–3 Jahre), langfristig (über 3 Jahre)", "tip_goal": "Sag klar, welches Ergebnis du erreichen willst", "tip_date": "Datum, bis zu dem das Ziel erreicht sein soll", "tip_status": "Noch offen, in Arbeit, blockiert, erledigt", "select": "Wählen", "types": {"Short-Term": "Kurzfristig", "Medium-Term": "Mittelfristig", "Long-Term": "Langfristig"}, "status": {"Not Started": "Noch offen", "In Progress": "In Arbeit", "Blocked": "Blockiert", "Completed": "Erledigt"}, "goal_ph": "Schreib das Ziel auf …", "add": "+ Ziel hinzufügen", "archive": "Archivieren", "archive_t": "Ziel archivieren", "unarchive": "Zurückholen", "unarchive_t": "Ziel wieder aktiv machen", "remove": "Löschen", "remove_t": "Ziel löschen", "archived_h": "Archivierte Ziele", "foot": "Deine Eingaben werden automatisch in diesem Browser auf diesem Gerät gespeichert. Mit „Daten sichern“ legst du eine Sicherung an oder nimmst sie auf ein anderes Gerät mit; mit „Als PDF speichern / Drucken“ bekommst du einen Ausdruck.", "confirm_clear": "Alles löschen und neu anfangen?", "confirm_remove": "Dieses Ziel löschen?", "import_error": "Diese Datei konnte leider nicht gelesen werden.", "file_name": "mein-zielplan.json", "date_fmt": "DD.MM.YYYY", "print_meta": "Name: {name} · Erstellt am: {created} · Zuletzt überprüft: {reviewed}", "tut_kicker": "Kurzanleitung", "tut_close": "Anleitung schließen", "tut_prev": "Zurück", "tut_next": "Weiter →", "tut_finish": "Fertig ✓", "tut_skip": "Beim Start nicht mehr zeigen", "tut": [{"title": "1. Dein persönliches Leitbild", "html": "<p>Halte zuerst im Feld <b>Persönliches Leitbild</b> in 1–2 Sätzen fest, wofür dein Leben vor allem stehen soll.</p><p>Dein Leitbild wirkt wie deine persönlichen Leitplanken und dein Grenzzaun – es zieht klare Grenzen, in die alle deine Ziele passen und in denen sie sich bewegen müssen.</p>"}, {"title": "2. Die 6 Lebensbereiche", "html": "<p>Ein ausgewogenes Leben braucht Aufmerksamkeit in allen wichtigen Lebensbereichen:</p>{areas}"}, {"title": "3. Ziele setzen & Prioritäten", "html": "<p>Für jedes Ziel:</p><ul><li><b>Priorität (1–5)</b>: 1 = höchste Priorität.</li><li><b>Zielart</b>: kurzfristig (&lt;1 Jahr), mittelfristig (1–3 Jahre) oder langfristig (über 3 Jahre).</li><li><b>Spezifisch &amp; messbar</b>: Sag klar, welches Ergebnis du erreichen willst.</li><li><b>Zieldatum &amp; Status</b>: Setz dir einen Termin und aktualisiere den Status, während du vorankommst.</li></ul>"}, {"title": "4. Archiv, Sicherung & Export", "html": "<p>So bleibt dein Plan übersichtlich und sicher:</p><ul><li><b>Archivieren</b>: Verschiebe erledigte oder vergangene Ziele aus der aktiven Ansicht in den aufklappbaren Bereich <i>Archivierte Ziele</i>. Du kannst sie jederzeit zurückholen.</li><li><b>Daten sichern</b>: Sichere deinen Plan als JSON-Datei. Alles bleibt privat auf deinem Gerät.</li><li><b>Als PDF speichern / Drucken</b>: Erstelle eine übersichtliche Zusammenfassung deiner aktiven Ziele.</li></ul>"}], "_areas": [["ethics", "Ethik & Werte", "Deine Überzeugungen, dein geistliches Leben und die Grundsätze, nach denen du lebst."], ["mind", "Geist & Lernen", "Wie du an Wissen, Verständnis und Können wächst."], ["society", "Gesellschaft & Gemeinschaft", "Freundschaften, Dienst an anderen und dein Platz unter Menschen."], ["body", "Körper & Gesundheit", "Kraft, Fitness, Ernährung und Ruhe."], ["family", "Familie & Zuhause", "Dein Ehepartner, deine Kinder und euer gemeinsames Zuhause."], ["work", "Arbeit & Finanzen", "Deine Berufung im Beruf, wie du sie ausfüllst und wie du mit Geld umgehst."]], "_lang": "de"};</script>
+<script src="../assets/plan.js"></script>
+</body>
+</html>

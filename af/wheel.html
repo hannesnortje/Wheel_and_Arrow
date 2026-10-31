@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lewenswiel · Die Wiel en die Pyl</title>
+<meta name="description" content="Persoonlike leierskap en doelwitstelling">
+<meta property="og:title" content="Lewenswiel · Die Wiel en die Pyl">
+<meta property="og:description" content="Persoonlike leierskap en doelwitstelling">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/wheel.css"><script>window.APP = {"root": "../", "lang": "af", "langs": ["de", "en", "af"], "page": "wheel"};</script>
+</head>
+<body data-lang="af" data-page="wheel">
+<a class="skip" href="#main">↓</a>
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Kieslys">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="../af/index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 7v20M4.3 12l17.4 10M4.3 22l17.4-10" stroke="currentColor" stroke-width="1.2" opacity=".55"/><path d="M13 17L29 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M29 4l-5.5 .6M29 4l-.6 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>      <span>Die Wiel en die Pyl</span>
+    </a>
+    <nav class="langs" aria-label="Taal">
+<a href="../de/wheel.html" lang="de" data-set-lang="de">DE</a><a href="../en/wheel.html" lang="en" data-set-lang="en">EN</a><a href="../af/wheel.html" lang="af" data-set-lang="af" aria-current="true">AF</a>    </nav>
+  </div>
+</header>
+<div class="drawer-overlay" data-drawer-close hidden></div>
+<nav id="drawer" class="drawer" aria-label="Kieslys" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <span class="drawer-title">Kieslys</span>
+    <button class="icon-btn" type="button" data-drawer-close aria-label="Maak toe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <ul class="drawer-links">
+<li><a href="index.html">Tuis</a></li><li><a href="booklet.html">Lees die boekie</a></li><li><a href="wheel.html" aria-current="page">Lewenswiel</a></li><li><a href="goals.html">Doelwitbeplanningsblad</a></li><li><a href="plan.html">Doelwitplan vir die hele lewe</a></li>  </ul>
+  <section class="drawer-sec">
+    <h2>Aflaai</h2>
+    <ul class="drawer-links small">
+      <li><a href="../pdf/wheel-and-arrow-af.pdf">Boekie (PDF, A5)</a></li>
+      <li><a href="slides.html">Bied die skyfies aan</a></li>
+      <li><a href="../pdf/wheel-and-arrow-slides-af.pdf">Skyfies (PDF)</a></li>
+      <li><a href="../pdf/wheel-and-arrow-notes-af.pdf">Leiersnotas (PDF)</a></li>
+      <li><a href="../pdf/goal-worksheet-af.pdf">Leë doelwitblad (PDF)</a></li>
+    </ul>
+  </section>
+  <section class="drawer-sec">
+    <h2>Taal</h2>
+    <div class="langs drawer-langs">
+<a href="../de/wheel.html" lang="de" data-set-lang="de">Deutsch</a><a href="../en/wheel.html" lang="en" data-set-lang="en">English</a><a href="../af/wheel.html" lang="af" data-set-lang="af" aria-current="true">Afrikaans</a>    </div>
+  </section>
+  <ul class="drawer-links small foot">
+    <li><a href="about.html">Oor</a></li>
+    <li><a href="legal.html">Regskennisgewing & privaatheid</a></li>
+  </ul>
+</nav>
+<main id="main" class="">
+<div class="tool wheel-tool">
+  <header class="tool-head">
+    <p class="eyebrow">Lewenswiel · Interaktief</p>
+    <h1>Teken jou lewenswiel</h1>
+    <p class="sub">Gee elke area 'n punt van 1 (middel) tot 10 (rand). Die vorm teken homself.</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar" aria-label="Lewenswiel">
+    <button class="tbtn" type="button" id="wPng">Laai PNG af</button>
+    <button class="tbtn ghost" type="button" id="wPrint">Druk / PDF</button>
+    <button class="tbtn ghost" type="button" id="wTut">Handleiding</button>
+    <button class="tbtn ghost" type="button" id="wSample">Laai voorbeeld</button>
+    <button class="tbtn ghost" type="button" id="wExport">Stoor my data</button>
+    <button class="tbtn ghost" type="button" id="wImport">Laai data</button>
+    <button class="tbtn danger" type="button" id="wClear">Vee alles uit</button>
+    <input type="file" id="wFile" accept="application/json,.json" hidden>
+  </div>
+
+  <div class="grid2 w-who">
+    <div><label class="fld" for="wName">Jou naam</label><input type="text" id="wName" placeholder="Jou naam" autocomplete="name"></div>
+    <div><label class="fld" for="wDate">Datum</label><input type="text" id="wDate" placeholder="Datum"></div>
+  </div>
+  <h2 class="print-only w-print-h">My lewenswiel</h2>
+  <p class="print-only w-print-meta" id="wPrintMeta"></p>
+
+  <div class="w-layout">
+    <section class="tcard w-wheelcard">
+      <div class="w-wheel" id="wWheel"></div>
+      <div class="w-info" id="wInfo" aria-live="polite"><p class="hint">Tik op 'n area van die wiel om te sien wat dit insluit.</p></div>
+      <p class="hint w-tap">Wenk: sleep die skuiwers, of tik op 'n wig van die wiel – nader aan die middel is 'n laer punt, nader aan die rand 'n hoër een.</p>
+      <p class="w-next"><a href="goals.html">Volgende stap: beplan 'n doelwit op die Doelwitbeplanningsblad →</a></p>
+    </section>
+
+    <section class="w-panel">
+      <div class="tcard">
+        <div class="w-scores-h">
+          <h2 class="sec-h">Jou punte</h2>
+          <span class="hint">1 = middel · 10 = rand</span>
+        </div>
+        <div id="wControls" class="w-controls"></div>
+        <ul class="print-only w-print-list" id="wPrintList"></ul>
+      </div>
+      <p class="status-line" id="wSaved">Word outomaties in hierdie blaaier gestoor</p>
+      <p class="hint w-balance">Is jou wiel rond en vol, of hoekig en plat? 'n Wiel met 9 in een area maar 2 in 'n ander gee 'n baie stamperige rit.</p>
+      <p class="hint">Niks word opgelaai nie – alles bly op jou toestel. Gebruik “Stoor my data” of “Laai PNG af” om 'n kopie te hou.</p>
+    </section>
+  </div>
+
+  <div class="modal-bg" id="wTutModal" hidden>
+    <div class="modal w-tut" role="dialog" aria-modal="true" aria-labelledby="wTutTitle">
+      <button class="tbtn ghost icon w-tut-x" type="button" id="wTutX" aria-label="Maak toe">✕</button>
+      <p class="eyebrow">Vinnige gids</p>
+      <h3 id="wTutTitle"></h3>
+      <div class="w-tut-body" id="wTutBody"></div>
+      <div class="w-tut-dots" id="wTutDots" aria-hidden="true"></div>
+      <label class="w-tut-skip"><input type="checkbox" id="wTutDont"> Moenie by begin wys nie</label>
+      <div class="modal-foot">
+        <button class="tbtn ghost" type="button" id="wTutPrev">Terug</button>
+        <button class="tbtn" type="button" id="wTutNext">Volgende →</button>
+      </div>
+    </div>
+  </div>
+</div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Dr. Johannes A. Nortjé · Geen koekies, geen opsporing – jou inskrywings bly op hierdie toestel.</p>
+    <p><a href="about.html">Oor</a> · <a href="legal.html">Regskennisgewing & privaatheid</a></p>
+  </div>
+</footer>
+<button class="update-toast" type="button" data-update hidden>'n Nuwe weergawe is gereed – tik om te herlaai</button>
+<script src="../assets/app.js"></script>
+<script>window.T = {"title": "Lewenswiel", "eyebrow": "Lewenswiel · Interaktief", "h1": "Teken jou lewenswiel", "sub": "Gee elke area 'n punt van 1 (middel) tot 10 (rand). Die vorm teken homself.", "name": "Jou naam", "date": "Datum", "name_ph": "Jou naam", "date_ph": "Datum", "tutorial": "Handleiding", "sample": "Laai voorbeeld", "png": "Laai PNG af", "print": "Druk / PDF", "backup": "Stoor my data", "restore": "Laai data", "clear": "Vee alles uit", "saved_idle": "Word outomaties in hierdie blaaier gestoor", "saved": "Gestoor ✓", "sample_loaded": "Voorbeeldwiel gelaai.", "imported": "Data gelaai ✓", "scores_h": "Jou punte", "scale": "1 = middel · 10 = rand", "minus": "Verlaag punt vir {area}", "plus": "Verhoog punt vir {area}", "wheel_label": "Lewenswiel: {list}", "tap_hint": "Wenk: sleep die skuiwers, of tik op 'n wig van die wiel – nader aan die middel is 'n laer punt, nader aan die rand 'n hoër een.", "pick_hint": "Tik op 'n area van die wiel om te sien wat dit insluit.", "out_of": "/10", "next_step": "Volgende stap: beplan 'n doelwit op die Doelwitbeplanningsblad →", "balance": "Is jou wiel rond en vol, of hoekig en plat? 'n Wiel met 9 in een area maar 2 in 'n ander gee 'n baie stamperige rit.", "private": "Niks word opgelaai nie – alles bly op jou toestel. Gebruik “Stoor my data” of “Laai PNG af” om 'n kopie te hou.", "png_title": "My lewenswiel", "file_base": "Lewenswiel", "sample_name": "Voorbeeldprofiel", "confirm_clear": "Vee jou naam, datum en alle punte uit? (Alle punte gaan terug na 5.)", "bad_file": "Jammer, daardie lêer kon nie gelees word nie of is nie 'n lewenswiel-lêer nie.", "print_h": "My lewenswiel", "tut_kicker": "Vinnige gids", "tut_close": "Maak toe", "tut_prev": "Terug", "tut_next": "Volgende →", "tut_done": "Klaar ✓", "tut_dont": "Moenie by begin wys nie", "tut": [["1. Waar jy vandag staan", "<p>Die lewenswiel is 'n eenvoudige prentjie van hoe tevrede jy is in die ses areas van jou lewe.</p><p>Gee elke area 'n punt van <b>1</b> (in die middel – glad nie tevrede nie) tot <b>10</b> (by die rand – heeltemal tevrede), gemeet aan jou eie eerlike standaard.</p>"], ["2. Teken jou wiel", "<p>Daar is twee maklike maniere om jou punte te stel:</p><ul><li><b>Skuiwers</b>: sleep die skuiwer vir elke area onder <i>Jou punte</i>, of gebruik − en +.</li><li><b>Tik op die wiel</b>: tik enige plek op 'n gekleurde wig om daardie area se punt dadelik te stel.</li></ul>"], ["3. Die les: balans", "<p>Is jou wiel rond en vol, of hoekig en plat?</p><p>'n Wiel met <b>9 in {work}</b> maar <b>2 in {body}</b> gee 'n baie stamperige, onstabiele rit. Die doel is om jou wiel na buite te laat groei en tog al ses speke in balans te hou.</p>"], ["4. Van wees na word", "<p>Sodra jy sien waar jy staan, neem 'n stap:</p><ul><li><b>Beplan 'n doelwit</b>: die <i>Doelwitbeplanningsblad</i> maak van 'n voorneme 'n gedateerde SMART-plan wat jy kan opvolg.</li><li><b>Doelwitplan vir die hele lewe</b>: stel gebalanseerde doelwitte vir al ses areas in een plan.</li><li><b>Laai PNG af</b>: stoor 'n prentjie van jou wiel sodat jy jou groei oor tyd kan volg.</li></ul>"]], "_areas": [["ethics", "Etiek & Waardes", "Jou oortuigings, jou geestelike lewe en die beginsels waarvolgens jy leef."], ["mind", "Verstand & Leer", "Hoe jy groei in kennis, insig en vaardigheid."], ["society", "Samelewing & Gemeenskap", "Vriendskappe, diens aan ander en jou plek tussen mense."], ["body", "Liggaam & Gesondheid", "Energie, fiksheid, kos en rus."], ["family", "Gesin & Huis", "Jou eggenoot, jou kinders en die huis wat julle deel."], ["work", "Werk & Finansies", "Jou roeping by die werk, hoe jy dit doen, en hoe jy met geld omgaan."]], "_lang": "af"};</script>
+<script src="../assets/wheel.js"></script>
+</body>
+</html>

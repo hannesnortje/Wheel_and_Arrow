@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lebensrad · Das Rad und der Pfeil</title>
+<meta name="description" content="Persönliche Leiterschaft und Zielsetzung">
+<meta property="og:title" content="Lebensrad · Das Rad und der Pfeil">
+<meta property="og:description" content="Persönliche Leiterschaft und Zielsetzung">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/wheel.css"><script>window.APP = {"root": "../", "lang": "de", "langs": ["de", "en", "af"], "page": "wheel"};</script>
+</head>
+<body data-lang="de" data-page="wheel">
+<a class="skip" href="#main">↓</a>
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Menü">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="../de/index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 7v20M4.3 12l17.4 10M4.3 22l17.4-10" stroke="currentColor" stroke-width="1.2" opacity=".55"/><path d="M13 17L29 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M29 4l-5.5 .6M29 4l-.6 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>      <span>Das Rad und der Pfeil</span>
+    </a>
+    <nav class="langs" aria-label="Sprache">
+<a href="../de/wheel.html" lang="de" data-set-lang="de" aria-current="true">DE</a><a href="../en/wheel.html" lang="en" data-set-lang="en">EN</a><a href="../af/wheel.html" lang="af" data-set-lang="af">AF</a>    </nav>
+  </div>
+</header>
+<div class="drawer-overlay" data-drawer-close hidden></div>
+<nav id="drawer" class="drawer" aria-label="Menü" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <span class="drawer-title">Menü</span>
+    <button class="icon-btn" type="button" data-drawer-close aria-label="Schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <ul class="drawer-links">
+<li><a href="index.html">Start</a></li><li><a href="booklet.html">Das Heft lesen</a></li><li><a href="wheel.html" aria-current="page">Lebensrad</a></li><li><a href="goals.html">Zielplanungsblatt</a></li><li><a href="plan.html">Ganzheitlicher Zielplan</a></li>  </ul>
+  <section class="drawer-sec">
+    <h2>Downloads</h2>
+    <ul class="drawer-links small">
+      <li><a href="../pdf/wheel-and-arrow-de.pdf">Heft (PDF, A5)</a></li>
+      <li><a href="slides.html">Folien präsentieren</a></li>
+      <li><a href="../pdf/wheel-and-arrow-slides-de.pdf">Folien (PDF)</a></li>
+      <li><a href="../pdf/wheel-and-arrow-notes-de.pdf">Notizen für Leitende (PDF)</a></li>
+      <li><a href="../pdf/goal-worksheet-de.pdf">Leeres Zielplanungsblatt (PDF)</a></li>
+    </ul>
+  </section>
+  <section class="drawer-sec">
+    <h2>Sprache</h2>
+    <div class="langs drawer-langs">
+<a href="../de/wheel.html" lang="de" data-set-lang="de" aria-current="true">Deutsch</a><a href="../en/wheel.html" lang="en" data-set-lang="en">English</a><a href="../af/wheel.html" lang="af" data-set-lang="af">Afrikaans</a>    </div>
+  </section>
+  <ul class="drawer-links small foot">
+    <li><a href="about.html">Über</a></li>
+    <li><a href="legal.html">Impressum & Datenschutz</a></li>
+  </ul>
+</nav>
+<main id="main" class="">
+<div class="tool wheel-tool">
+  <header class="tool-head">
+    <p class="eyebrow">Lebensrad · Interaktiv</p>
+    <h1>Zeichne dein Lebensrad</h1>
+    <p class="sub">Bewerte jeden Bereich von 1 (Mitte) bis 10 (Rand). Die Form zeichnet sich von selbst.</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar" aria-label="Lebensrad">
+    <button class="tbtn" type="button" id="wPng">Als PNG speichern</button>
+    <button class="tbtn ghost" type="button" id="wPrint">Drucken / PDF</button>
+    <button class="tbtn ghost" type="button" id="wTut">Anleitung</button>
+    <button class="tbtn ghost" type="button" id="wSample">Beispiel laden</button>
+    <button class="tbtn ghost" type="button" id="wExport">Daten sichern</button>
+    <button class="tbtn ghost" type="button" id="wImport">Daten laden</button>
+    <button class="tbtn danger" type="button" id="wClear">Alles löschen</button>
+    <input type="file" id="wFile" accept="application/json,.json" hidden>
+  </div>
+
+  <div class="grid2 w-who">
+    <div><label class="fld" for="wName">Dein Name</label><input type="text" id="wName" placeholder="Dein Name" autocomplete="name"></div>
+    <div><label class="fld" for="wDate">Datum</label><input type="text" id="wDate" placeholder="Datum"></div>
+  </div>
+  <h2 class="print-only w-print-h">Mein Lebensrad</h2>
+  <p class="print-only w-print-meta" id="wPrintMeta"></p>
+
+  <div class="w-layout">
+    <section class="tcard w-wheelcard">
+      <div class="w-wheel" id="wWheel"></div>
+      <div class="w-info" id="wInfo" aria-live="polite"><p class="hint">Tippe auf einen Bereich des Rades, um zu sehen, was dazugehört.</p></div>
+      <p class="hint w-tap">Tipp: Zieh die Regler oder tippe auf ein Segment des Rades – näher zur Mitte ist ein niedriger Wert, näher zum Rand ein hoher.</p>
+      <p class="w-next"><a href="goals.html">Nächster Schritt: Plane ein Ziel mit dem Zielplanungsblatt →</a></p>
+    </section>
+
+    <section class="w-panel">
+      <div class="tcard">
+        <div class="w-scores-h">
+          <h2 class="sec-h">Deine Bewertung</h2>
+          <span class="hint">1 = Mitte · 10 = Rand</span>
+        </div>
+        <div id="wControls" class="w-controls"></div>
+        <ul class="print-only w-print-list" id="wPrintList"></ul>
+      </div>
+      <p class="status-line" id="wSaved">Wird automatisch in diesem Browser gespeichert</p>
+      <p class="hint w-balance">Ist dein Rad rund und voll oder zackig und flach? Ein Rad mit 9 in einem Bereich und 2 in einem anderen sorgt für eine sehr holprige Fahrt.</p>
+      <p class="hint">Nichts wird hochgeladen – alles bleibt auf deinem Gerät. Mit „Daten sichern“ oder „Als PNG speichern“ behältst du eine Kopie.</p>
+    </section>
+  </div>
+
+  <div class="modal-bg" id="wTutModal" hidden>
+    <div class="modal w-tut" role="dialog" aria-modal="true" aria-labelledby="wTutTitle">
+      <button class="tbtn ghost icon w-tut-x" type="button" id="wTutX" aria-label="Schließen">✕</button>
+      <p class="eyebrow">Kurzanleitung</p>
+      <h3 id="wTutTitle"></h3>
+      <div class="w-tut-body" id="wTutBody"></div>
+      <div class="w-tut-dots" id="wTutDots" aria-hidden="true"></div>
+      <label class="w-tut-skip"><input type="checkbox" id="wTutDont"> Beim Start nicht mehr zeigen</label>
+      <div class="modal-foot">
+        <button class="tbtn ghost" type="button" id="wTutPrev">Zurück</button>
+        <button class="tbtn" type="button" id="wTutNext">Weiter →</button>
+      </div>
+    </div>
+  </div>
+</div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Dr. Johannes A. Nortjé · Keine Cookies, kein Tracking – deine Eingaben bleiben auf diesem Gerät.</p>
+    <p><a href="about.html">Über</a> · <a href="legal.html">Impressum & Datenschutz</a></p>
+  </div>
+</footer>
+<button class="update-toast" type="button" data-update hidden>Eine neue Version ist da – tippen zum Aktualisieren</button>
+<script src="../assets/app.js"></script>
+<script>window.T = {"title": "Lebensrad", "eyebrow": "Lebensrad · Interaktiv", "h1": "Zeichne dein Lebensrad", "sub": "Bewerte jeden Bereich von 1 (Mitte) bis 10 (Rand). Die Form zeichnet sich von selbst.", "name": "Dein Name", "date": "Datum", "name_ph": "Dein Name", "date_ph": "Datum", "tutorial": "Anleitung", "sample": "Beispiel laden", "png": "Als PNG speichern", "print": "Drucken / PDF", "backup": "Daten sichern", "restore": "Daten laden", "clear": "Alles löschen", "saved_idle": "Wird automatisch in diesem Browser gespeichert", "saved": "Gespeichert ✓", "sample_loaded": "Beispielrad geladen.", "imported": "Daten geladen ✓", "scores_h": "Deine Bewertung", "scale": "1 = Mitte · 10 = Rand", "minus": "Wert für {area} senken", "plus": "Wert für {area} erhöhen", "wheel_label": "Lebensrad: {list}", "tap_hint": "Tipp: Zieh die Regler oder tippe auf ein Segment des Rades – näher zur Mitte ist ein niedriger Wert, näher zum Rand ein hoher.", "pick_hint": "Tippe auf einen Bereich des Rades, um zu sehen, was dazugehört.", "out_of": "/10", "next_step": "Nächster Schritt: Plane ein Ziel mit dem Zielplanungsblatt →", "balance": "Ist dein Rad rund und voll oder zackig und flach? Ein Rad mit 9 in einem Bereich und 2 in einem anderen sorgt für eine sehr holprige Fahrt.", "private": "Nichts wird hochgeladen – alles bleibt auf deinem Gerät. Mit „Daten sichern“ oder „Als PNG speichern“ behältst du eine Kopie.", "png_title": "Mein Lebensrad", "file_base": "Lebensrad", "sample_name": "Beispielprofil", "confirm_clear": "Name, Datum und alle Werte löschen? (Alle Werte gehen auf 5 zurück.)", "bad_file": "Diese Datei konnte leider nicht gelesen werden oder ist keine Lebensrad-Datei.", "print_h": "Mein Lebensrad", "tut_kicker": "Kurzanleitung", "tut_close": "Schließen", "tut_prev": "Zurück", "tut_next": "Weiter →", "tut_done": "Fertig ✓", "tut_dont": "Beim Start nicht mehr zeigen", "tut": [["1. Wo du heute stehst", "<p>Das Lebensrad ist ein einfaches Bild davon, wie zufrieden du in den sechs Bereichen deines Lebens bist.</p><p>Bewerte jeden Bereich von <b>1</b> (in der Mitte – gar nicht zufrieden) bis <b>10</b> (am Rand – ganz zufrieden), gemessen an deinem eigenen, ehrlichen Maßstab.</p>"], ["2. Dein Rad zeichnen", "<p>Es gibt zwei einfache Wege, deine Werte einzustellen:</p><ul><li><b>Regler</b>: Zieh den Regler für jeden Bereich unter <i>Deine Bewertung</i> oder nutze − und +.</li><li><b>Aufs Rad tippen</b>: Tippe irgendwo auf ein farbiges Segment, um den Wert dieses Bereichs sofort zu setzen.</li></ul>"], ["3. Die Lektion: Gleichgewicht", "<p>Ist dein Rad rund und voll oder zackig und flach?</p><p>Ein Rad mit <b>9 in {work}</b>, aber <b>2 in {body}</b> sorgt für eine sehr holprige, unruhige Fahrt. Das Ziel ist, dein Rad nach außen wachsen zu lassen und dabei alle sechs Speichen im Gleichgewicht zu halten.</p>"], ["4. Vom Sein zum Werden", "<p>Wenn du siehst, wo du stehst, geh einen Schritt:</p><ul><li><b>Ein Ziel planen</b>: Das <i>Zielplanungsblatt</i> macht aus einer Absicht einen datierten, überprüfbaren SMART-Plan.</li><li><b>Ganzheitlicher Zielplan</b>: Setze dir ausgewogene Ziele für alle sechs Bereiche in einem Plan.</li><li><b>Als PNG speichern</b>: Speichere ein Bild deines Rades, damit du dein Wachstum über die Zeit verfolgen kannst.</li></ul>"]], "_areas": [["ethics", "Ethik & Werte", "Deine Überzeugungen, dein geistliches Leben und die Grundsätze, nach denen du lebst."], ["mind", "Geist & Lernen", "Wie du an Wissen, Verständnis und Können wächst."], ["society", "Gesellschaft & Gemeinschaft", "Freundschaften, Dienst an anderen und dein Platz unter Menschen."], ["body", "Körper & Gesundheit", "Kraft, Fitness, Ernährung und Ruhe."], ["family", "Familie & Zuhause", "Dein Ehepartner, deine Kinder und euer gemeinsames Zuhause."], ["work", "Arbeit & Finanzen", "Deine Berufung im Beruf, wie du sie ausfüllst und wie du mit Geld umgehst."]], "_lang": "de"};</script>
+<script src="../assets/wheel.js"></script>
+</body>
+</html>

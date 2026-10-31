@@ -1,0 +1,103 @@
+@font-face { font-family: "Literata"; src: url("fonts/literata-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+@font-face { font-family: "Literata"; src: url("fonts/literata-latin-ext-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; unicode-range: U+0100-024F, U+0149, U+1E00-1EFF; }
+@font-face { font-family: "Literata"; src: url("fonts/literata-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+@font-face { font-family: "Literata"; src: url("fonts/literata-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+@font-face { font-family: "Literata"; src: url("fonts/literata-latin-600-italic.woff2") format("woff2"); font-weight: 600; font-style: italic; }
+@font-face { font-family: "Literata"; src: url("fonts/literata-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+@font-face { font-family: "Inter"; src: url("fonts/inter-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Inter"; src: url("fonts/inter-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+@page {
+  size: A5;
+  margin: 17mm 15mm 18mm 15mm;
+  @bottom-center { content: counter(page); font: 400 7.5pt "Inter", sans-serif; color: #6b767b; }
+}
+@page :first { margin: 0; @bottom-center { content: none; } }
+@page cover { margin: 0; @bottom-center { content: none; } }
+@page ws { margin: 11mm 11mm 12mm 11mm; @bottom-center { content: none; } }
+
+:root { --ink: #1d2a31; --soft: #4d5b62; --sea: #16465a; --sea-2: #2a6f87; --tint: #e6eef0; --paper2: #f1ece2; --sand: #a86f30; --rule: #d6cdbd; --plot: #b5482e; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; color: var(--ink); font: 400 9.4pt/1.55 "Literata", serif; hyphens: auto; orphans: 3; widows: 3; }
+
+.cover { page: cover; width: 148mm; height: 210mm; background: var(--sea); color: #f4efe6; position: relative; overflow: hidden; break-after: page; }
+.cover-mark { position: absolute; top: 20mm; left: 14mm; width: 26mm; height: 26mm; }
+.cover-text { position: absolute; left: 16mm; right: 16mm; top: 86mm; }
+.cover-sub { font: 600 7.5pt/1.4 "Inter", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #c6dbe2; margin: 0 0 4mm; }
+.cover h1 { font: 600 30pt/1.05 "Literata", serif; margin: 0 0 4mm; letter-spacing: -.01em; }
+.cover-subtitle { font: 400 11pt/1.35 "Literata", serif; color: #e3edf0; margin: 0 0 10mm; }
+.cover-author { font: 500 9pt/1.3 "Inter", sans-serif; color: #d9a46a; margin: 0; }
+
+.colophon { break-after: page; height: 174mm; display: flex; flex-direction: column; justify-content: space-between; }
+.motto-box { margin-top: 30mm; font: italic 400 13pt/1.45 "Literata", serif; color: var(--sea); text-align: center; padding: 0 6mm; }
+.colo { font: 400 7.4pt/1.5 "Inter", sans-serif; color: var(--soft); }
+.colo p { margin: 0 0 2.6mm; }
+
+.toc { break-after: page; }
+.toc h2 { font: 600 14pt/1.2 "Literata", serif; margin: 0 0 5mm; color: var(--sea); }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li { display: grid; grid-template-columns: 9mm 1fr; padding: 2mm 0; border-bottom: .3pt solid var(--rule); }
+.toc-n { font: 600 9pt/1.4 "Literata", serif; color: var(--sand); }
+.toc-t { font-size: 9.4pt; line-height: 1.35; }
+
+.chapter { break-before: page; }
+.eyebrow { font: 600 7pt/1.4 "Inter", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); margin: 0 0 1.5mm; }
+.chapter h1, .worksheet h1 { font: 600 17pt/1.15 "Literata", serif; margin: 0 0 5mm; }
+.motto { background: var(--tint); border-radius: 2.5mm; padding: 3.5mm 4mm 3mm; margin: 0 0 6mm; break-inside: avoid; }
+.motto p { margin: 0 0 1.5mm; font-style: italic; font-size: 9.2pt; line-height: 1.5; text-align: left !important; }
+.motto cite { font: 600 7.6pt/1.3 "Inter", sans-serif; color: var(--sea); font-style: normal; }
+.body h3 { font: 600 11.5pt/1.25 "Literata", serif; color: var(--sea); margin: 6mm 0 2.5mm; break-after: avoid; }
+.body p { margin: 0 0 2.4mm; text-align: justify; }
+.body ul, .body ol { padding-left: 4.5mm; margin: 0 0 2.4mm; }
+.body li { margin: 0 0 1.6mm; }
+.body strong { font-weight: 600; }
+.body blockquote { margin: 4mm 0; padding: 3mm 4mm; border-left: 1.2pt solid var(--sand); background: var(--paper2); break-inside: avoid; }
+.body blockquote p { margin: 0 0 1.5mm; text-align: left; }
+.body blockquote p:last-child { margin: 0; }
+.body table { width: 100%; border-collapse: collapse; font: 400 7.6pt/1.4 "Inter", sans-serif; margin: 2mm 0 4mm; break-inside: auto; }
+.body th, .body td { border-bottom: .4pt solid var(--rule); padding: 1.4mm 1.4mm; text-align: left; vertical-align: top; }
+.body tr { break-inside: avoid; }
+.body th { font-weight: 600; color: var(--soft); }
+.body td:first-child { font-weight: 400; }
+.wheel-fig { width: 92mm; margin: 2mm auto 4mm; color: var(--ink); break-inside: avoid; }
+.wheel-fig svg { width: 100%; height: auto; display: block; }
+.wheel-fig figcaption { font: italic 400 7.4pt/1.4 "Literata", serif; color: var(--soft); text-align: center; }
+.ex { border: .5pt solid var(--rule); border-radius: 2.5mm; padding: 1mm 4mm 3mm; font: 400 8pt/1.45 "Inter", sans-serif; }
+.ex h4 { font: 600 6.6pt/1.4 "Inter", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--sand); margin: 3mm 0 1mm; break-after: avoid; }
+.ex p { margin: 0 0 1mm; text-align: left; }
+.ex .goal { font: italic 400 9.4pt/1.45 "Literata", serif; }
+.ex dl { display: grid; grid-template-columns: auto 1fr; gap: .6mm 3mm; margin: 0; }
+.ex dt { font-weight: 600; color: var(--soft); }
+.ex dd { margin: 0; }
+.ex ol, .ex ul { padding-left: 4mm; margin: 0; }
+.ex li { margin: 0 0 .8mm; }
+.ex .meta { color: var(--soft); font-size: 7pt; }
+.ex table { font-size: 7.6pt; margin: 2mm 0 0; }
+.sc { font-variant-caps: all-small-caps; letter-spacing: .03em; }
+
+/* worksheets */
+.worksheet { page: ws; break-before: page; font-family: "Inter", sans-serif; }
+.worksheet h1 { font-size: 14pt; margin-bottom: 1mm; }
+.ws-hint { font: italic 400 8pt/1.4 "Literata", serif; color: var(--soft); margin: 0 0 3mm; }
+.ws-line { display: flex; gap: 6mm; font-size: 8pt; color: var(--soft); margin: 4mm 0; }
+.ws-line span { flex: 1; border-bottom: .5pt solid var(--soft); padding-bottom: 5mm; }
+.ws-line span:last-child { flex: .55; }
+.ws-wheel-fig { width: 126mm; margin: 6mm auto 0; color: var(--ink); }
+.ws-wheel-fig svg { width: 100%; height: auto; }
+.ws-t { width: 100%; border-collapse: collapse; font-size: 7pt; margin: 0 0 2mm; }
+.ws-t th { text-align: left; font-weight: 600; color: var(--sea); padding: 1mm 1.4mm; border: .5pt solid var(--rule); background: var(--tint); }
+.ws-t td { border: .5pt solid var(--rule); height: 8.4mm; padding: 0 1.4mm; color: var(--soft); }
+.ws-steps td:first-child, .ws-steps th:first-child { width: 6mm; text-align: center; }
+.ws-steps th:nth-child(n+3) { width: 15mm; }
+.ws-dates td { height: 8mm; }
+.ws-box { border: .5pt solid var(--rule); border-radius: 1.6mm; padding: 1.4mm 2mm; margin: 0 0 2.4mm; min-height: 24mm; }
+.ws-box.tall { min-height: 25mm; }
+.ws-box.mid { min-height: 60mm; }
+.ws-box b { display: block; font: 600 6.8pt/1.3 "Inter", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--sea); }
+.ws-box small { display: block; font: italic 400 7pt/1.3 "Literata", serif; color: var(--soft); }
+.ws-two { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; }
+.ws-two .ws-box { margin: 0 0 2mm; }
+.ws-h { font: 600 6.8pt/1.3 "Inter", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--sea); margin: 1mm 0 1mm; }
+.ws-q { font-size: 7.8pt; margin: 2mm 0 0; }
+.ws-done { font: 600 8pt/1.3 "Inter", sans-serif; color: var(--sea); background: var(--tint); padding: 2.5mm 3mm; border-radius: 1.6mm; margin-top: 3mm; }

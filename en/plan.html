@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Whole-Life Goal Plan · The Wheel and the Arrow</title>
+<meta name="description" content="Personal leadership and goal setting">
+<meta property="og:title" content="Whole-Life Goal Plan · The Wheel and the Arrow">
+<meta property="og:description" content="Personal leadership and goal setting">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/plan.css"><script>window.APP = {"root": "../", "lang": "en", "langs": ["de", "en", "af"], "page": "plan"};</script>
+</head>
+<body data-lang="en" data-page="plan">
+<a class="skip" href="#main">↓</a>
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="../en/index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 7v20M4.3 12l17.4 10M4.3 22l17.4-10" stroke="currentColor" stroke-width="1.2" opacity=".55"/><path d="M13 17L29 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M29 4l-5.5 .6M29 4l-.6 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>      <span>The Wheel and the Arrow</span>
+    </a>
+    <nav class="langs" aria-label="Language">
+<a href="../de/plan.html" lang="de" data-set-lang="de">DE</a><a href="../en/plan.html" lang="en" data-set-lang="en" aria-current="true">EN</a><a href="../af/plan.html" lang="af" data-set-lang="af">AF</a>    </nav>
+  </div>
+</header>
+<div class="drawer-overlay" data-drawer-close hidden></div>
+<nav id="drawer" class="drawer" aria-label="Menu" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <span class="drawer-title">Menu</span>
+    <button class="icon-btn" type="button" data-drawer-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <ul class="drawer-links">
+<li><a href="index.html">Home</a></li><li><a href="booklet.html">Read the booklet</a></li><li><a href="wheel.html">Wheel of Life</a></li><li><a href="goals.html">Goal Planning Worksheet</a></li><li><a href="plan.html" aria-current="page">Whole-Life Goal Plan</a></li>  </ul>
+  <section class="drawer-sec">
+    <h2>Downloads</h2>
+    <ul class="drawer-links small">
+      <li><a href="../pdf/wheel-and-arrow-en.pdf">Booklet (PDF, A5)</a></li>
+      <li><a href="slides.html">Present the slides</a></li>
+      <li><a href="../pdf/wheel-and-arrow-slides-en.pdf">Slides (PDF)</a></li>
+      <li><a href="../pdf/wheel-and-arrow-notes-en.pdf">Leader's notes (PDF)</a></li>
+      <li><a href="../pdf/goal-worksheet-en.pdf">Blank goal worksheet (PDF)</a></li>
+    </ul>
+  </section>
+  <section class="drawer-sec">
+    <h2>Language</h2>
+    <div class="langs drawer-langs">
+<a href="../de/plan.html" lang="de" data-set-lang="de">Deutsch</a><a href="../en/plan.html" lang="en" data-set-lang="en" aria-current="true">English</a><a href="../af/plan.html" lang="af" data-set-lang="af">Afrikaans</a>    </div>
+  </section>
+  <ul class="drawer-links small foot">
+    <li><a href="about.html">About</a></li>
+    <li><a href="legal.html">Imprint & privacy</a></li>
+  </ul>
+</nav>
+<main id="main" class="">
+<div class="tool plan-tool">
+  <header class="tool-head">
+    <p class="eyebrow">Whole-Life Goal Plan</p>
+    <h1>My Whole-Life Goal Plan</h1>
+    <p class="sub">A balanced framework for setting and tracking goals across the areas of my life</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar">
+    <button class="tbtn" type="button" data-act="tutorial">Tutorial</button>
+    <button class="tbtn ghost" type="button" data-act="print">Save as PDF / Print</button>
+    <button class="tbtn ghost" type="button" data-act="export">Download my data</button>
+    <button class="tbtn ghost" type="button" data-act="import">Load data</button>
+    <input type="file" id="plan-imp" accept="application/json,.json" hidden>
+    <button class="tbtn danger" type="button" data-act="clear">Clear all</button>
+    <span class="saved-note" id="plan-saved" aria-live="polite">Auto-saves in this browser</span>
+  </div>
+
+  <div class="plan-screen">
+    <section class="tcard">
+      <div class="fld-row">
+        <label class="fld" for="plan-name">Name</label>
+        <input type="text" id="plan-name" data-meta="name" autocomplete="name">
+      </div>
+      <div class="grid2 plan-dates">
+        <div>
+          <label class="fld" for="plan-created">Date created</label>
+          <input type="date" id="plan-created" data-meta="created">
+        </div>
+        <div>
+          <label class="fld" for="plan-reviewed">Last reviewed</label>
+          <input type="date" id="plan-reviewed" data-meta="reviewed">
+        </div>
+      </div>
+    </section>
+
+    <section class="tcard">
+      <h2 class="mission-h"><label for="plan-mission">My Personal Mission Statement</label> <small>(My Guiding Principle)</small></h2>
+      <p class="hint">In a sentence or two, capture what you most want your life to stand for and become. Your mission statement forms the guardrails and boundaries within which all your goals must fit and move.</p>
+      <textarea id="plan-mission" data-meta="mission" placeholder="E.g. Rooted in my identity as a devoted caretaker and citizen of the New Heaven and Earth, my mission is to live with an eternal perspective and find ultimate meaning in God. Forsaking the pursuit of earthly status, I commit to being a Christlike spouse and parent; a wise guardian of our family’s health and resources; and a joyful servant using my gifts to build up my church and community, fulfilling the calling God has entrusted to me."></textarea>
+    </section>
+
+    <section class="tcard habits" id="plan-habits">
+      <h2 class="sec-h">Five habits that make it work</h2>
+      <ol>
+<li><b>Write it down.</b> Goals kept only in your head stay vague. Putting them into plain words sharpens them and turns an intention into a real commitment.</li>
+<li><b>Revisit it often.</b> Read through your plan regularly — first thing in the morning works well — so it keeps steering your attention and daily choices.</li>
+<li><b>Keep it balanced.</b> Try to keep at least one live goal in every area. Strong progress in one part of life rarely makes up for neglecting another.</li>
+<li><b>Break down the big ones.</b> For your top priorities, spell out the next concrete action, the obstacles you expect, and how you plan to handle them.</li>
+<li><b>Give each a deadline.</b> A target date creates focus and accountability. If life changes, move the date — adjusting a timeline is healthy; quietly abandoning the goal is not.</li>
+      </ol>
+    </section>
+
+    <h2 class="sec-h plan-areas-h">The areas of my life</h2>
+    <p class="hint">Choose a goal type and priority, write the goal so it is specific and measurable, add a target date, and update the status as you go. Add as many lines as you need.</p>
+    <p class="hint legend">Priority: 1 = highest, 5 = lowest · Short-term: under 1 year · Medium-term: 1–3 years · Long-term: 3+ years</p>
+    <div id="plan-areas"></div>
+
+    <p class="hint plan-foot">Your entries save automatically in this browser on this device. Use “Download my data” to keep a backup or move it to another device, and “Save as PDF / Print” for a hard copy.</p>
+  </div>
+
+  <div id="plan-print" class="plan-print" aria-hidden="true"></div>
+
+  <div class="modal-bg plan-tut" id="plan-tut" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="plan-tut-title">
+      <button class="tbtn ghost icon plan-tut-x" type="button" data-tut="close" aria-label="Close tutorial">✕</button>
+      <p class="eyebrow">Quick guide</p>
+      <h3 id="plan-tut-title"></h3>
+      <div class="plan-tut-body" id="plan-tut-body"></div>
+      <div class="plan-tut-dots" id="plan-tut-dots" aria-hidden="true"></div>
+      <div class="modal-foot">
+        <label class="plan-skip"><input type="checkbox" id="plan-tut-skip"> Don't show on startup</label>
+        <span class="plan-tut-btns">
+          <button class="tbtn ghost" type="button" data-tut="prev">Previous</button>
+          <button class="tbtn" type="button" data-tut="next">Next →</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Dr. Johannes A. Nortjé · No cookies, no tracking – your entries stay on this device.</p>
+    <p><a href="about.html">About</a> · <a href="legal.html">Imprint & privacy</a></p>
+  </div>
+</footer>
+<button class="update-toast" type="button" data-update hidden>A new version is ready – tap to refresh</button>
+<script src="../assets/app.js"></script>
+<script>window.T = {"title": "Whole-Life Goal Plan", "eyebrow": "Whole-Life Goal Plan", "h1": "My Whole-Life Goal Plan", "sub": "A balanced framework for setting and tracking goals across the areas of my life", "tutorial": "Tutorial", "print": "Save as PDF / Print", "backup": "Download my data", "restore": "Load data", "clear_all": "Clear all", "autosave": "Auto-saves in this browser", "saved": "Saved ✓", "name": "Name", "created": "Date created", "reviewed": "Last reviewed", "mission_h": "My Personal Mission Statement", "mission_small": "(My Guiding Principle)", "mission_hint": "In a sentence or two, capture what you most want your life to stand for and become. Your mission statement forms the guardrails and boundaries within which all your goals must fit and move.", "mission_ph": "E.g. Rooted in my identity as a devoted caretaker and citizen of the New Heaven and Earth, my mission is to live with an eternal perspective and find ultimate meaning in God. Forsaking the pursuit of earthly status, I commit to being a Christlike spouse and parent; a wise guardian of our family’s health and resources; and a joyful servant using my gifts to build up my church and community, fulfilling the calling God has entrusted to me.", "habits_h": "Five habits that make it work", "habits": [["Write it down.", "Goals kept only in your head stay vague. Putting them into plain words sharpens them and turns an intention into a real commitment."], ["Revisit it often.", "Read through your plan regularly — first thing in the morning works well — so it keeps steering your attention and daily choices."], ["Keep it balanced.", "Try to keep at least one live goal in every area. Strong progress in one part of life rarely makes up for neglecting another."], ["Break down the big ones.", "For your top priorities, spell out the next concrete action, the obstacles you expect, and how you plan to handle them."], ["Give each a deadline.", "A target date creates focus and accountability. If life changes, move the date — adjusting a timeline is healthy; quietly abandoning the goal is not."]], "areas_h": "The areas of my life", "areas_hint": "Choose a goal type and priority, write the goal so it is specific and measurable, add a target date, and update the status as you go. Add as many lines as you need.", "legend": "Priority: 1 = highest, 5 = lowest · Short-term: under 1 year · Medium-term: 1–3 years · Long-term: 3+ years", "col_prio": "Priority", "col_type": "Goal type", "col_goal": "Goal — specific & measurable", "col_date": "Target date", "col_status": "Status", "col_actions": "Actions", "tip_prio": "Priority: 1 = highest, 5 = lowest", "tip_type": "Short-term (under 1 year), medium-term (1–3 years), long-term (3+ years)", "tip_goal": "State clearly what outcome you will achieve", "tip_date": "Target date for completion", "tip_status": "Not started, in progress, blocked, completed", "select": "Select", "types": {"Short-Term": "Short-term", "Medium-Term": "Medium-term", "Long-Term": "Long-term"}, "status": {"Not Started": "Not started", "In Progress": "In progress", "Blocked": "Blocked", "Completed": "Completed"}, "goal_ph": "Write the goal…", "add": "+ Add goal", "archive": "Archive", "archive_t": "Archive goal", "unarchive": "Restore", "unarchive_t": "Restore goal to active", "remove": "Delete", "remove_t": "Remove goal", "archived_h": "Archived goals", "foot": "Your entries save automatically in this browser on this device. Use “Download my data” to keep a backup or move it to another device, and “Save as PDF / Print” for a hard copy.", "confirm_clear": "Clear everything and start fresh?", "confirm_remove": "Delete this goal?", "import_error": "Sorry, that file could not be read.", "file_name": "my-goal-plan.json", "date_fmt": "DD/MM/YYYY", "print_meta": "Name: {name} · Created: {created} · Last reviewed: {reviewed}", "tut_kicker": "Quick guide", "tut_close": "Close tutorial", "tut_prev": "Previous", "tut_next": "Next →", "tut_finish": "Finish ✓", "tut_skip": "Don't show on startup", "tut": [{"title": "1. Your Personal Mission Statement", "html": "<p>Start by capturing what you most want your life to stand for in 1–2 sentences in the <b>Personal Mission Statement</b> box.</p><p>Your mission statement acts as your personal guardrails and perimeter fence — creating clear boundaries within which all your goals must fit and operate.</p>"}, {"title": "2. The 6 Areas of Life", "html": "<p>Balanced living requires attention across all key areas of life:</p>{areas}"}, {"title": "3. Goal Setting & Priorities", "html": "<p>For each goal:</p><ul><li><b>Priority (1–5)</b>: 1 = highest priority focus.</li><li><b>Goal type</b>: short-term (&lt;1 yr), medium-term (1–3 yrs) or long-term (3+ yrs).</li><li><b>Specific &amp; measurable</b>: state clearly what outcome you will achieve.</li><li><b>Target date &amp; status</b>: set a deadline and update the status as you progress.</li></ul>"}, {"title": "4. Archiving, Backup & Export", "html": "<p>Keep your workspace organised and secure:</p><ul><li><b>Archive</b>: move completed or past goals out of your active view into the collapsible <i>Archived goals</i> section. Restore them any time.</li><li><b>Download my data</b>: back up your plan as a JSON file. Everything stays private on your device.</li><li><b>Save as PDF / Print</b>: generate a clean summary of your active goals.</li></ul>"}], "_areas": [["ethics", "Ethics & Values", "Your convictions, your spiritual life and the principles you live by."], ["mind", "Mind & Learning", "How you grow in knowledge, understanding and skill."], ["society", "Society & Community", "Friendships, service and your place among other people."], ["body", "Body & Health", "Energy, fitness, food and rest."], ["family", "Family & Home", "Your spouse, your children and the home you share."], ["work", "Work & Finances", "Your calling at work, how you do it, and how you handle money."]], "_lang": "en"};</script>
+<script src="../assets/plan.js"></script>
+</body>
+</html>

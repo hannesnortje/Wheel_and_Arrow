@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zielplanungsblatt · Das Rad und der Pfeil</title>
+<meta name="description" content="Persönliche Leiterschaft und Zielsetzung">
+<meta property="og:title" content="Zielplanungsblatt · Das Rad und der Pfeil">
+<meta property="og:description" content="Persönliche Leiterschaft und Zielsetzung">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/goals.css"><script>window.APP = {"root": "../", "lang": "de", "langs": ["de", "en", "af"], "page": "goals"};</script>
+</head>
+<body data-lang="de" data-page="goals">
+<a class="skip" href="#main">↓</a>
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Menü">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="../de/index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 7v20M4.3 12l17.4 10M4.3 22l17.4-10" stroke="currentColor" stroke-width="1.2" opacity=".55"/><path d="M13 17L29 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M29 4l-5.5 .6M29 4l-.6 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>      <span>Das Rad und der Pfeil</span>
+    </a>
+    <nav class="langs" aria-label="Sprache">
+<a href="../de/goals.html" lang="de" data-set-lang="de" aria-current="true">DE</a><a href="../en/goals.html" lang="en" data-set-lang="en">EN</a><a href="../af/goals.html" lang="af" data-set-lang="af">AF</a>    </nav>
+  </div>
+</header>
+<div class="drawer-overlay" data-drawer-close hidden></div>
+<nav id="drawer" class="drawer" aria-label="Menü" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <span class="drawer-title">Menü</span>
+    <button class="icon-btn" type="button" data-drawer-close aria-label="Schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <ul class="drawer-links">
+<li><a href="index.html">Start</a></li><li><a href="booklet.html">Das Heft lesen</a></li><li><a href="wheel.html">Lebensrad</a></li><li><a href="goals.html" aria-current="page">Zielplanungsblatt</a></li><li><a href="plan.html">Ganzheitlicher Zielplan</a></li>  </ul>
+  <section class="drawer-sec">
+    <h2>Downloads</h2>
+    <ul class="drawer-links small">
+      <li><a href="../pdf/wheel-and-arrow-de.pdf">Heft (PDF, A5)</a></li>
+      <li><a href="slides.html">Folien präsentieren</a></li>
+      <li><a href="../pdf/wheel-and-arrow-slides-de.pdf">Folien (PDF)</a></li>
+      <li><a href="../pdf/wheel-and-arrow-notes-de.pdf">Notizen für Leitende (PDF)</a></li>
+      <li><a href="../pdf/goal-worksheet-de.pdf">Leeres Zielplanungsblatt (PDF)</a></li>
+    </ul>
+  </section>
+  <section class="drawer-sec">
+    <h2>Sprache</h2>
+    <div class="langs drawer-langs">
+<a href="../de/goals.html" lang="de" data-set-lang="de" aria-current="true">Deutsch</a><a href="../en/goals.html" lang="en" data-set-lang="en">English</a><a href="../af/goals.html" lang="af" data-set-lang="af">Afrikaans</a>    </div>
+  </section>
+  <ul class="drawer-links small foot">
+    <li><a href="about.html">Über</a></li>
+    <li><a href="legal.html">Impressum & Datenschutz</a></li>
+  </ul>
+</nav>
+<main id="main" class="">
+<div class="tool goals">
+  <header class="tool-head">
+    <p class="eyebrow">Aus einem Vorhaben wird ein Plan</p>
+    <h1>Zielplanungsblatt</h1>
+    <p class="sub">Mach aus einem Vorhaben einen Plan mit Daten, den du verfolgen kannst. Alles wird beim Tippen gespeichert und bleibt auf deinem Gerät.</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar" aria-label="Zielplanungsblatt">
+    <button class="tbtn" type="button" id="gNew">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Neues Ziel</button>
+    <button class="tbtn ghost" type="button" data-act="pdf">PDF herunterladen</button>
+    <button class="tbtn ghost" type="button" data-act="print">Drucken</button>
+    <button class="tbtn ghost" type="button" id="gSample">Beispiel</button>
+    <button class="tbtn ghost" type="button" id="gTut">Anleitung</button>
+    <button class="tbtn ghost" type="button" id="gExport">Daten sichern</button>
+    <button class="tbtn ghost" type="button" id="gImport">Daten laden</button>
+    <button class="tbtn danger" type="button" id="gClear">Alles löschen</button>
+    <input type="file" id="gFile" accept="application/json,.json" hidden>
+    <span class="saved-note" id="gSaved" aria-live="polite">Speichert automatisch</span>
+  </div>
+
+  <div class="g-layout">
+    <div class="g-backdrop" id="gBackdrop" hidden></div>
+    <aside class="g-side" id="gSide" aria-labelledby="gSideH">
+      <div class="g-side-head">
+        <h2 class="sec-h" id="gSideH">Meine Ziele</h2>
+        <button class="tbtn ghost icon g-side-x" type="button" id="gSideClose" aria-label="Schließen">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="g-tabs" role="tablist">
+        <button type="button" role="tab" id="gTabA" aria-selected="true">Aktiv <span class="n" id="gCntA">0</span></button>
+        <button type="button" role="tab" id="gTabZ" aria-selected="false">Archiv <span class="n" id="gCntZ">0</span></button>
+      </div>
+      <nav class="g-list" id="gList" aria-label="Meine Ziele"></nav>
+    </aside>
+
+    <div class="g-main" id="gForm">
+      <button class="g-current" type="button" id="gOpenList" aria-controls="gSide" aria-expanded="false">
+        <span class="g-cur-l">Aktuelles Ziel</span>
+        <span class="g-cur-t" id="gCurTitle"></span>
+        <span class="g-cur-n" id="gCurCount"></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="g-arch" id="gArchBanner" hidden>
+        <span>Dieses Ziel ist archiviert.</span>
+        <button class="tbtn ghost" type="button" data-act="restore">Wiederherstellen</button>
+      </div>
+
+      <section class="tcard">
+        <div class="g-meta">
+          <label class="g-name"><span class="fld">Kurzname</span>
+            <input type="text" data-field="name" placeholder="z. B. Notgroschen" autocomplete="off"></label>
+          <label><span class="fld">Lebensbereich</span>
+            <select data-field="life_area">
+              <option value="">Bereich wählen …</option>
+<option value="ethics">Ethik & Werte</option><option value="mind">Geist & Lernen</option><option value="society">Gesellschaft & Gemeinschaft</option><option value="body">Körper & Gesundheit</option><option value="family">Familie & Zuhause</option><option value="work">Arbeit & Finanzen</option>            </select></label>
+          <label><span class="fld">Begonnen</span><input type="date" data-field="started"></label>
+          <label><span class="fld">Zieldatum</span><input type="date" data-field="target_date"></label>
+          <label><span class="fld">Erreicht am</span><input type="date" data-field="achieved_on"></label>
+        </div>
+      </section>
+
+      <section class="tcard">
+        <label for="f_goal"><h2 class="sec-h">Das Ziel</h2></label>
+        <p class="hint">Formuliere es SMART – spezifisch, messbar, erreichbar, relevant/realistisch, terminiert.</p>
+        <textarea id="f_goal" data-field="the_goal" rows="4" placeholder="z. B. „Ich spare bis zum 31. Dezember 1.500 EUR für einen Notgroschen …“"></textarea>
+      </section>
+
+      <section class="tcard">
+        <label for="f_why"><h2 class="sec-h">Warum es wichtig ist</h2></label>
+        <p class="hint">Was ich gewinne, wenn ich es erreiche – und was ich vermeide.</p>
+        <textarea id="f_why" data-field="why_matters" rows="4" placeholder="Was ich gewinne: …
+Was ich vermeide: …"></textarea>
+      </section>
+
+      <section class="tcard">
+        <div class="grid2">
+          <div><label for="f_obst"><h2 class="sec-h">Was dazwischenkommen könnte</h2></label>
+            <textarea id="f_obst" data-field="obstacles" rows="5" placeholder="1. …
+2. …"></textarea></div>
+          <div><label for="f_hand"><h2 class="sec-h">Wie ich damit umgehe</h2></label>
+            <textarea id="f_hand" data-field="handling" rows="5" placeholder="1. …
+2. …"></textarea></div>
+        </div>
+      </section>
+
+      <section class="tcard">
+        <h2 class="sec-h">Schritte</h2>
+        <ol class="g-steps" id="gSteps"></ol>
+        <button class="tbtn ghost g-add" type="button" id="gAddStep">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Schritt hinzufügen</button>
+      </section>
+
+      <section class="tcard">
+        <div class="grid2">
+          <div><label for="f_who"><h2 class="sec-h">Wer davon wissen sollte</h2></label>
+            <p class="hint">Menschen, deren Unterstützung oder Wissen dir hilft.</p>
+            <textarea id="f_who" data-field="who_should_know" rows="3" placeholder="z. B. Mein Ehepartner – damit wir gemeinsam planen."></textarea></div>
+          <div><label for="f_track"><h2 class="sec-h">Wie ich meinen Fortschritt verfolge</h2></label>
+            <p class="hint">Die regelmäßige Kontrolle, die dich ehrlich hält.</p>
+            <textarea id="f_track" data-field="track_progress" rows="3" placeholder="z. B. Ein Blick auf den Kontostand am 1. jedes Monats."></textarea></div>
+        </div>
+      </section>
+
+      <section class="tcard">
+        <h2 class="sec-h">Lohnt es sich?</h2>
+        <fieldset class="g-wq">
+          <legend>Passt es zu meinen Werten?</legend>
+          <div class="g-opts">
+            <label class="g-opt"><input type="checkbox" data-field="worth_value_yes"> Ja</label>
+            <label class="g-opt"><input type="checkbox" data-field="worth_value_no"> Nein</label>
+          </div>
+        </fieldset>
+        <fieldset class="g-wq">
+          <legend>Sind Zeit, Mühe und Kosten es wert?</legend>
+          <div class="g-opts">
+            <label class="g-opt"><input type="checkbox" data-field="worth_cost_yes"> Ja</label>
+            <label class="g-opt"><input type="checkbox" data-field="worth_cost_no"> Nein</label>
+            <label class="g-opt"><input type="checkbox" data-field="worth_cost_later"> Ja, aber später</label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="tcard">
+        <div class="grid2">
+          <div><label for="f_rem"><h2 class="sec-h">Ermutigende Erinnerung</h2></label>
+            <p class="hint">Kurze Sätze, die dich dranbleiben lassen.</p>
+            <textarea id="f_rem" data-field="reminders" rows="4"></textarea></div>
+          <div><label for="f_pic"><h2 class="sec-h">Erfolg vor Augen</h2></label>
+            <p class="hint">Ein Bild oder Zeichen – und wo du es hinlegst.</p>
+            <textarea id="f_pic" data-field="picture_success" rows="4"></textarea></div>
+        </div>
+      </section>
+
+      <div class="g-actions">
+        <button class="tbtn" type="button" data-act="pdf">PDF herunterladen</button>
+        <button class="tbtn ghost" type="button" data-act="print">Drucken</button>
+        <button class="tbtn ghost" type="button" data-act="archive" id="gArchBtn">Archivieren</button>
+        <button class="tbtn ghost" type="button" data-act="restore" id="gRestBtn" hidden>Wiederherstellen</button>
+        <button class="tbtn ghost" type="button" data-act="reset">Ziel leeren</button>
+        <button class="tbtn danger" type="button" data-act="delete">Löschen</button>
+      </div>
+      <p class="status-line" id="gStatus" role="status" aria-live="polite"></p>
+
+      <p class="g-filed">✓ Wenn es geschafft ist, leg dieses Blatt zu deinen Erfolgen.</p>
+      <p class="hint g-foot">Ein Vorhaben ohne Datum ist ein Wunsch. Gib jedem Schritt ein Fälligkeitsdatum und eine Prüfung.</p>
+      <p class="hint g-foot">Nichts wird hochgeladen – alles bleibt auf deinem Gerät. Das PDF kannst du in jedem PDF-Programm weiter bearbeiten.</p>
+    </div>
+  </div>
+
+  <div class="modal-bg" id="gTutBg" hidden>
+    <div class="modal g-tut" role="dialog" aria-modal="true" aria-labelledby="gTutTitle">
+      <button class="tbtn ghost icon g-tut-x" type="button" id="gTutClose" aria-label="Schließen">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <p class="eyebrow">Kurze Anleitung</p>
+      <h3 id="gTutTitle"></h3>
+      <div class="g-tut-body" id="gTutBody"></div>
+      <div class="g-dots" id="gTutDots" aria-hidden="true"></div>
+      <label class="g-skip"><input type="checkbox" id="gTutSkip"> Beim Start nicht mehr zeigen</label>
+      <div class="modal-foot">
+        <button class="tbtn ghost" type="button" id="gTutPrev">Zurück</button>
+        <button class="tbtn" type="button" id="gTutNext">Weiter</button>
+      </div>
+    </div>
+  </div>
+</div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Dr. Johannes A. Nortjé · Keine Cookies, kein Tracking – deine Eingaben bleiben auf diesem Gerät.</p>
+    <p><a href="about.html">Über</a> · <a href="legal.html">Impressum & Datenschutz</a></p>
+  </div>
+</footer>
+<button class="update-toast" type="button" data-update hidden>Eine neue Version ist da – tippen zum Aktualisieren</button>
+<script src="../assets/app.js"></script>
+<script>window.T = {"title": "Zielplanungsblatt", "eyebrow": "Aus einem Vorhaben wird ein Plan", "h1": "Zielplanungsblatt", "sub": "Mach aus einem Vorhaben einen Plan mit Daten, den du verfolgen kannst. Alles wird beim Tippen gespeichert und bleibt auf deinem Gerät.", "my_goals": "Meine Ziele", "current": "Aktuelles Ziel", "new_goal": "Neues Ziel", "tab_active": "Aktiv", "tab_archived": "Archiv", "no_goals": "Noch keine Ziele.", "no_archived": "Keine archivierten Ziele.", "no_area": "Kein Bereich gewählt", "other_area": "Sonstiges", "untitled": "Ziel ohne Namen", "name": "Kurzname", "name_hint": "Erscheint in deiner Zielliste.", "name_ph": "z. B. Notgroschen", "area_choose": "Bereich wählen …", "goal_ph": "z. B. „Ich spare bis zum 31. Dezember 1.500 EUR für einen Notgroschen …“", "why_ph": "Was ich gewinne: …\nWas ich vermeide: …", "obst_ph": "1. …\n2. …", "handle_ph": "1. …\n2. …", "step_ph": "Schritt {n}", "add_step": "Schritt hinzufügen", "who_hint": "Menschen, deren Unterstützung oder Wissen dir hilft.", "who_ph": "z. B. Mein Ehepartner – damit wir gemeinsam planen.", "track_hint": "Die regelmäßige Kontrolle, die dich ehrlich hält.", "track_ph": "z. B. Ein Blick auf den Kontostand am 1. jedes Monats.", "rem_hint": "Kurze Sätze, die dich dranbleiben lassen.", "pic_hint": "Ein Bild oder Zeichen – und wo du es hinlegst.", "download": "PDF herunterladen", "print": "Drucken", "reset": "Ziel leeren", "archive": "Archivieren", "restore": "Wiederherstellen", "delete": "Löschen", "sample": {"name": "Notgroschen", "life_area": "work", "started": "2025-10-01", "target_date": "2025-12-31", "achieved_on": "", "the_goal": "Ich spare 1.500 EUR für einen eigenen Notgroschen, indem ich am 1. Oktober, 1. November und 1. Dezember automatisch je 500 EUR überweise.", "why_matters": "Was ich gewinne: Innere Ruhe, weniger Stress in meiner Ehe und Schutz für meine Familie vor unerwarteten Kosten, ohne auf Kreditkarten angewiesen zu sein.\nWas ich vermeide: Die Angst, von Gehalt zu Gehalt zu leben, die Last teurer Schulden und Streit ums Geld zu Hause.", "obstacles": "1. Spontankäufe am Wochenende.\n2. Vergessen, die Überweisung zu machen.", "handling": "1. Ein festes Bargeldbudget fürs Wochenende; die Karten bleiben zu Hause.\n2. Ein Dauerauftrag zum Zahltag in der Banking-App.", "who_should_know": "• Mein Ehepartner – damit wir die Ausgaben im Haushalt gemeinsam planen und einander zur Rechenschaft ziehen.\n• Mein Mentor – der bei unseren Treffen alle zwei Wochen nach meinem Fortschritt fragt.", "track_progress": "Ein Gewohnheits-Tracker auf dem Handy, in dem ich jede Überweisung abhake, und ein Blick auf den Kontostand am 1. jedes Monats.", "worth_value_yes": true, "worth_value_no": false, "worth_cost_yes": true, "worth_cost_no": false, "worth_cost_later": false, "reminders": "Finanzielle Disziplin ist eine Form von Selbstachtung.", "picture_success": "Ein ausgedruckter Screenshot des Sparkontos mit 1.500 EUR, innen in meinen Kalender geklebt.", "action_1": "Den automatischen Dauerauftrag über 500 EUR in der Banking-App einrichten.", "due_1": "2025-10-01", "reviewed_1": "2025-10-01", "done_1": true, "action_2": "Jeden Sonntagabend den Kontoauszug prüfen.", "due_2": "", "reviewed_2": "", "done_2": false, "action_3": "Abos kündigen, die ich nicht brauche (spart ca. 40 EUR im Monat).", "due_3": "2025-10-05", "reviewed_3": "2025-10-05", "done_3": true}, "tutorial": "Anleitung", "backup": "Daten sichern", "load": "Daten laden", "clear_all": "Alles löschen", "close": "Schließen", "autosave": "Speichert automatisch", "saved": "Gespeichert ✓", "archived_banner": "Dieses Ziel ist archiviert.", "tagline": "Ein Vorhaben ohne Datum ist ein Wunsch. Gib jedem Schritt ein Fälligkeitsdatum und eine Prüfung.", "privacy": "Nichts wird hochgeladen – alles bleibt auf deinem Gerät. Das PDF kannst du in jedem PDF-Programm weiter bearbeiten.", "pdf_file": "Zielplanungsblatt", "json_file": "meine-ziele.json", "st_building": "Dein PDF wird erstellt …", "st_downloaded": "Heruntergeladen – öffne es in einem PDF-Programm, um weiterzuschreiben.", "st_simplified": "(Einige Sonderzeichen wurden für das PDF vereinfacht.)", "st_pdf_err": "Leider ist beim Erstellen des PDFs etwas schiefgegangen.", "st_tools_err": "Die PDF-Werkzeuge konnten nicht geladen werden. Bitte lade die Seite neu.", "st_preparing": "Das Blatt wird zum Drucken vorbereitet …", "st_opening": "Der Druckdialog wird geöffnet …", "st_print_err": "Leider ist beim Vorbereiten des Drucks etwas schiefgegangen.", "st_loaded": "Deine Daten wurden geladen.", "st_sample": "Beispielziel aus dem Heft geladen.", "st_archived": "Ziel archiviert – du findest es unter „Archiv“.", "err_file": "Diese Datei konnte leider nicht gelesen werden.", "confirm_delete": "Dieses Ziel endgültig löschen?\n„{title}“", "confirm_clear": "Damit löschst du ALLE deine Ziele. Neu anfangen?", "confirm_reset": "Alle Felder dieses Ziels leeren?", "tut_kicker": "Kurze Anleitung", "tut_prev": "Zurück", "tut_next": "Weiter", "tut_finish": "Fertig", "tut_skip": "Beim Start nicht mehr zeigen", "tut": [{"t": "1. Ein SMARTes Ziel", "b": "<p>Schreib dein Ziel in der <b>Gegenwart</b> – „Ich bin …“, „Ich tue …“ – statt als fernen Wunsch („Ich werde …“).</p><p>Formuliere es spezifisch, messbar, erreichbar, relevant/realistisch und terminiert – mit einem festen Zieldatum.</p>"}, {"t": "2. Warum es wichtig ist", "b": "<p>Ohne echte Hingabe scheitern Ziele. Nenne beide Seiten deiner Motivation:</p><ul><li><b>Was ich gewinne</b> – die Ruhe, das Wachstum oder die Freiheit, die du erreichst.</li><li><b>Was ich vermeide</b> – den Stress, die Schulden oder das Bedauern, die du verhinderst.</li></ul>"}, {"t": "3. Hindernisse einplanen", "b": "<p>Rechne mit Widerständen, bevor sie kommen.</p><p>Nenne die Hindernisse (Zeit, Versuchung, Angst) unter <i>Was dazwischenkommen könnte</i> und gib jedem unter <i>Wie ich damit umgehe</i> einen Plan.</p>"}, {"t": "4. Schritte und Verbindlichkeit", "b": "<ul><li><b>Schritte</b> – teile den Plan in klare Schritte mit Fälligkeitsdatum.</li><li><b>Wer davon wissen sollte</b> – Menschen, die dich unterstützen und nachfragen.</li><li><b>Fortschritt</b> – eine regelmäßige Kontrolle, z. B. jeden Sonntagabend.</li></ul>"}, {"t": "5. Deine Ziele, PDF und Sicherung", "b": "<ul><li><b>Meine Ziele</b> – du kannst mehrere Ziele anlegen, nach Lebensbereich geordnet. Erreichte Ziele archivierst du.</li><li><b>PDF herunterladen</b> – ein ausgefülltes Blatt, das du weiter bearbeiten oder drucken kannst.</li><li><b>Daten sichern</b> – eine Sicherungsdatei. Alles bleibt privat auf deinem Gerät.</li></ul>"}], "continued": "Fortsetzung", "sample_name": "Notgroschen", "ex": {"area": "Lebensbereich", "started": "Begonnen", "target": "Zieldatum", "achieved": "Erreicht am", "goal": "Das Ziel", "why": "Warum es wichtig ist", "gain": "Was ich gewinne", "avoid": "Was ich vermeide", "obst": "Was dazwischenkommen könnte", "handle": "Wie ich damit umgehe", "steps": "Schritte", "step": "Schritt", "due": "Fällig", "rev": "Geprüft", "done": "Erledigt", "who": "Wer davon wissen sollte", "track": "Wie ich meinen Fortschritt verfolge", "worth": "Lohnt es sich?", "q1": "Passt es zu meinen Werten?", "q2": "Sind Zeit, Mühe und Kosten es wert?", "yes": "Ja", "no": "Nein", "rem": "Ermutigende Erinnerung", "pic": "Erfolg vor Augen", "name": "Name", "date": "Datum", "later": "Ja, aber später", "goal_hint": "Formuliere es SMART – spezifisch, messbar, erreichbar, relevant/realistisch, terminiert.", "why_hint": "Was ich gewinne, wenn ich es erreiche – und was ich vermeide.", "filed": "Wenn es geschafft ist, leg dieses Blatt zu deinen Erfolgen."}, "_area_alias": {"Ethik & Werte": "ethics", "Geist & Lernen": "mind", "Gesellschaft & Gemeinschaft": "society", "Körper & Gesundheit": "body", "Familie & Zuhause": "family", "Arbeit & Finanzen": "work", "Ethics & Values": "ethics", "Mind & Learning": "mind", "Society & Community": "society", "Body & Health": "body", "Family & Home": "family", "Work & Finances": "work", "Etiek & Waardes": "ethics", "Verstand & Leer": "mind", "Samelewing & Gemeenskap": "society", "Liggaam & Gesondheid": "body", "Gesin & Huis": "family", "Werk & Finansies": "work"}, "sample_btn": "Beispiel", "_areas": [["ethics", "Ethik & Werte", "Deine Überzeugungen, dein geistliches Leben und die Grundsätze, nach denen du lebst."], ["mind", "Geist & Lernen", "Wie du an Wissen, Verständnis und Können wächst."], ["society", "Gesellschaft & Gemeinschaft", "Freundschaften, Dienst an anderen und dein Platz unter Menschen."], ["body", "Körper & Gesundheit", "Kraft, Fitness, Ernährung und Ruhe."], ["family", "Familie & Zuhause", "Dein Ehepartner, deine Kinder und euer gemeinsames Zuhause."], ["work", "Arbeit & Finanzen", "Deine Berufung im Beruf, wie du sie ausfüllst und wie du mit Geld umgehst."]], "_lang": "de"};</script>
+<script src="../assets/vendor/pdf-lib.min.js"></script>
+<script src="../assets/goals.js"></script>
+</body>
+</html>

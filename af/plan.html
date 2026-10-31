@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doelwitplan vir die hele lewe · Die Wiel en die Pyl</title>
+<meta name="description" content="Persoonlike leierskap en doelwitstelling">
+<meta property="og:title" content="Doelwitplan vir die hele lewe · Die Wiel en die Pyl">
+<meta property="og:description" content="Persoonlike leierskap en doelwitstelling">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/plan.css"><script>window.APP = {"root": "../", "lang": "af", "langs": ["de", "en", "af"], "page": "plan"};</script>
+</head>
+<body data-lang="af" data-page="plan">
+<a class="skip" href="#main">↓</a>
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Kieslys">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="../af/index.html">
+<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 7v20M4.3 12l17.4 10M4.3 22l17.4-10" stroke="currentColor" stroke-width="1.2" opacity=".55"/><path d="M13 17L29 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M29 4l-5.5 .6M29 4l-.6 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>      <span>Die Wiel en die Pyl</span>
+    </a>
+    <nav class="langs" aria-label="Taal">
+<a href="../de/plan.html" lang="de" data-set-lang="de">DE</a><a href="../en/plan.html" lang="en" data-set-lang="en">EN</a><a href="../af/plan.html" lang="af" data-set-lang="af" aria-current="true">AF</a>    </nav>
+  </div>
+</header>
+<div class="drawer-overlay" data-drawer-close hidden></div>
+<nav id="drawer" class="drawer" aria-label="Kieslys" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <span class="drawer-title">Kieslys</span>
+    <button class="icon-btn" type="button" data-drawer-close aria-label="Maak toe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <ul class="drawer-links">
+<li><a href="index.html">Tuis</a></li><li><a href="booklet.html">Lees die boekie</a></li><li><a href="wheel.html">Lewenswiel</a></li><li><a href="goals.html">Doelwitbeplanningsblad</a></li><li><a href="plan.html" aria-current="page">Doelwitplan vir die hele lewe</a></li>  </ul>
+  <section class="drawer-sec">
+    <h2>Aflaai</h2>
+    <ul class="drawer-links small">
+      <li><a href="../pdf/wheel-and-arrow-af.pdf">Boekie (PDF, A5)</a></li>
+      <li><a href="slides.html">Bied die skyfies aan</a></li>
+      <li><a href="../pdf/wheel-and-arrow-slides-af.pdf">Skyfies (PDF)</a></li>
+      <li><a href="../pdf/wheel-and-arrow-notes-af.pdf">Leiersnotas (PDF)</a></li>
+      <li><a href="../pdf/goal-worksheet-af.pdf">Leë doelwitblad (PDF)</a></li>
+    </ul>
+  </section>
+  <section class="drawer-sec">
+    <h2>Taal</h2>
+    <div class="langs drawer-langs">
+<a href="../de/plan.html" lang="de" data-set-lang="de">Deutsch</a><a href="../en/plan.html" lang="en" data-set-lang="en">English</a><a href="../af/plan.html" lang="af" data-set-lang="af" aria-current="true">Afrikaans</a>    </div>
+  </section>
+  <ul class="drawer-links small foot">
+    <li><a href="about.html">Oor</a></li>
+    <li><a href="legal.html">Regskennisgewing & privaatheid</a></li>
+  </ul>
+</nav>
+<main id="main" class="">
+<div class="tool plan-tool">
+  <header class="tool-head">
+    <p class="eyebrow">Doelwitplan vir die hele lewe</p>
+    <h1>My doelwitplan vir die hele lewe</h1>
+    <p class="sub">'n Gebalanseerde raamwerk om doelwitte in al die areas van my lewe te stel en te volg</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar">
+    <button class="tbtn" type="button" data-act="tutorial">Handleiding</button>
+    <button class="tbtn ghost" type="button" data-act="print">Stoor as PDF / Druk</button>
+    <button class="tbtn ghost" type="button" data-act="export">Stoor my data</button>
+    <button class="tbtn ghost" type="button" data-act="import">Laai data</button>
+    <input type="file" id="plan-imp" accept="application/json,.json" hidden>
+    <button class="tbtn danger" type="button" data-act="clear">Vee alles uit</button>
+    <span class="saved-note" id="plan-saved" aria-live="polite">Stoor outomaties in hierdie blaaier</span>
+  </div>
+
+  <div class="plan-screen">
+    <section class="tcard">
+      <div class="fld-row">
+        <label class="fld" for="plan-name">Naam</label>
+        <input type="text" id="plan-name" data-meta="name" autocomplete="name">
+      </div>
+      <div class="grid2 plan-dates">
+        <div>
+          <label class="fld" for="plan-created">Datum geskep</label>
+          <input type="date" id="plan-created" data-meta="created">
+        </div>
+        <div>
+          <label class="fld" for="plan-reviewed">Laas nagegaan</label>
+          <input type="date" id="plan-reviewed" data-meta="reviewed">
+        </div>
+      </div>
+    </section>
+
+    <section class="tcard">
+      <h2 class="mission-h"><label for="plan-mission">My persoonlike missieverklaring</label> <small>(My rigtinggewende beginsel)</small></h2>
+      <p class="hint">Vat in een of twee sinne saam waarvoor jy die graagste wil hê jou lewe moet staan en wat jy wil word. Jou missieverklaring vorm die skutrelings en grense waarbinne al jou doelwitte moet pas en beweeg.</p>
+      <textarea id="plan-mission" data-meta="mission" placeholder="Bv. Gewortel in my identiteit as 'n toegewyde versorger en burger van die nuwe hemel en die nuwe aarde, is my missie om met 'n ewigheidsperspektief te leef en my uiteindelike betekenis in God te vind. Ek laat die jag na aardse status vaar en verbind my daartoe om 'n Christusgelyke eggenoot en ouer te wees; 'n wyse bewaarder van ons gesin se gesondheid en hulpbronne; en 'n blymoedige dienaar wat my gawes gebruik om my kerk en gemeenskap op te bou, en so die roeping te vervul wat God aan my toevertrou het."></textarea>
+    </section>
+
+    <section class="tcard habits" id="plan-habits">
+      <h2 class="sec-h">Vyf gewoontes wat dit laat werk</h2>
+      <ol>
+<li><b>Skryf dit neer.</b> Doelwitte wat net in jou kop bly, bly vaag. As jy dit in eenvoudige woorde vasvat, word dit skerper en word 'n voorneme 'n werklike verbintenis.</li>
+<li><b>Gaan dit gereeld weer deur.</b> Lees jou plan gereeld deur – eerste ding in die oggend werk goed – sodat dit aanhou om jou aandag en daaglikse keuses te stuur.</li>
+<li><b>Hou dit gebalanseerd.</b> Probeer om in elke area minstens een lewende doelwit te hê. Sterk vordering in een deel van die lewe maak selde op vir die verwaarlosing van 'n ander.</li>
+<li><b>Breek die groot doelwitte af.</b> Spel vir jou hoogste prioriteite die volgende konkrete aksie uit, die struikelblokke wat jy verwag, en hoe jy beplan om dit te hanteer.</li>
+<li><b>Gee elkeen 'n sperdatum.</b> 'n Teikendatum skep fokus en aanspreeklikheid. As die lewe verander, skuif die datum – om 'n tydlyn aan te pas is gesond; om die doelwit stilletjies te laat vaar, is nie.</li>
+      </ol>
+    </section>
+
+    <h2 class="sec-h plan-areas-h">Die areas van my lewe</h2>
+    <p class="hint">Kies 'n doelwitsoort en prioriteit, skryf die doelwit so dat dit spesifiek en meetbaar is, voeg 'n teikendatum by en werk die status by soos jy vorder. Voeg soveel reëls by as wat jy nodig het.</p>
+    <p class="hint legend">Prioriteit: 1 = hoogste, 5 = laagste · Korttermyn: minder as 1 jaar · Mediumtermyn: 1–3 jaar · Langtermyn: meer as 3 jaar</p>
+    <div id="plan-areas"></div>
+
+    <p class="hint plan-foot">Jou inskrywings word outomaties in hierdie blaaier op hierdie toestel gestoor. Gebruik “Stoor my data” om 'n rugsteun te hou of dit na 'n ander toestel te skuif, en “Stoor as PDF / Druk” vir 'n gedrukte kopie.</p>
+  </div>
+
+  <div id="plan-print" class="plan-print" aria-hidden="true"></div>
+
+  <div class="modal-bg plan-tut" id="plan-tut" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="plan-tut-title">
+      <button class="tbtn ghost icon plan-tut-x" type="button" data-tut="close" aria-label="Maak handleiding toe">✕</button>
+      <p class="eyebrow">Vinnige gids</p>
+      <h3 id="plan-tut-title"></h3>
+      <div class="plan-tut-body" id="plan-tut-body"></div>
+      <div class="plan-tut-dots" id="plan-tut-dots" aria-hidden="true"></div>
+      <div class="modal-foot">
+        <label class="plan-skip"><input type="checkbox" id="plan-tut-skip"> Moenie by begin wys nie</label>
+        <span class="plan-tut-btns">
+          <button class="tbtn ghost" type="button" data-tut="prev">Vorige</button>
+          <button class="tbtn" type="button" data-tut="next">Volgende →</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Dr. Johannes A. Nortjé · Geen koekies, geen opsporing – jou inskrywings bly op hierdie toestel.</p>
+    <p><a href="about.html">Oor</a> · <a href="legal.html">Regskennisgewing & privaatheid</a></p>
+  </div>
+</footer>
+<button class="update-toast" type="button" data-update hidden>'n Nuwe weergawe is gereed – tik om te herlaai</button>
+<script src="../assets/app.js"></script>
+<script>window.T = {"title": "Doelwitplan vir die hele lewe", "eyebrow": "Doelwitplan vir die hele lewe", "h1": "My doelwitplan vir die hele lewe", "sub": "'n Gebalanseerde raamwerk om doelwitte in al die areas van my lewe te stel en te volg", "tutorial": "Handleiding", "print": "Stoor as PDF / Druk", "backup": "Stoor my data", "restore": "Laai data", "clear_all": "Vee alles uit", "autosave": "Stoor outomaties in hierdie blaaier", "saved": "Gestoor ✓", "name": "Naam", "created": "Datum geskep", "reviewed": "Laas nagegaan", "mission_h": "My persoonlike missieverklaring", "mission_small": "(My rigtinggewende beginsel)", "mission_hint": "Vat in een of twee sinne saam waarvoor jy die graagste wil hê jou lewe moet staan en wat jy wil word. Jou missieverklaring vorm die skutrelings en grense waarbinne al jou doelwitte moet pas en beweeg.", "mission_ph": "Bv. Gewortel in my identiteit as 'n toegewyde versorger en burger van die nuwe hemel en die nuwe aarde, is my missie om met 'n ewigheidsperspektief te leef en my uiteindelike betekenis in God te vind. Ek laat die jag na aardse status vaar en verbind my daartoe om 'n Christusgelyke eggenoot en ouer te wees; 'n wyse bewaarder van ons gesin se gesondheid en hulpbronne; en 'n blymoedige dienaar wat my gawes gebruik om my kerk en gemeenskap op te bou, en so die roeping te vervul wat God aan my toevertrou het.", "habits_h": "Vyf gewoontes wat dit laat werk", "habits": [["Skryf dit neer.", "Doelwitte wat net in jou kop bly, bly vaag. As jy dit in eenvoudige woorde vasvat, word dit skerper en word 'n voorneme 'n werklike verbintenis."], ["Gaan dit gereeld weer deur.", "Lees jou plan gereeld deur – eerste ding in die oggend werk goed – sodat dit aanhou om jou aandag en daaglikse keuses te stuur."], ["Hou dit gebalanseerd.", "Probeer om in elke area minstens een lewende doelwit te hê. Sterk vordering in een deel van die lewe maak selde op vir die verwaarlosing van 'n ander."], ["Breek die groot doelwitte af.", "Spel vir jou hoogste prioriteite die volgende konkrete aksie uit, die struikelblokke wat jy verwag, en hoe jy beplan om dit te hanteer."], ["Gee elkeen 'n sperdatum.", "'n Teikendatum skep fokus en aanspreeklikheid. As die lewe verander, skuif die datum – om 'n tydlyn aan te pas is gesond; om die doelwit stilletjies te laat vaar, is nie."]], "areas_h": "Die areas van my lewe", "areas_hint": "Kies 'n doelwitsoort en prioriteit, skryf die doelwit so dat dit spesifiek en meetbaar is, voeg 'n teikendatum by en werk die status by soos jy vorder. Voeg soveel reëls by as wat jy nodig het.", "legend": "Prioriteit: 1 = hoogste, 5 = laagste · Korttermyn: minder as 1 jaar · Mediumtermyn: 1–3 jaar · Langtermyn: meer as 3 jaar", "col_prio": "Prioriteit", "col_type": "Doelwitsoort", "col_goal": "Doelwit – spesifiek & meetbaar", "col_date": "Teikendatum", "col_status": "Status", "col_actions": "Aksies", "tip_prio": "Prioriteit: 1 = hoogste, 5 = laagste", "tip_type": "Korttermyn (minder as 1 jaar), mediumtermyn (1–3 jaar), langtermyn (meer as 3 jaar)", "tip_goal": "Sê duidelik watter uitkoms jy gaan bereik", "tip_date": "Datum waarteen die doelwit bereik moet wees", "tip_status": "Nie begin nie, aan die gang, vasgeval, voltooi", "select": "Kies", "types": {"Short-Term": "Korttermyn", "Medium-Term": "Mediumtermyn", "Long-Term": "Langtermyn"}, "status": {"Not Started": "Nie begin nie", "In Progress": "Aan die gang", "Blocked": "Vasgeval", "Completed": "Voltooi"}, "goal_ph": "Skryf die doelwit neer …", "add": "+ Voeg doelwit by", "archive": "Argiveer", "archive_t": "Argiveer doelwit", "unarchive": "Herstel", "unarchive_t": "Maak doelwit weer aktief", "remove": "Skrap", "remove_t": "Skrap doelwit", "archived_h": "Geargiveerde doelwitte", "foot": "Jou inskrywings word outomaties in hierdie blaaier op hierdie toestel gestoor. Gebruik “Stoor my data” om 'n rugsteun te hou of dit na 'n ander toestel te skuif, en “Stoor as PDF / Druk” vir 'n gedrukte kopie.", "confirm_clear": "Vee alles uit en begin van voor af?", "confirm_remove": "Skrap hierdie doelwit?", "import_error": "Jammer, daardie lêer kon nie gelees word nie.", "file_name": "my-doelwitplan.json", "date_fmt": "DD/MM/YYYY", "print_meta": "Naam: {name} · Geskep: {created} · Laas nagegaan: {reviewed}", "tut_kicker": "Vinnige gids", "tut_close": "Maak handleiding toe", "tut_prev": "Vorige", "tut_next": "Volgende →", "tut_finish": "Klaar ✓", "tut_skip": "Moenie by begin wys nie", "tut": [{"title": "1. Jou persoonlike missieverklaring", "html": "<p>Begin deur in die blokkie <b>Persoonlike missieverklaring</b> in 1–2 sinne vas te vat waarvoor jy die graagste wil hê jou lewe moet staan.</p><p>Jou missieverklaring dien as jou persoonlike skutrelings en grensheining – dit trek duidelike grense waarbinne al jou doelwitte moet pas en werk.</p>"}, {"title": "2. Die 6 lewensareas", "html": "<p>'n Gebalanseerde lewe vra aandag vir al die belangrike areas van die lewe:</p>{areas}"}, {"title": "3. Doelwitte stel & prioriteite", "html": "<p>Vir elke doelwit:</p><ul><li><b>Prioriteit (1–5)</b>: 1 = hoogste prioriteit.</li><li><b>Doelwitsoort</b>: korttermyn (&lt;1 jaar), mediumtermyn (1–3 jaar) of langtermyn (meer as 3 jaar).</li><li><b>Spesifiek &amp; meetbaar</b>: sê duidelik watter uitkoms jy gaan bereik.</li><li><b>Teikendatum &amp; status</b>: stel 'n sperdatum en werk die status by soos jy vorder.</li></ul>"}, {"title": "4. Argief, rugsteun & uitvoer", "html": "<p>Hou jou plan netjies en veilig:</p><ul><li><b>Argiveer</b>: skuif voltooide of verbygegane doelwitte uit jou aktiewe aansig na die afsnit <i>Geargiveerde doelwitte</i> wat jy kan oop- en toevou. Jy kan dit enige tyd herstel.</li><li><b>Stoor my data</b>: maak 'n rugsteun van jou plan as 'n JSON-lêer. Alles bly privaat op jou toestel.</li><li><b>Stoor as PDF / Druk</b>: maak 'n netjiese opsomming van jou aktiewe doelwitte.</li></ul>"}], "_areas": [["ethics", "Etiek & Waardes", "Jou oortuigings, jou geestelike lewe en die beginsels waarvolgens jy leef."], ["mind", "Verstand & Leer", "Hoe jy groei in kennis, insig en vaardigheid."], ["society", "Samelewing & Gemeenskap", "Vriendskappe, diens aan ander en jou plek tussen mense."], ["body", "Liggaam & Gesondheid", "Energie, fiksheid, kos en rus."], ["family", "Gesin & Huis", "Jou eggenoot, jou kinders en die huis wat julle deel."], ["work", "Werk & Finansies", "Jou roeping by die werk, hoe jy dit doen, en hoe jy met geld omgaan."]], "_lang": "af"};</script>
+<script src="../assets/plan.js"></script>
+</body>
+</html>
