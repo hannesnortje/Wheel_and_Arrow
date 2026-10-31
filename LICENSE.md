@@ -1,17 +1,19 @@
-# License and Intellectual Property
+# Licence
 
-This project, **The Wheel and the Arrow**, contains code and content with distinct licensing and copyright guidelines.
+## Content
+The booklet *The Wheel and the Arrow* (in German, English and Afrikaans), the worksheets, the slides and the Bible
+translation are © 2026 Dr. Johannes A. Nortjé and licensed under
+[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+You may share, print and use them unchanged and non-commercially – in church, a small group or a course, for
+example – as long as you name the author and this website. For adaptations, translations or commercial use,
+please ask: biborgs@gmail.com.
 
-## 1. Content and Framework Copyright
-The underlying content, framework, worksheets, and terminology are adapted from:
-* **Booklet**: *The Wheel and the Arrow — A Disciple's Guide to Personal Leadership and Goal Setting* by Dr. Johannes A. Nortjé.
-* **Original Framework**: Adapted from the Personal Leadership materials and concepts of **Leadership Management International (LMI)**.
+The definition of success in chapter 2 is quoted from Paul J. Meyer with attribution. The booklet is inspired by
+the personal-development tradition, including the work of Paul J. Meyer. It is not affiliated with or endorsed
+by Leadership Management International.
 
-**All rights to the original content, framework, and worksheets are reserved by their respective copyright holders (Dr. Johannes A. Nortjé and Leadership Management International).** 
-This interactive web implementation is intended for personal development, educational use, and private self-assessment. It may not be sold, commercialized, or distributed for commercial purposes without explicit prior written authorization from the copyright holders.
-
-## 2. Software License
-The HTML, CSS, and JavaScript code wrapper developed for this project is licensed under the **MIT License**:
+## Code
+The HTML, CSS, JavaScript and Python code is licensed under the MIT License:
 
 ```text
 MIT License
@@ -36,3 +38,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## Third-party
+- [pdf-lib](https://pdf-lib.js.org/) (MIT) – filling the PDF worksheet in the browser (`vendor/`).
+- Fonts Literata and Inter (SIL Open Font License), self-hosted from [Fontsource](https://fontsource.org/).
+- Base texts for the Bible translation: SBL Greek New Testament (CC BY 4.0, © 2010 Society of Biblical
+  Literature and Logos Bible Software) and the Westminster Leningrad Codex (public domain).

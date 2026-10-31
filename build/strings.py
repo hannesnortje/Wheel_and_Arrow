@@ -4,6 +4,7 @@ LANGS = ["de", "en", "af"]
 
 STRINGS = {
     "en": {
+        "present": "Present the slides", "pdf_notes": "Leader's notes (PDF)",
         "app_online": "Also as an app", "worksheet": "Worksheet",
         "ws_wheel_title": "The Wheel of Life – Worksheet", "ws_wheel_hint": "Score each area from 1 (centre) to 10 (rim), mark the spoke, then join the marks.",
         "ws_goal_title": "Goal Planning Worksheet", "ws_goal_hint": "Turn an intention into a dated, trackable plan.",
@@ -34,6 +35,7 @@ STRINGS = {
         "old_moved": "This page has moved.",
     },
     "de": {
+        "present": "Folien präsentieren", "pdf_notes": "Notizen für Leitende (PDF)",
         "app_online": "Auch als App", "worksheet": "Arbeitsblatt",
         "ws_wheel_title": "Das Lebensrad – Arbeitsblatt", "ws_wheel_hint": "Bewerte jeden Bereich von 1 (Mitte) bis 10 (Rand), markiere die Speiche und verbinde die Markierungen.",
         "ws_goal_title": "Zielplanungsblatt", "ws_goal_hint": "Mach aus einem Vorhaben einen Plan mit Daten, den du verfolgen kannst.",
@@ -64,6 +66,7 @@ STRINGS = {
         "old_moved": "Diese Seite ist umgezogen.",
     },
     "af": {
+        "present": "Bied die skyfies aan", "pdf_notes": "Leiersnotas (PDF)",
         "app_online": "Ook as 'n app", "worksheet": "Werkblad",
         "ws_wheel_title": "Die Lewenswiel – Werkblad", "ws_wheel_hint": "Gee elke area 'n punt van 1 (middel) tot 10 (rand), merk die speek en verbind die merke.",
         "ws_goal_title": "Doelwitbeplanningsblad", "ws_goal_hint": "Maak van 'n voorneme 'n plan met datums wat jy kan volg.",
