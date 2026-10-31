@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t.slides_title }} – {{ bk.title }}</title>
+<link rel="icon" href="{{ assets }}favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{{ assets }}slides.css">
+{% if notes_mode %}<style>@page { size: A4 portrait; margin: 14mm 15mm; }</style>{% endif %}
+</head>
+<body class="{{ 'notes-mode' if notes_mode else '' }}">
+<div class="deck" id="deck">
+{% for s in slides %}
+<div class="page">
+<section class="slide t-{{ s.type }}">
+  {% if s.type == 'title' %}
+    <div class="sl-inner">
+      {% include "_mark.html" %}
+      <p class="sl-eyebrow">{{ s.eyebrow }}</p>
+      <h1>{{ s.title }}</h1>
+      <p class="sl-sub">{{ s.sub }}</p>
+      <p class="sl-author">{{ t.author }}</p>
+    </div>
+  {% elif s.type == 'closing' %}
+    <div class="sl-inner center">
+      <p class="sl-big">{{ s.title }}</p>
+      <p class="sl-mid">{{ s.text }}</p>
+      <p class="sl-label gold">{{ s.foot }}</p>
+    </div>
+  {% else %}
+    <div class="sl-inner">
+      <p class="sl-label">{{ s.label }}</p>
+      <h2>{{ s.title }}</h2>
+      {% if s.type == 'section' %}
+        <p class="sl-mid">{{ s.text }}</p>
+      {% elif s.type == 'bridge' %}
+        <p class="sl-text">{{ s.text }}</p>
+        <div class="bridge"><div><b>{{ s.from[0] }}</b><span>{{ s.from[1] }}</span></div><svg viewBox="0 0 60 20" aria-hidden="true"><path d="M2 10h52M46 3l8 7-8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>{{ s.to[0] }}</b><span>{{ s.to[1] }}</span></div></div>
+      {% elif s.type == 'definition' %}
+        <blockquote class="def">“{{ s.quote }}”<cite>— {{ s.by }}</cite></blockquote>
+        <div class="cols3">{% for p in s.points %}<div class="pt"><b>{{ p[0] }}</b><span>{{ p[1] }}</span></div>{% endfor %}</div>
+      {% elif s.type == 'compare' %}
+        <div class="cols2"><div class="pt muted"><b>{{ s.left[0] }}</b><span>{{ s.left[1] }}</span></div><div class="pt strong"><b>{{ s.right[0] }}</b><span>{{ s.right[1] }}</span></div></div>
+        <div class="cols3">{% for p in s.points %}<div class="pt"><b><i>{{ loop.index }}</i> {{ p[0] }}</b><span>{{ p[1] }}</span></div>{% endfor %}</div>
+      {% elif s.type == 'cards' %}
+        <p class="sl-text">{{ s.text }}</p>
+        <div class="cols{{ s.cards|length }}">{% for c in s.cards %}<div class="pt card"><b>{{ c[0] }}</b><span>{{ c[1] }}</span></div>{% endfor %}</div>
+        {% if s.foot %}<p class="sl-foot">{{ s.foot }}</p>{% endif %}
+      {% elif s.type == 'areas' %}
+        <p class="sl-text">{{ s.text }}</p>
+        <div class="areas">{% for a in areas %}<div class="area"><b>{{ a[1] }}</b>{% if not s.verse or s.verse == 4 %}<span>{{ a[2] }}</span>{% endif %}</div>{% endfor %}</div>
+      {% elif s.type == 'steps' %}
+        <div class="cols3">{% for p in s.steps %}<div class="pt card"><b><i>{{ loop.index }}</i> {{ p[0] }}</b><span>{{ p[1] }}</span></div>{% endfor %}</div>
+        <p class="sl-foot">{{ s.foot }}</p>
+      {% elif s.type == 'wheel' %}
+        <div class="wheel-row"><div class="wheel-svg">{{ s.svg }}</div><div><p class="sl-text">{{ s.text }}</p>
+          <ul class="scores">{% for a in areas %}<li><span>{{ a[1] }}</span><b>{{ s.scores[loop.index0] }}/10</b></li>{% endfor %}</ul></div></div>
+        <p class="sl-foot">{{ s.foot }}</p>
+      {% elif s.type == 'study' %}
+        <p class="myth">✕ {{ s.myth }}</p>
+        <p class="sl-text">{{ s.text }}</p>
+        <div class="bars">{% for b in s.bars %}<div class="bar"><span>{{ b[0] }}</span><i style="width:{{ (b[1] / 7.6 * 100)|round(1) }}%"></i><em>{{ b[1] if lang == 'en' else (b[1]|string).replace('.', ',') }}</em></div>{% endfor %}</div>
+        <p class="sl-foot">{{ s.foot }}</p>
+      {% elif s.type == 'smart' %}
+        <div class="smart">{% for it in s['items'] %}<div><b>{{ it[0] }}</b><strong>{{ it[1] }}</strong><span>{{ it[2] }}</span></div>{% endfor %}</div>
+      {% elif s.type == 'grid' %}
+        <div class="grid4">{% for it in s['items'] %}<div class="pt card"><b>{{ it[0] }}</b><span>{{ it[1] }}</span></div>{% endfor %}</div>
+      {% elif s.type == 'example' %}
+        <div class="exs">
+          <div class="pt card"><b>{{ ex_l.goal }}</b><span class="goal">“{{ ex.goal }}”</span></div>
+          <div class="cols2"><div class="pt"><b>{{ ex_l.gain }}</b><span>{{ ex.gain }}</span></div><div class="pt"><b>{{ ex_l.avoid }}</b><span>{{ ex.avoid }}</span></div></div>
+          <div class="cols2">{% for o in ex.obstacles %}<div class="pt"><b>{{ o[0] }}</b><span>→ {{ o[1] }}</span></div>{% endfor %}</div>
+        </div>
+      {% endif %}
+      {% if s.verse_text %}<p class="sl-verse">{{ s.verse_text }} <cite>{{ s.verse_ref }}</cite></p>{% endif %}
+    </div>
+  {% endif %}
+  <span class="sl-no">{{ loop.index }}</span>
+</section>
+{% if notes_mode %}<div class="notes"><b>{{ t.leader_notes }} · {{ loop.index }}</b><p>{{ s.notes }}</p></div>{% endif %}
+</div>
+{% endfor %}
+</div>
+{% if not notes_mode %}
+<div class="sl-nav" aria-hidden="true"><span id="sl-count"></span></div>
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')), i=0;
+  function show(n){ i=Math.max(0,Math.min(slides.length-1,n)); slides.forEach(function(s,k){s.classList.toggle('active',k===i)}); document.getElementById('sl-count').textContent=(i+1)+' / '+slides.length; try{history.replaceState(null,'','#'+(i+1))}catch(e){} }
+  document.addEventListener('keydown',function(e){ if(['ArrowRight','PageDown',' ','Enter'].indexOf(e.key)>-1){e.preventDefault();show(i+1)} if(['ArrowLeft','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();show(i-1)} if(e.key==='Home')show(0); if(e.key==='End')show(slides.length-1); if(e.key==='f'&&document.documentElement.requestFullscreen)document.documentElement.requestFullscreen(); });
+  document.getElementById('deck').addEventListener('click',function(e){ show(e.clientX < innerWidth/3 ? i-1 : i+1) });
+  var x0=null; document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',function(e){ if(x0===null)return; var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40)show(dx<0?i+1:i-1); x0=null });
+  window.addEventListener('hashchange',function(){ var n=(parseInt(location.hash.slice(1),10)||1)-1; if(n!==i) show(n); });
+  show((parseInt(location.hash.slice(1),10)||1)-1);
+})();
+</script>
+{% endif %}
+</body>
+</html>

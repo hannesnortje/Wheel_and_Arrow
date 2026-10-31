@@ -1,0 +1,157 @@
+# Skyfies vir die onderrig van "Die Wiel en die Pyl". type = uitleg; notes = sprekersnotas (slegs in die leiersgids-PDF gedruk).
+- type: title
+  eyebrow: Reeks Persoonlike Leierskap
+  title: Die Wiel en die Pyl
+  sub: "'n Onderriggids oor persoonlike leierskap en doelwitstelling"
+  notes: Welkom. Twee groot gedagtes vanaand – die Wiel (waar jy staan) en die Pyl (hoe jy beweeg). Stel die sessie voor as praktiese selfleierskap.
+
+- type: bridge
+  label: Inleiding · Wees en Word
+  title: Leierskap begin daarmee dat jy jouself lei
+  text: Die meeste leierskap gaan oor die lei van ander. Persoonlike leierskap is die stil, daaglikse werk om jouself te lei – by die werk, by die huis, tussen ander, en wanneer niemand kyk nie.
+  from: ["Wees", "wie jy vandag is"]
+  to: ["Word", "wie jy besig is om te word"]
+  verse: 1
+  notes: Onderskei tussen ander lei en jouself lei. Lees Filippense 1:6 – God voltooi wat Hy begin. Die brug verbind vandag se Wees met môre se Word.
+
+- type: definition
+  label: Wat is sukses?
+  title: Wat beteken sukses eintlik?
+  quote: Sukses is die progressiewe verwesenliking van waardevolle, vooraf bepaalde persoonlike doelwitte.
+  by: Paul J. Meyer
+  points:
+    - ["Progressief", "Nie 'n eindstreep nie, maar 'n rigting – jy is suksesvol terwyl jy beweeg."]
+    - ["Vooraf bepaal", "Dit gebeur selde per toeval; dit groei uit besluite wat vooraf geneem is."]
+    - ["Persoonlik", "Dit kom uit jou eie oortuigings, nie uit ander se verwagtinge nie."]
+  notes: Meyer se definisie. Beklemtoon "progressief" – jy is reeds suksesvol terwyl jy op pad is na 'n doelwit wat saak maak.
+
+- type: compare
+  label: Wat is sukses?
+  title: Gemeet aan jou eie potensiaal
+  verse: 2
+  left: ["Die vergelykingslagvang", "Daar is altyd iemand wat verder is – die vergelyking hou nooit op nie."]
+  right: ["Die enigste ware maatstaf", "Wie jy nou is, vergeleke met wie jy kan word."]
+  points:
+    - ["Onmeetbaar", "Onverwagte uitdagings bring kragte na vore waarvan ons nie geweet het nie."]
+    - ["Grootliks ongebruik", "Die meeste van ons het gawes wat ons nog nooit regtig ontwikkel het nie."]
+    - ["Doelbewus ontwikkel", "Die reserwe gaan oop deur doelbewuste inspanning."]
+  notes: Lees Galasiërs 6:4–5. Die sleutelverskuiwing – die enigste vergelyking wat die waarheid vertel, is met jouself. Gaan deur die drie oortuigings.
+
+- type: section
+  label: Deel een
+  title: Die innerlike fondament
+  text: Voordat jy uitwaarts beplan, kyk na die grond waarop jy staan – jou entoesiasme en jou selfbeeld.
+  verse: 3
+  notes: Lees Romeine 12:2 – nie in die vorm van hierdie wêreldtyd gedruk nie. Oorgang na die innerlike fondament.
+
+- type: cards
+  label: Die innerlike fondament
+  title: Wat ons entoesiasme afslyt
+  text: Kinders is nuuskierig, buigsaam en nie bang om te misluk nie. Drie dinge slyt dit af.
+  cards:
+    - ["Die gewig van daaglikse pligte", "Hoe besiger ons is, hoe korter ons blik."]
+    - ["Die drang om in te pas", "Hoe meer ons buig om aanvaar te word, hoe meer verdof ons kreatiwiteit."]
+    - ["'n Aangeleerde vrees vir mislukking", "Foute wat hard hanteer is, leer ons om veilig te speel."]
+  foot: Deel van persoonlike leierskap is om die oopheid en hoop terug te kry wat jy eens as kind gehad het.
+  notes: Vra – wanneer het jy laas daardie kinderlike entoesiasme gevoel? Dan die drie kragte.
+
+- type: cards
+  label: Die innerlike fondament
+  title: "'n Gesonder selfbeeld"
+  text: Ons is geneig om te leef in lyn met die mens wat ons glo ons is.
+  cards:
+    - ["Sien raak dat jy uniek is", "Daar is niemand aan wie jy jouself hoef te meet nie."]
+    - ["Aanvaar jouself eerlik", "Benoem sterk en swak punte reguit, as feite."]
+    - ["Spreek ware woorde oor jouself uit", "Geloofwaardige stellings druk ou twyfel terug."]
+    - ["Bereik klein doelwitte", "Elke sukses wys waartoe jy in staat is."]
+  foot: En maak vrede met foute – hulle is trappe om op te bou, nie klippe om oor te struikel nie.
+  notes: "'n Swak selfbeeld werk soos 'n lae plafon. Gaan deur die vier kaarte en die opmerking oor foute."
+
+- type: areas
+  label: Die Lewenswiel
+  title: Ses areas van een lewe
+  text: Moeilikheid by die huis volg ons werk toe; kommer by die werk sit saam met ons aan by die etenstafel.
+  verse: 4
+  notes: Lees Lukas 2:52 – Jesus het toegeneem in wysheid en grootte en in guns by God en mense. Noem die ses areas.
+
+- type: steps
+  label: Die Lewenswiel
+  title: Gee jou wiel punte – 'n eerlike momentopname
+  steps:
+    - ["Gee elke area 1–10", "1 in die middel = glad nie tevrede nie; 10 aan die rand = heeltemal tevrede."]
+    - ["Merk elke speek", "Gemeet aan die standaard wat jy vir jouself gestel het."]
+    - ["Verbind die merke", "Die buitelyn is die vorm van jou wiel vandag."]
+  foot: "'n Wiel met 'n 9 vir werk en 'n 2 vir gesondheid gee 'n stamperige rit. Laat dit uitwaarts groei – en rond bly."
+  notes: Doen die oefening intyds as daar tyd is – in die app of op die gedrukte werkblad.
+
+- type: wheel
+  label: Die Lewenswiel
+  title: So lyk 'n ongebalanseerde wiel
+  scores: [2, 7, 8, 2, 3, 9]
+  text: "'n Lewe kan in een area vooruitstorm terwyl 'n ander amper tot stilstand kom – en die rit is rof."
+  foot: Laat elke speek groei – balans is beter as een hoë punt.
+  notes: Volg die buitelyn – werk en gemeenskap ver uit, gesondheid, waardes en gesin ingetrek. Hoe glad sou hierdie wiel rol?
+
+- type: section
+  label: Deel twee
+  title: Die Pyl – doelwitte stel
+  text: Die wiel wys waar jy staan. Die pyl is hoe jy beweeg – 'n voorneme wat 'n gedateerde plan geword het wat jy kan volg.
+  verse: 5
+  notes: Lees Filippense 3:13–14 – "die doel" (σκοπός) is die boogskutter se teiken. Die wiel stel die diagnose; die pyl beweeg.
+
+- type: study
+  label: Hoe doelwitstelling werk
+  title: Waarom dit neerskryf?
+  myth: Die beroemde "3%-Yale-studie" het nooit plaasgevind nie.
+  text: "Gail Matthews (Dominican University, 2007): 149 volwassenes, vyf groepe, vier weke – gemiddelde vordering per groep."
+  bars:
+    - ["Het net oor doelwitte gedink", 4.28]
+    - ["Het doelwitte neergeskryf", 5.08]
+    - ["+ aksiestappe", 6.08]
+    - ["+ met 'n vriend gedeel", 6.41]
+    - ["+ weeklikse vorderingsverslag", 7.6]
+  foot: Skryf dit neer · verbind jou tot stappe · doen aan iemand verantwoording.
+  notes: Wees eerlik oor die mite – dan die regte, klein studie. Elke stap wat bygekom het, het meer vordering gebring; die weeklikse verslag aan 'n vriend het die meeste gehelp. Dit is die vorm van die werkblad.
+
+- type: smart
+  label: Hoe doelwitstelling werk
+  title: Maak elke doelwit SMART
+  items:
+    - ["S", "Spesifiek", "Nie \"geld spaar\" nie, maar \"Ek bou 'n noodfonds op.\""]
+    - ["M", "Meetbaar", "Getalle of mylpale wat jy kan volg."]
+    - ["A", "Haalbaar (attainable)", "Dit rek jou, maar bly realisties."]
+    - ["R", "Relevant & Realisties", "Dit pas by jou waardes en hierdie seisoen van jou lewe."]
+    - ["T", "Tydgebonde", "'n Doelwit sonder 'n datum is 'n wens."]
+  notes: Gaan deur SMART met die noodfondsvoorbeeld. Tydgebonde is waar die meeste doelwitte stilletjies misluk.
+
+- type: grid
+  label: Die Doelwitbeplanningsblad
+  title: Die werkblad, afdeling vir afdeling
+  items:
+    - ["Die doelwit", "'n SMART-sin in die positiewe teenwoordige tyd"]
+    - ["Waarom dit saak maak", "Wat jy wen – en wat jy vermy"]
+    - ["Struikelblokke & planne", "Benoem die weerstand; beplan elke ompad"]
+    - ["Aksiestappe", "Klein stappe, elkeen met 'n datum"]
+    - ["Wie moet weet", "Mense wat jou ondersteun en vra"]
+    - ["Vordering volg", "Wanneer en hoe jy nagaan"]
+    - ["Is dit die moeite werd?", "Waardes en koste – 'n laaste toets"]
+    - ["Herinneringe & prente", "Tekens wat die doelwit voor oë hou"]
+  notes: Stap deur die werkblad. "Waarom dit saak maak" is die rede wat 'n doelwit aan die lewe hou wanneer motivering daal.
+
+- type: example
+  label: "'n Voltooide voorbeeld"
+  title: "'n Voltooide werkblad: Werk & Finansies"
+  notes: Gaan deur die voorbeeld uit die boekie – doelwit, redes, struikelblokke en planne, gedateerde stappe.
+
+- type: areas
+  label: Die eerste treë
+  title: "Jou beurt: een doelwit vir elke area"
+  text: Nie dosyne doelwitte nie – een betekenisvolle doelwit per area, in die positiewe teenwoordige tyd, geanker in jou rede waarom.
+  verse: 6
+  notes: Lees Spreuke 16:3. Die uitdaging – ses doelwitte, een per area. Nooi hulle uit om hierdie week die app of die gedrukte werkblad te gebruik.
+
+- type: closing
+  title: Die lewe wat jy môre leef,
+  text: word gevorm deur die besluite en dade wat jy vandag op papier vaslê.
+  foot: Neem die wiel. Rig die pyl.
+  notes: Sluit af met die verbintenisreël.

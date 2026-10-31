@@ -54,7 +54,7 @@ Comparing ourselves with others is the quickest way to feel unsuccessful. There 
 
 **Three convictions help you measure success in this way:**
 
-- **You can grow further than you think.** Nobody can draw the outer line of what you are able to learn and become. Often the tightest limits are the ones we have drawn ourselves.
+- **Your potential cannot be measured.** No one can draw the outer line of what you are able to learn and become. Life keeps proving this: challenges we never saw coming draw out strengths we did not know we had. Often the tightest limits are the ones we have drawn ourselves.
 - **Much of what you could do is still unused.** Most of us have gifts and abilities we have never really developed – a reserve waiting to be discovered.
 - **Growth takes deliberate effort.** That reserve does not open up by itself. Success, in Meyer's sense, is the steady realisation of goals that you set yourself and that stretch you toward what you could become.
 
@@ -148,7 +148,7 @@ Writing your goals down:
 
 ## 5.2 The anatomy of a SMART goal
 
-To give your mind a clear target and guide what you actually do, shape each goal with the **SMART** pattern:
+A clear, specific goal works on two levels. It focuses your attention and effort – and when you tie it to concrete plans ("when this happens, I will do that"), your right responses become almost automatic, even when you are not thinking about the goal. Shape each goal with the **SMART** pattern:
 
 | | | |
 |---|---|---|

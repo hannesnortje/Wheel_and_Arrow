@@ -1,0 +1,21 @@
+area: Arbeit & Finanzen
+started: 1. Oktober 2025
+target: 31. Dezember 2025
+achieved: "[ausstehend]"
+goal: "Ich spare 1.500 EUR für einen eigenen Notgroschen, indem ich am 1. Oktober, 1. November und 1. Dezember automatisch je 500 EUR überweise."
+gain: "Innere Ruhe, weniger Stress in meiner Ehe und Schutz für meine Familie vor unerwarteten Kosten, ohne auf Kreditkarten angewiesen zu sein."
+avoid: "Die Angst, von Gehalt zu Gehalt zu leben, die Last teurer Schulden und Streit ums Geld zu Hause."
+obstacles:
+  - ["Spontankäufe am Wochenende.", "Ein festes Bargeldbudget fürs Wochenende; die Karten bleiben zu Hause."]
+  - ["Vergessen, die Überweisung zu machen.", "Ein Dauerauftrag zum Zahltag in der Banking-App."]
+steps:
+  - ["Den automatischen Dauerauftrag über 500 EUR in der Banking-App einrichten.", "1. Okt.", "1. Okt.", "Ja"]
+  - ["Jeden Sonntagabend den Kontoauszug prüfen.", "Wöchentlich", "Sonntags", "Laufend"]
+  - ["Abos kündigen, die ich nicht brauche (spart ca. 40 EUR im Monat).", "5. Okt.", "5. Okt.", "Ja"]
+who:
+  - "Mein Ehepartner – damit wir die Ausgaben im Haushalt gemeinsam planen und einander zur Rechenschaft ziehen."
+  - "Mein Mentor – der bei unseren Treffen alle zwei Wochen nach meinem Fortschritt fragt."
+track: "Ein Gewohnheits-Tracker auf dem Handy, in dem ich jede Überweisung abhake, und ein Blick auf den Kontostand am 1. jedes Monats."
+worth: [yes, yes]
+reminder: "Finanzielle Disziplin ist eine Form von Selbstachtung."
+picture: "Ein ausgedruckter Screenshot des Sparkontos mit 1.500 EUR, innen in meinen Kalender geklebt."

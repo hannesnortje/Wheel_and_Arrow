@@ -1,0 +1,157 @@
+# Folien zum Unterrichten von „Das Rad und der Pfeil“. type = Layout; notes = Sprechernotizen (nur im PDF für Leitende gedruckt).
+- type: title
+  eyebrow: Reihe Persönliche Leiterschaft
+  title: Das Rad und der Pfeil
+  sub: Ein Leitfaden für den Unterricht zu persönlicher Leiterschaft und Zielsetzung
+  notes: Begrüßung. Zwei große Gedanken heute Abend – das Rad (wo du stehst) und der Pfeil (wie du vorankommst). Stell den Abend als praktische Selbstleitung vor.
+
+- type: bridge
+  label: Einführung · Sein und Werden
+  title: Leiterschaft beginnt damit, dich selbst zu leiten
+  text: Meist geht es bei Leiterschaft darum, andere zu leiten. Persönliche Leiterschaft ist die stille, tägliche Arbeit, dich selbst zu leiten – bei der Arbeit, zu Hause, unter anderen und dann, wenn niemand zusieht.
+  from: ["Sein", "wer du heute bist"]
+  to: ["Werden", "zu wem du heranwächst"]
+  verse: 1
+  notes: Unterscheide zwischen dem Leiten anderer und dem Leiten deiner selbst. Lies Philipper 1,6 – Gott vollendet, was er beginnt. Die Brücke verbindet das heutige Sein mit dem Werden von morgen.
+
+- type: definition
+  label: Erfolg bestimmen
+  title: Was bedeutet Erfolg eigentlich?
+  quote: Erfolg ist die fortschreitende Verwirklichung lohnender, im Voraus festgelegter persönlicher Ziele.
+  by: Paul J. Meyer
+  points:
+    - ["Fortschreitend", "Keine Ziellinie, sondern eine Richtung – du hast Erfolg, während du unterwegs bist."]
+    - ["Im Voraus festgelegt", "Er geschieht selten zufällig; er wächst aus Entscheidungen, die vorher getroffen wurden."]
+    - ["Persönlich", "Er kommt aus deinen eigenen Überzeugungen, nicht aus den Erwartungen anderer."]
+  notes: Meyers Definition. Betone „fortschreitend“ – du hast schon Erfolg, während du dich auf ein Ziel zubewegst, das wirklich zählt.
+
+- type: compare
+  label: Erfolg bestimmen
+  title: Gemessen an deinem eigenen Potenzial
+  verse: 2
+  left: ["Die Vergleichsfalle", "Es gibt immer jemanden, der weiter ist – das Vergleichen hört nie auf."]
+  right: ["Der einzig wahre Maßstab", "Wer du jetzt bist – verglichen mit dem, der du werden könntest."]
+  points:
+    - ["Nicht messbar", "Unerwartete Herausforderungen bringen Stärken hervor, von denen wir nichts wussten."]
+    - ["Weitgehend ungenutzt", "Die meisten von uns haben Gaben, die wir nie wirklich entfaltet haben."]
+    - ["Bewusst entfaltet", "Die Reserve erschließt sich durch bewusste Anstrengung."]
+  notes: Lies Galater 6,4–5. Der entscheidende Perspektivwechsel – der einzige Vergleich, der die Wahrheit sagt, ist der mit dir selbst. Geh die drei Überzeugungen durch.
+
+- type: section
+  label: Teil eins
+  title: Das innere Fundament
+  text: Bevor du nach außen planst, schau dir den Boden an, auf dem du stehst – deine Begeisterung und dein Selbstbild.
+  verse: 3
+  notes: Lies Römer 12,2 – nicht in die Form dieser Weltzeit gepresst. Überleitung zum inneren Fundament.
+
+- type: cards
+  label: Das innere Fundament
+  title: Was unsere Begeisterung aufzehrt
+  text: Kinder sind neugierig, beweglich und haben keine Angst zu scheitern. Drei Dinge zehren das auf.
+  cards:
+    - ["Die Last der täglichen Pflichten", "Je beschäftigter wir sind, desto kürzer wird unser Blick."]
+    - ["Der Sog, sich anzupassen", "Je mehr wir uns verbiegen, um angenommen zu werden, desto mehr verblasst unsere Kreativität."]
+    - ["Eine erlernte Angst vor dem Scheitern", "Hart behandelte Fehler lehren uns, auf Nummer sicher zu gehen."]
+  foot: Zur persönlichen Leiterschaft gehört, die Offenheit und Hoffnung wiederzufinden, die du als Kind hattest.
+  notes: Frag – wann hast du zuletzt diese kindliche Begeisterung gespürt? Dann die drei Kräfte.
+
+- type: cards
+  label: Das innere Fundament
+  title: Ein gesünderes Selbstbild
+  text: Wir neigen dazu, so zu leben, wie es dem Menschen entspricht, für den wir uns halten.
+  cards:
+    - ["Erkenne, dass du einzigartig bist", "Es gibt niemanden, an dem du dich messen musst."]
+    - ["Nimm dich ehrlich an", "Benenne Stärken und Schwächen nüchtern, als Tatsachen."]
+    - ["Sprich dir wahre Worte zu", "Glaubwürdige Sätze drängen alte Zweifel zurück."]
+    - ["Erreiche kleine Ziele", "Jeder Erfolg zeigt dir, wozu du fähig bist."]
+  foot: Und schließ Frieden mit Fehlern – sie sind Stufen, auf denen du aufbaust, keine Steine, über die du stolperst.
+  notes: Ein schwaches Selbstbild wirkt wie eine niedrige Decke. Geh die vier Karten durch, dazu den Gedanken zu Fehlern.
+
+- type: areas
+  label: Das Lebensrad
+  title: Sechs Bereiche eines Lebens
+  text: Ärger zu Hause begleitet uns zur Arbeit; Sorgen aus der Arbeit setzen sich mit uns an den Abendbrottisch.
+  verse: 4
+  notes: Lies Lukas 2,52 – Jesus nahm zu an Weisheit, an Alter und an Gunst bei Gott und den Menschen. Nenne die sechs Bereiche.
+
+- type: steps
+  label: Das Lebensrad
+  title: Bewerte dein Rad – eine ehrliche Momentaufnahme
+  steps:
+    - ["Jeden Bereich mit 1–10 bewerten", "1 in der Mitte = überhaupt nicht zufrieden; 10 am Rand = völlig zufrieden."]
+    - ["Jede Speiche markieren", "Gemessen an dem Maßstab, den du dir selbst gesetzt hast."]
+    - ["Die Markierungen verbinden", "Die Umrisslinie ist die Form deines Rades heute."]
+  foot: Ein Rad mit einer 9 für die Arbeit und einer 2 für die Gesundheit sorgt für eine holprige Fahrt. Lass es nach außen wachsen – und rund bleiben.
+  notes: Mach die Übung direkt mit der Gruppe, wenn Zeit ist – in der App oder auf dem gedruckten Arbeitsblatt.
+
+- type: wheel
+  label: Das Lebensrad
+  title: So sieht ein unausgewogenes Rad aus
+  scores: [2, 7, 8, 2, 3, 9]
+  text: Ein Leben kann in einem Bereich davonrasen, während ein anderer fast stillsteht – und die Fahrt wird rau.
+  foot: Lass jede Speiche wachsen – Ausgewogenheit schlägt einen einzelnen Spitzenwert.
+  notes: Fahr die Umrisslinie nach – Arbeit und Gemeinschaft weit außen, Gesundheit, Werte und Familie nach innen gezogen. Wie gut würde dieses Rad rollen?
+
+- type: section
+  label: Teil zwei
+  title: Der Pfeil – Ziele setzen
+  text: Das Rad zeigt, wo du stehst. Der Pfeil ist, wie du vorankommst – eine Absicht, die zu einem Plan mit Datum wird, den du verfolgen kannst.
+  verse: 5
+  notes: Lies Philipper 3,13–14 – „das Ziel“ (σκοπός) ist die Zielscheibe des Bogenschützen. Das Rad stellt die Diagnose; der Pfeil bringt in Bewegung.
+
+- type: study
+  label: Wie Zielsetzung funktioniert
+  title: Warum aufschreiben?
+  myth: Die berühmte „3-%-Studie aus Yale“ hat es nie gegeben.
+  text: "Gail Matthews (Dominican University, 2007): 149 Erwachsene, fünf Gruppen, vier Wochen – durchschnittlicher Fortschritt je Gruppe."
+  bars:
+    - ["Nur über Ziele nachgedacht", 4.28]
+    - ["Ziele aufgeschrieben", 5.08]
+    - ["+ Handlungsschritte", 6.08]
+    - ["+ mit jemandem geteilt", 6.41]
+    - ["+ wöchentlicher Fortschrittsbericht", 7.6]
+  foot: Schreib es auf · leg dich auf Schritte fest · gib jemandem Rechenschaft.
+  notes: Sei ehrlich, was den Mythos angeht – dann die echte, kleine Studie. Jeder zusätzliche Schritt brachte mehr Fortschritt; der wöchentliche Bericht an einen Freund oder eine Freundin half am meisten. Genau so ist das Arbeitsblatt aufgebaut.
+
+- type: smart
+  label: Wie Zielsetzung funktioniert
+  title: Mach jedes Ziel SMART
+  items:
+    - ["S", "Spezifisch", "Nicht „Geld sparen“, sondern „Ich baue einen Notgroschen auf.“"]
+    - ["M", "Messbar", "Zahlen oder Etappenziele, die du verfolgen kannst."]
+    - ["A", "Erreichbar (attainable)", "Es fordert dich heraus, bleibt aber realistisch."]
+    - ["R", "Relevant & realistisch", "Es passt zu deinen Werten und zu deiner Lebensphase."]
+    - ["T", "Terminiert", "Ein Ziel ohne Datum ist ein Wunsch."]
+  notes: Geh SMART mit dem Beispiel vom Notgroschen durch. Beim Termin scheitern die meisten Ziele – ganz leise.
+
+- type: grid
+  label: Das Zielplanungsblatt
+  title: Das Arbeitsblatt, Abschnitt für Abschnitt
+  items:
+    - ["Das Ziel", "Ein SMARTer Satz – positiv und in der Gegenwart"]
+    - ["Warum es wichtig ist", "Was du gewinnst – und was du vermeidest"]
+    - ["Hindernisse & Pläne", "Den Widerstand benennen; jeden Umweg planen"]
+    - ["Schritte", "Kleine Schritte mit jeweils einem Datum"]
+    - ["Wer davon wissen sollte", "Menschen, die dich unterstützen und nachfragen"]
+    - ["Fortschritt verfolgen", "Wann und wie du nachschaust"]
+    - ["Lohnt es sich?", "Werte und Kosten – eine letzte Prüfung"]
+    - ["Erinnerung & Erfolg vor Augen", "Merkzeichen, die das Ziel im Blick halten"]
+  notes: Geh das Arbeitsblatt durch. „Warum es wichtig ist“ ist der Grund, der ein Ziel am Leben hält, wenn die Motivation nachlässt.
+
+- type: example
+  label: Ein ausgefülltes Beispiel
+  title: "Ein fertiges Arbeitsblatt: Arbeit & Finanzen"
+  notes: Geh das Beispiel aus dem Heft durch – Ziel, Gründe, Hindernisse und Pläne, Schritte mit Datum.
+
+- type: areas
+  label: Die ersten Schritte gehen
+  title: "Du bist dran: ein Ziel für jeden Bereich"
+  text: Nicht Dutzende Ziele – ein bedeutsames Ziel pro Bereich, positiv und in der Gegenwart formuliert, verankert in deinem Warum.
+  verse: 6
+  notes: Lies Sprüche 16,3. Die Herausforderung – sechs Ziele, eins pro Bereich. Lade dazu ein, diese Woche die App oder das gedruckte Arbeitsblatt zu nutzen.
+
+- type: closing
+  title: Das Leben, das du morgen führst,
+  text: wird von den Entscheidungen und Taten geprägt, die du heute zu Papier bringst.
+  foot: Nimm das Rad in die Hand. Ziel mit dem Pfeil.
+  notes: Schließ mit dem Satz der Selbstverpflichtung.

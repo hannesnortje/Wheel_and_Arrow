@@ -1,5 +1,7 @@
 # Changes to "The Wheel and the Arrow" (for Hannes's review)
 
+Status: Bible passages and all changes approved by Hannes on 31 Oct 2026 (12 and 15 in the wording agreed with him).
+
 Original: Google Doc "The_Wheel_and_the_Arrow" and the 17 slides (both left untouched).
 New source: `content/booklet-en.md` (+ `example-en.yml`, `bible.md`).
 
@@ -20,10 +22,10 @@ New source: `content/booklet-en.md` (+ `example-en.yml`, `bible.md`).
 
 ## C. Factual corrections
 11. "Behavioural scientists agree that human beings possess far more talent…" → "Most of us have gifts and abilities we have never really developed" (no consensus claim).
-12. "Your potential is practically limitless … no way to measure the boundaries" → "You can grow further than you think. Nobody can draw the outer line…".
+12. "Your potential is practically limitless … no way to measure the boundaries" → "Your potential cannot be measured. … challenges we never saw coming draw out strengths we did not know we had." (Hannes's wording, 31 Oct)
 13. "It is a psychological truth that you will always act like the person you believe you are" → "We tend to live in line with the person we believe we are."
 14. Affirmations: research shows positive self-statements can backfire for people with low self-esteem when they don't believe them (Wood, Perunovic & Lee 2009) → "Speak true words to yourself … especially when they are true and believable."
-15. "To trigger your subconscious mind" (§5.2) → "To give your mind a clear target".
+15. "To trigger your subconscious mind" (§5.2) → "A clear, specific goal works on two levels. It focuses your attention and effort – and when you tie it to concrete plans (…), your right responses become almost automatic" (Locke & Latham; Gollwitzer's implementation intentions). Approved by Hannes 31 Oct.
 16. Inconsistency fixed: §5.2 example "I will build a contingency fund" vs. §5.3 "I am… rather than I will…" → "I am building an emergency fund."
 17. "We will revisit this wheel at the end of your programme" (leftover from a course) → "Score your wheel again in about three months".
 

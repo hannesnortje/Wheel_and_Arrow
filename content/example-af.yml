@@ -1,0 +1,21 @@
+area: Werk & Finansies
+started: 1 Oktober 2025
+target: 31 Desember 2025
+achieved: "[nog hangende]"
+goal: "Ek spaar R15 000 in 'n aparte noodfonds deur op 1 Oktober, November en Desember 'n oorplasing van R5 000 te outomatiseer."
+gain: "Gemoedsrus, minder spanning in my huwelik, en beskerming vir my gesin teen onverwagte koste sonder om op kredietkaarte staat te maak."
+avoid: "Die angs om van salaristjek tot salaristjek te leef, die pyn van skuld teen hoë rente, en rusies oor geld by die huis."
+obstacles:
+  - ["Impulsiewe uitgawes oor naweke.", "'n Vaste kontantbegroting vir naweke; die kaarte bly by die huis."]
+  - ["Vergeet om die oorplasing te doen.", "'n Outomatiese herhalende oorplasing op betaaldag in die bank-app."]
+steps:
+  - ["Stel die outomatiese oorplasing van R5 000 in die bank-app op.", "1 Okt", "1 Okt", "Ja"]
+  - ["Gaan elke Sondagaand die bankstaat na.", "Weekliks", "Sondae", "Deurlopend"]
+  - ["Kanselleer intekeninge wat ek nie nodig het nie (spaar sowat R400 per maand).", "5 Okt", "5 Okt", "Ja"]
+who:
+  - "My eggenoot – sodat ons huishoudelike uitgawes saam beplan en mekaar aanspreeklik hou."
+  - "My mentor – wat elke twee weke by ons gesprekke na my vordering vra."
+track: "'n Gewoontevolger op my foon om elke oorplasing af te merk, en 'n kykie na die rekeningsaldo op die 1ste van elke maand."
+worth: [yes, yes]
+reminder: "Finansiële dissipline is 'n vorm van selfrespek."
+picture: "'n Gedrukte skermskoot van die spaarrekening op R15 000, binne-in my dagboek vasgeplak."

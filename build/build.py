@@ -98,7 +98,7 @@ def wheel_svg(lang, scores=None, size=320):
     names = [n for _, n, _ in areas(lang)]
     cx = cy = size / 2
     R = size * 0.34
-    parts = [f'<svg viewBox="0 0 {size} {size}" role="img" aria-label="{html.escape(", ".join(names))}">']
+    parts = [f'<svg viewBox="{-size*0.16:.0f} 0 {size*1.32:.0f} {size}" role="img" aria-label="{html.escape(", ".join(names))}">']
     for k in range(1, 11):
         parts.append(f'<circle cx="{cx}" cy="{cy}" r="{R*k/10:.1f}" fill="none" stroke="currentColor" stroke-opacity="{.5 if k == 10 else .15}" stroke-width="{1.4 if k == 10 else .8}"/>')
     pts = []
@@ -130,17 +130,23 @@ EX_LABELS = {
                gain="What I gain", avoid="What I avoid", obst="What could get in the way", handle="How I'll handle it", steps="Action steps",
                step="Action step", due="Due", rev="Reviewed", done="Done", who="Who should know", track="How I'll track progress",
                worth="Worth it?", q1="Does this fit what I value?", q2="Is the time, effort and cost worth it?", yes="Yes", no="No",
-               rem="Encouraging reminder", pic="Picture success"),
+               rem="Encouraging reminder", pic="Picture success", name="Name", date="Date", later="Yes, but later",
+               goal_hint="Make it SMART – specific, measurable, attainable, relevant/realistic, time-bound.",
+               why_hint="What I gain by reaching it – and what I avoid.", filed="When it's done, keep this sheet with your wins."),
     "de": dict(area="Lebensbereich", started="Begonnen", target="Zieldatum", achieved="Erreicht am", goal="Das Ziel", why="Warum es wichtig ist",
                gain="Was ich gewinne", avoid="Was ich vermeide", obst="Was dazwischenkommen könnte", handle="Wie ich damit umgehe", steps="Schritte",
                step="Schritt", due="Fällig", rev="Geprüft", done="Erledigt", who="Wer davon wissen sollte", track="Wie ich meinen Fortschritt verfolge",
                worth="Lohnt es sich?", q1="Passt es zu meinen Werten?", q2="Sind Zeit, Mühe und Kosten es wert?", yes="Ja", no="Nein",
-               rem="Ermutigende Erinnerung", pic="Erfolg vor Augen"),
+               rem="Ermutigende Erinnerung", pic="Erfolg vor Augen", name="Name", date="Datum", later="Ja, aber später",
+               goal_hint="Formuliere es SMART – spezifisch, messbar, erreichbar, relevant/realistisch, terminiert.",
+               why_hint="Was ich gewinne, wenn ich es erreiche – und was ich vermeide.", filed="Wenn es geschafft ist, leg dieses Blatt zu deinen Erfolgen."),
     "af": dict(area="Lewensarea", started="Begin", target="Teikendatum", achieved="Bereik op", goal="Die doelwit", why="Waarom dit saak maak",
                gain="Wat ek wen", avoid="Wat ek vermy", obst="Wat in die pad kan kom", handle="Hoe ek dit sal hanteer", steps="Aksiestappe",
                step="Aksiestap", due="Sperdatum", rev="Nagegaan", done="Klaar", who="Wie moet weet", track="Hoe ek my vordering sal volg",
                worth="Is dit die moeite werd?", q1="Pas dit by my waardes?", q2="Is die tyd, moeite en koste die moeite werd?", yes="Ja", no="Nee",
-               rem="Bemoedigende herinnering", pic="Sien sukses voor jou"),
+               rem="Bemoedigende herinnering", pic="Sien sukses voor jou", name="Naam", date="Datum", later="Ja, maar later",
+               goal_hint="Maak dit SMART – spesifiek, meetbaar, haalbaar, relevant/realisties, tydgebonde.",
+               why_hint="Wat ek wen as ek dit bereik – en wat ek vermy.", filed="As dit klaar is, hou hierdie blad by jou suksesse."),
 }
 
 
@@ -277,8 +283,68 @@ def build():
                    app_json=json.dumps({"root": "", "langs": LANGS, "page": "router", "target": target}))
         (ROOT / file).write_text(E.get_template("router.html").render(**ctx), encoding="utf-8")
     shutil.copy(SRC / "manifest.webmanifest", ROOT / "manifest.webmanifest")
+    build_print()
     write_service_worker()
     print("built", ", ".join(LANGS))
+
+
+SITE_URL = "https://hannesnortje.github.io/Wheel_and_Arrow/"
+
+
+def slides_for(lang, bible):
+    p = CONTENT / f"slides-{lang}.yml"
+    if not p.exists():
+        p = CONTENT / "slides-en.yml"
+    try:
+        slides = yaml.safe_load(p.read_text(encoding="utf-8"))
+    except yaml.YAMLError as e:
+        print(f"  WARNING: {p.name} does not parse ({e.problem}) – English slides used")
+        slides = yaml.safe_load((CONTENT / "slides-en.yml").read_text(encoding="utf-8"))
+    for s in slides:
+        v = s.get("verse")
+        if v and v in bible and lang in bible[v]:
+            s["verse_text"] = small_caps(html.escape(bible[v][lang]))
+            s["verse_ref"] = ref_for(bible[v]["ref"], lang)
+        if s["type"] == "wheel":
+            s["svg"] = wheel_svg(lang, s["scores"])
+    return slides
+
+
+def example_data(lang):
+    p = CONTENT / f"example-{lang}.yml"
+    if not p.exists():
+        p = CONTENT / "example-en.yml"
+    return yaml.safe_load(p.read_text(encoding="utf-8"))
+
+
+def wheel_blank(lang):
+    """Large blank wheel for the printed worksheet, with ring numbers on the first spoke."""
+    import math
+    svg = wheel_svg(lang, size=360)
+    cx = cy = 180; R = 360 * 0.34
+    nums = "".join(f'<text x="{cx + 3:.1f}" y="{cy - R*k/10 + 3:.1f}" font-family="Inter, sans-serif" font-size="7" fill="currentColor" opacity=".55">{k}</text>' for k in range(2, 11))
+    return svg.replace("</svg>", nums + "</svg>")
+
+
+def build_print():
+    """Print HTML for pdf.py (build/out/) and the presenter view of the slides (<lang>/slides.html)."""
+    E = env()
+    out = ROOT / "build" / "out"
+    out.mkdir(parents=True, exist_ok=True)
+    legal = yaml.safe_load((SRC / "legal" / "legal.yml").read_text(encoding="utf-8"))
+    bible = parse_bible()
+    year = datetime.date.today().year
+    for lang in LANGS:
+        t = STRINGS[lang]
+        fm, chapters, _ = chapters_for(lang, bible)
+        ctx = dict(lang=lang, t=t, bk=fm, chapters=chapters, legal=legal, site_url=SITE_URL,
+                   copyright=t["copyright"].format(year=year), ws=EX_LABELS[lang], wheel_blank=wheel_blank(lang),
+                   assets=(SRC / "assets").as_uri() + "/")
+        (out / f"booklet-{lang}.html").write_text(E.get_template("print_booklet.html").render(**ctx), encoding="utf-8")
+        sctx = dict(ctx, slides=slides_for(lang, bible), areas=areas(lang), ex=example_data(lang), ex_l=EX_LABELS[lang])
+        (out / f"slides-{lang}.html").write_text(E.get_template("slides.html").render(**sctx, notes_mode=False), encoding="utf-8")
+        (out / f"notes-{lang}.html").write_text(E.get_template("slides.html").render(**sctx, notes_mode=True), encoding="utf-8")
+        (ROOT / lang / "slides.html").write_text(E.get_template("slides.html").render(**dict(sctx, assets="../assets/"), notes_mode=False), encoding="utf-8")
 
 
 def write_service_worker():

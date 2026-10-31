@@ -1,0 +1,157 @@
+# Slides for teaching "The Wheel and the Arrow". type = layout; notes = speaker notes (printed in the leader's PDF only).
+- type: title
+  eyebrow: Personal Leadership Series
+  title: The Wheel and the Arrow
+  sub: A teaching guide to personal leadership and goal setting
+  notes: Welcome. Two big ideas tonight – the Wheel (where you stand) and the Arrow (how you move). Frame the session as practical self-leadership.
+
+- type: bridge
+  label: Introduction · Being and Becoming
+  title: Leadership begins with leading yourself
+  text: Most leadership is about leading others. Personal leadership is the quiet, daily work of leading yourself – at work, at home, among others, and when no one is watching.
+  from: ["Being", "who you are today"]
+  to: ["Becoming", "who you are growing into"]
+  verse: 1
+  notes: Distinguish leading others from leading yourself. Read Philippians 1:6 – God finishes what he begins. The bridge connects today's Being with tomorrow's Becoming.
+
+- type: definition
+  label: Defining success
+  title: What does success actually mean?
+  quote: Success is the progressive realisation of worthwhile, predetermined personal goals.
+  by: Paul J. Meyer
+  points:
+    - ["Progressive", "Not a finish line but a direction – you are succeeding while you move."]
+    - ["Predetermined", "It seldom happens by accident; it grows from decisions made ahead of time."]
+    - ["Personal", "It comes from your own convictions, not from others' expectations."]
+  notes: Meyer's definition. Stress "progressive" – you are already succeeding while you move toward a goal that matters.
+
+- type: compare
+  label: Defining success
+  title: Measured against your own potential
+  verse: 2
+  left: ["The comparison trap", "There is always someone further ahead – the comparison never ends."]
+  right: ["The only true measure", "Who you are now compared with who you could become."]
+  points:
+    - ["Unmeasurable", "Unexpected challenges draw out strengths we did not know we had."]
+    - ["Largely unused", "Most of us have gifts we have never really developed."]
+    - ["Developed on purpose", "The reserve opens through deliberate effort."]
+  notes: Read Galatians 6:4–5. The key reframe – the only comparison that tells the truth is with yourself. Walk the three convictions.
+
+- type: section
+  label: Part one
+  title: The inner foundation
+  text: Before you plan outward, look at the ground you stand on – your enthusiasm and your self-image.
+  verse: 3
+  notes: Read Romans 12:2 – not pressed into the mould of this age. Transition to the inner foundation.
+
+- type: cards
+  label: The inner foundation
+  title: What wears down our enthusiasm
+  text: Children are curious, flexible and unafraid of failing. Three things wear that away.
+  cards:
+    - ["The weight of daily duties", "The busier we are, the shorter our view."]
+    - ["The pull to fit in", "The more we bend to be accepted, the more our creativity fades."]
+    - ["A learned fear of failure", "Harshly treated mistakes teach us to play it safe."]
+  foot: Part of personal leadership is to recover the openness and hope you once had as a child.
+  notes: Ask – when did you last feel that childlike enthusiasm? Then the three forces.
+
+- type: cards
+  label: The inner foundation
+  title: A healthier self-image
+  text: We tend to live in line with the person we believe we are.
+  cards:
+    - ["See that you are unique", "There is no one you need to measure yourself against."]
+    - ["Accept yourself honestly", "Name strengths and weaknesses plainly, as facts."]
+    - ["Speak true words to yourself", "Believable statements push back old doubts."]
+    - ["Reach small goals", "Each success shows what you are capable of."]
+  foot: And make peace with mistakes – they are steps to build on, not stones to trip over.
+  notes: A poor self-image works like a low ceiling. Walk the four cards plus the note on mistakes.
+
+- type: areas
+  label: The Wheel of Life
+  title: Six areas of one life
+  text: Trouble at home follows us to work; worry at work sits down with us at the dinner table.
+  verse: 4
+  notes: Read Luke 2:52 – Jesus grew in wisdom, stature and favour with God and people. Name the six areas.
+
+- type: steps
+  label: The Wheel of Life
+  title: Score your wheel – an honest snapshot
+  steps:
+    - ["Score each area 1–10", "1 at the centre = not satisfied at all; 10 at the rim = completely satisfied."]
+    - ["Mark each spoke", "Measured against the standard you have set for yourself."]
+    - ["Join the marks", "The outline is the shape of your wheel today."]
+  foot: A wheel with a 9 for work and a 2 for health gives a bumpy ride. Let it grow outward – and stay round.
+  notes: Run the exercise live if there is time – in the app or on the printed worksheet.
+
+- type: wheel
+  label: The Wheel of Life
+  title: What an unbalanced wheel looks like
+  scores: [2, 7, 8, 2, 3, 9]
+  text: A life can race ahead in one area while another nearly stalls – and the ride is rough.
+  foot: Grow every spoke – balance beats a single high score.
+  notes: Trace the outline – work and community far out, health, values and family pulled in. How smoothly would this wheel roll?
+
+- type: section
+  label: Part two
+  title: The Arrow – setting goals
+  text: The wheel shows where you stand. The arrow is how you move – an intention turned into a dated, trackable plan.
+  verse: 5
+  notes: Read Philippians 3:13–14 – "the mark" (σκοπός) is the archer's target. The wheel diagnoses; the arrow moves.
+
+- type: study
+  label: The mechanism of goal setting
+  title: Why write it down?
+  myth: The famous "3% Yale study" never took place.
+  text: "Gail Matthews (Dominican University, 2007): 149 adults, five groups, four weeks – average progress per group."
+  bars:
+    - ["Only thought about goals", 4.28]
+    - ["Wrote goals down", 5.08]
+    - ["+ action steps", 6.08]
+    - ["+ shared with a friend", 6.41]
+    - ["+ weekly progress report", 7.6]
+  foot: Write it down · commit to steps · be accountable to someone.
+  notes: Be honest about the myth – then the real, small study. Each step added more progress; the weekly report to a friend helped most. That is the shape of the worksheet.
+
+- type: smart
+  label: The mechanism of goal setting
+  title: Shape every goal to be SMART
+  items:
+    - ["S", "Specific", "Not \"save money\" but \"I am building an emergency fund.\""]
+    - ["M", "Measurable", "Numbers or milestones you can track."]
+    - ["A", "Attainable", "It stretches you but stays realistic."]
+    - ["R", "Relevant & Realistic", "It fits your values and this season of life."]
+    - ["T", "Time-bound", "A goal without a date is a wish."]
+  notes: Walk SMART with the emergency-fund example. Time-bound is where most goals quietly fail.
+
+- type: grid
+  label: The Goal Planning Worksheet
+  title: The worksheet, section by section
+  items:
+    - ["The goal", "A SMART sentence in the positive present tense"]
+    - ["Why it matters", "What you gain – and what you avoid"]
+    - ["Obstacles & plans", "Name the resistance; plan each detour"]
+    - ["Action steps", "Small steps, each with a date"]
+    - ["Who should know", "People who support you and ask"]
+    - ["Track progress", "When and how you check"]
+    - ["Worth it?", "Values and cost – a last check"]
+    - ["Reminders & pictures", "Cues that keep the goal in view"]
+  notes: Tour the worksheet. "Why it matters" is the reason that keeps a goal alive when motivation dips.
+
+- type: example
+  label: A completed example
+  title: "A finished worksheet: Work & Finances"
+  notes: Walk through the example from the booklet – goal, reasons, obstacles and plans, dated steps.
+
+- type: areas
+  label: Taking the first steps
+  title: "Your turn: one goal for each area"
+  text: Not dozens of goals – one meaningful goal per area, in the positive present tense, anchored in your reason why.
+  verse: 6
+  notes: Read Proverbs 16:3. The challenge – six goals, one per area. Invite them to use the app or the printed worksheet this week.
+
+- type: closing
+  title: The life you live tomorrow
+  text: is shaped by the decisions and actions you commit to paper today.
+  foot: Take the wheel. Aim the arrow.
+  notes: Close on the commitment line.
