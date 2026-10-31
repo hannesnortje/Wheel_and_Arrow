@@ -1,0 +1,166 @@
+{% set L = T.ex %}
+<div class="tool goals">
+  <header class="tool-head">
+    <p class="eyebrow">{{ T.eyebrow }}</p>
+    <h1>{{ T.h1 }}</h1>
+    <p class="sub">{{ T.sub }}</p>
+  </header>
+
+  <div class="tbar scroll" role="toolbar" aria-label="{{ T.title }}">
+    <button class="tbtn" type="button" id="gNew">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>{{ T.new_goal }}</button>
+    <button class="tbtn ghost" type="button" data-act="pdf">{{ T.download }}</button>
+    <button class="tbtn ghost" type="button" data-act="print">{{ T.print }}</button>
+    <button class="tbtn ghost" type="button" id="gSample">{{ T.sample_btn }}</button>
+    <button class="tbtn ghost" type="button" id="gTut">{{ T.tutorial }}</button>
+    <button class="tbtn ghost" type="button" id="gExport">{{ T.backup }}</button>
+    <button class="tbtn ghost" type="button" id="gImport">{{ T.load }}</button>
+    <button class="tbtn danger" type="button" id="gClear">{{ T.clear_all }}</button>
+    <input type="file" id="gFile" accept="application/json,.json" hidden>
+    <span class="saved-note" id="gSaved" aria-live="polite">{{ T.autosave }}</span>
+  </div>
+
+  <div class="g-layout">
+    <div class="g-backdrop" id="gBackdrop" hidden></div>
+    <aside class="g-side" id="gSide" aria-labelledby="gSideH">
+      <div class="g-side-head">
+        <h2 class="sec-h" id="gSideH">{{ T.my_goals }}</h2>
+        <button class="tbtn ghost icon g-side-x" type="button" id="gSideClose" aria-label="{{ T.close }}">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="g-tabs" role="tablist">
+        <button type="button" role="tab" id="gTabA" aria-selected="true">{{ T.tab_active }} <span class="n" id="gCntA">0</span></button>
+        <button type="button" role="tab" id="gTabZ" aria-selected="false">{{ T.tab_archived }} <span class="n" id="gCntZ">0</span></button>
+      </div>
+      <nav class="g-list" id="gList" aria-label="{{ T.my_goals }}"></nav>
+    </aside>
+
+    <div class="g-main" id="gForm">
+      <button class="g-current" type="button" id="gOpenList" aria-controls="gSide" aria-expanded="false">
+        <span class="g-cur-l">{{ T.current }}</span>
+        <span class="g-cur-t" id="gCurTitle"></span>
+        <span class="g-cur-n" id="gCurCount"></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="g-arch" id="gArchBanner" hidden>
+        <span>{{ T.archived_banner }}</span>
+        <button class="tbtn ghost" type="button" data-act="restore">{{ T.restore }}</button>
+      </div>
+
+      <section class="tcard">
+        <div class="g-meta">
+          <label class="g-name"><span class="fld">{{ T.name }}</span>
+            <input type="text" data-field="name" placeholder="{{ T.name_ph }}" autocomplete="off"></label>
+          <label><span class="fld">{{ L.area }}</span>
+            <select data-field="life_area">
+              <option value="">{{ T.area_choose }}</option>
+              {% for id, name, desc in T._areas %}<option value="{{ id }}">{{ name }}</option>{% endfor %}
+            </select></label>
+          <label><span class="fld">{{ L.started }}</span><input type="date" data-field="started"></label>
+          <label><span class="fld">{{ L.target }}</span><input type="date" data-field="target_date"></label>
+          <label><span class="fld">{{ L.achieved }}</span><input type="date" data-field="achieved_on"></label>
+        </div>
+      </section>
+
+      <section class="tcard">
+        <label for="f_goal"><h2 class="sec-h">{{ L.goal }}</h2></label>
+        <p class="hint">{{ L.goal_hint }}</p>
+        <textarea id="f_goal" data-field="the_goal" rows="4" placeholder="{{ T.goal_ph }}"></textarea>
+      </section>
+
+      <section class="tcard">
+        <label for="f_why"><h2 class="sec-h">{{ L.why }}</h2></label>
+        <p class="hint">{{ L.why_hint }}</p>
+        <textarea id="f_why" data-field="why_matters" rows="4" placeholder="{{ T.why_ph }}"></textarea>
+      </section>
+
+      <section class="tcard">
+        <div class="grid2">
+          <div><label for="f_obst"><h2 class="sec-h">{{ L.obst }}</h2></label>
+            <textarea id="f_obst" data-field="obstacles" rows="5" placeholder="{{ T.obst_ph }}"></textarea></div>
+          <div><label for="f_hand"><h2 class="sec-h">{{ L.handle }}</h2></label>
+            <textarea id="f_hand" data-field="handling" rows="5" placeholder="{{ T.handle_ph }}"></textarea></div>
+        </div>
+      </section>
+
+      <section class="tcard">
+        <h2 class="sec-h">{{ L.steps }}</h2>
+        <ol class="g-steps" id="gSteps"></ol>
+        <button class="tbtn ghost g-add" type="button" id="gAddStep">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>{{ T.add_step }}</button>
+      </section>
+
+      <section class="tcard">
+        <div class="grid2">
+          <div><label for="f_who"><h2 class="sec-h">{{ L.who }}</h2></label>
+            <p class="hint">{{ T.who_hint }}</p>
+            <textarea id="f_who" data-field="who_should_know" rows="3" placeholder="{{ T.who_ph }}"></textarea></div>
+          <div><label for="f_track"><h2 class="sec-h">{{ L.track }}</h2></label>
+            <p class="hint">{{ T.track_hint }}</p>
+            <textarea id="f_track" data-field="track_progress" rows="3" placeholder="{{ T.track_ph }}"></textarea></div>
+        </div>
+      </section>
+
+      <section class="tcard">
+        <h2 class="sec-h">{{ L.worth }}</h2>
+        <fieldset class="g-wq">
+          <legend>{{ L.q1 }}</legend>
+          <div class="g-opts">
+            <label class="g-opt"><input type="checkbox" data-field="worth_value_yes"> {{ L.yes }}</label>
+            <label class="g-opt"><input type="checkbox" data-field="worth_value_no"> {{ L.no }}</label>
+          </div>
+        </fieldset>
+        <fieldset class="g-wq">
+          <legend>{{ L.q2 }}</legend>
+          <div class="g-opts">
+            <label class="g-opt"><input type="checkbox" data-field="worth_cost_yes"> {{ L.yes }}</label>
+            <label class="g-opt"><input type="checkbox" data-field="worth_cost_no"> {{ L.no }}</label>
+            <label class="g-opt"><input type="checkbox" data-field="worth_cost_later"> {{ L.later }}</label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="tcard">
+        <div class="grid2">
+          <div><label for="f_rem"><h2 class="sec-h">{{ L.rem }}</h2></label>
+            <p class="hint">{{ T.rem_hint }}</p>
+            <textarea id="f_rem" data-field="reminders" rows="4"></textarea></div>
+          <div><label for="f_pic"><h2 class="sec-h">{{ L.pic }}</h2></label>
+            <p class="hint">{{ T.pic_hint }}</p>
+            <textarea id="f_pic" data-field="picture_success" rows="4"></textarea></div>
+        </div>
+      </section>
+
+      <div class="g-actions">
+        <button class="tbtn" type="button" data-act="pdf">{{ T.download }}</button>
+        <button class="tbtn ghost" type="button" data-act="print">{{ T.print }}</button>
+        <button class="tbtn ghost" type="button" data-act="archive" id="gArchBtn">{{ T.archive }}</button>
+        <button class="tbtn ghost" type="button" data-act="restore" id="gRestBtn" hidden>{{ T.restore }}</button>
+        <button class="tbtn ghost" type="button" data-act="reset">{{ T.reset }}</button>
+        <button class="tbtn danger" type="button" data-act="delete">{{ T.delete }}</button>
+      </div>
+      <p class="status-line" id="gStatus" role="status" aria-live="polite"></p>
+
+      <p class="g-filed">✓ {{ L.filed }}</p>
+      <p class="hint g-foot">{{ T.tagline }}</p>
+      <p class="hint g-foot">{{ T.privacy }}</p>
+    </div>
+  </div>
+
+  <div class="modal-bg" id="gTutBg" hidden>
+    <div class="modal g-tut" role="dialog" aria-modal="true" aria-labelledby="gTutTitle">
+      <button class="tbtn ghost icon g-tut-x" type="button" id="gTutClose" aria-label="{{ T.close }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <p class="eyebrow">{{ T.tut_kicker }}</p>
+      <h3 id="gTutTitle"></h3>
+      <div class="g-tut-body" id="gTutBody"></div>
+      <div class="g-dots" id="gTutDots" aria-hidden="true"></div>
+      <label class="g-skip"><input type="checkbox" id="gTutSkip"> {{ T.tut_skip }}</label>
+      <div class="modal-foot">
+        <button class="tbtn ghost" type="button" id="gTutPrev">{{ T.tut_prev }}</button>
+        <button class="tbtn" type="button" id="gTutNext">{{ T.tut_next }}</button>
+      </div>
+    </div>
+  </div>
+</div>

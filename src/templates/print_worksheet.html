@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<title>{{ title }}</title>
+<style>
+@font-face { font-family: "Literata"; src: url("{{ assets }}fonts/literata-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Literata"; src: url("{{ assets }}fonts/literata-latin-ext-400-normal.woff2") format("woff2"); font-weight: 400; unicode-range: U+0100-024F; }
+@font-face { font-family: "Literata"; src: url("{{ assets }}fonts/literata-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+@font-face { font-family: "Literata"; src: url("{{ assets }}fonts/literata-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: "Inter"; src: url("{{ assets }}fonts/inter-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("{{ assets }}fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Inter"; src: url("{{ assets }}fonts/inter-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+@page { size: 210mm 297mm; margin: 0; }
+:root { --ink: #1d2a31; --soft: #4d5b62; --sea: #16465a; --sea-2: #2a6f87; --tint: #dfe9ec; --sand: #b0793a; --rule: #b9c9ce; --paper: #f6f2ea; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font: 400 9pt/1.35 "Inter", sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; height: 297mm; position: relative; overflow: hidden; page-break-after: always; break-after: page; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+.band { background: var(--sea); color: #fff; padding: 9mm 16mm 6.5mm; }
+.band h1 { font: 600 22pt/1.1 "Literata", serif; margin: 0; letter-spacing: -.005em; }
+.band .sub { font: italic 400 10pt/1.35 "Literata", serif; color: #d3e3e8; margin: 1.6mm 0 0; }
+.band .by { font: 500 8pt/1 "Inter", sans-serif; color: #c6dbe2; letter-spacing: .04em; margin: 3mm 0 0; }
+.band.small { padding: 7mm 16mm 5mm; }
+.band.small h1 { font-size: 15pt; }
+.content { padding: 6mm 16mm 0; }
+.lbl { display: block; font: 600 7.4pt/1.3 "Inter", sans-serif; letter-spacing: .11em; text-transform: uppercase; color: var(--sand); margin: 0 0 1mm; }
+.hint { display: block; font: italic 400 7.6pt/1.3 "Literata", serif; color: var(--soft); margin: -.4mm 0 1.2mm; }
+.box { border: .9pt solid var(--rule); border-radius: 1.6mm; background: #fff; }
+.sec { margin: 0 0 4.2mm; }
+.meta { display: grid; grid-template-columns: 1.35fr 1fr 1fr 1fr; gap: 3mm; margin-bottom: 4.5mm; }
+.meta .box { height: 8.5mm; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.h30 { height: 33mm; }
+.h33 { height: 38mm; }
+.h25 { height: 27mm; }
+.h36 { height: 38mm; }
+.steps { width: 100%; }
+.srow { display: grid; grid-template-columns: 6mm 1fr 25mm 25mm 13mm; gap: 2mm; align-items: center; height: 9.4mm; border-bottom: .6pt solid #e3e9eb; }
+.srow.head { height: 6.5mm; background: var(--tint); border-radius: 1.2mm; border: 0; font: 600 7pt/1 "Inter", sans-serif; color: var(--sea); letter-spacing: .03em; padding: 0 0; }
+.srow.head span:first-child, .srow .n { text-align: center; }
+.srow .n { font: 500 8pt/1 "Inter", sans-serif; color: var(--soft); }
+.srow .box { height: 7mm; }
+.srow .ck { justify-self: center; }
+.ck { width: 4.6mm; height: 4.6mm; border: .9pt solid var(--sea-2); border-radius: .8mm; background: #fff; display: inline-block; flex: none; }
+.srow.head .c { text-align: center; }
+.wq { display: flex; align-items: center; gap: 2.4mm; margin: 0 0 2.6mm; font-size: 9pt; }
+.wq .q { width: 82mm; }
+.wq label { display: inline-flex; align-items: center; gap: 1.6mm; margin-right: 4mm; }
+.done { margin: 5mm 0 0; background: var(--tint); border-left: 1mm solid var(--sea); border-radius: 0 1.4mm 1.4mm 0; padding: 2.6mm 4mm; font: 600 9pt/1.35 "Inter", sans-serif; color: var(--sea); }
+.foot { position: absolute; left: 16mm; right: 16mm; bottom: 7mm; display: flex; justify-content: space-between; font: 400 7pt/1 "Inter", sans-serif; color: var(--soft); border-top: .6pt solid #e3e9eb; padding-top: 2mm; }
+</style>
+</head>
+<body>
+{% macro steprows(a, b) %}
+<div class="steps">
+  <div class="srow head"><span>#</span><span>{{ L.step }}</span><span>{{ L.due }}</span><span>{{ L.rev }}</span><span class="c">{{ L.done }}</span></div>
+  {% for i in range(a, b + 1) %}
+  <div class="srow"><span class="n">{{ i }}</span><span class="box" data-f="action_{{ i }}"></span><span class="box" data-f="due_{{ i }}" data-fs="9"></span><span class="box" data-f="reviewed_{{ i }}" data-fs="9"></span><span class="ck" data-f="done_{{ i }}" data-cb></span></div>
+  {% endfor %}
+</div>
+{% endmacro %}
+<section class="page">
+  <header class="band">
+    <h1>{{ title }}</h1>
+    <p class="sub">{{ hint }}</p>
+    <p class="by">{{ author }}</p>
+  </header>
+  <div class="content">
+    <div class="meta">
+      <div><span class="lbl">{{ L.area }}</span><div class="box" data-f="life_area"></div></div>
+      <div><span class="lbl">{{ L.started }}</span><div class="box" data-f="started"></div></div>
+      <div><span class="lbl">{{ L.target }}</span><div class="box" data-f="target_date"></div></div>
+      <div><span class="lbl">{{ L.achieved }}</span><div class="box" data-f="achieved_on"></div></div>
+    </div>
+    <div class="sec"><span class="lbl">{{ L.goal }}</span><span class="hint">{{ L.goal_hint }}</span><div class="box h30" data-f="the_goal" data-ml></div></div>
+    <div class="sec"><span class="lbl">{{ L.why }}</span><span class="hint">{{ L.why_hint }}</span><div class="box h30" data-f="why_matters" data-ml></div></div>
+    <div class="sec two">
+      <div><span class="lbl">{{ L.obst }}</span><div class="box h33" data-f="obstacles" data-ml></div></div>
+      <div><span class="lbl">{{ L.handle }}</span><div class="box h33" data-f="handling" data-ml></div></div>
+    </div>
+    <span class="lbl">{{ L.steps }}</span>
+    {{ steprows(1, 7) }}
+  </div>
+  <footer class="foot"><span>{{ copyright }}</span><span>1 / 2</span></footer>
+</section>
+<section class="page">
+  <header class="band small">
+    <h1>{{ title }} – {{ T.continued }}</h1>
+  </header>
+  <div class="content">
+    <span class="lbl">{{ L.steps }}</span>
+    {{ steprows(8, 15) }}
+    <div class="sec" style="margin-top:4.5mm"><span class="lbl">{{ L.who }}</span><span class="hint">{{ T.who_hint }}</span><div class="box h25" data-f="who_should_know" data-ml></div></div>
+    <div class="sec"><span class="lbl">{{ L.track }}</span><span class="hint">{{ T.track_hint }}</span><div class="box h25" data-f="track_progress" data-ml></div></div>
+    <div class="sec">
+      <span class="lbl">{{ L.worth }}</span>
+      <div class="wq"><span class="q">{{ L.q1 }}</span>
+        <label><span class="ck" data-f="worth_value_yes" data-cb></span>{{ L.yes }}</label>
+        <label><span class="ck" data-f="worth_value_no" data-cb></span>{{ L.no }}</label></div>
+      <div class="wq"><span class="q">{{ L.q2 }}</span>
+        <label><span class="ck" data-f="worth_cost_yes" data-cb></span>{{ L.yes }}</label>
+        <label><span class="ck" data-f="worth_cost_no" data-cb></span>{{ L.no }}</label>
+        <label><span class="ck" data-f="worth_cost_later" data-cb></span>{{ L.later }}</label></div>
+    </div>
+    <div class="two">
+      <div><span class="lbl">{{ L.rem }}</span><span class="hint">{{ T.rem_hint }}</span><div class="box h36" data-f="reminders" data-ml></div></div>
+      <div><span class="lbl">{{ L.pic }}</span><span class="hint">{{ T.pic_hint }}</span><div class="box h36" data-f="picture_success" data-ml></div></div>
+    </div>
+    <p class="done">✓ {{ L.filed }}</p>
+  </div>
+  <footer class="foot"><span>{{ copyright }}</span><span>2 / 2</span></footer>
+</section>
+</body>
+</html>
