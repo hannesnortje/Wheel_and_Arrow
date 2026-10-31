@@ -1,5 +1,7 @@
 # Translation choices for Hannes's review
 
+Status: approved by Hannes on 31 Oct 2026.
+
 ## Deutsch
 1. Title: Das Rad und der Pfeil · Series: Reihe Persönliche Leiterschaft
 2. Subtitle: „Ein Leitfaden für die Nachfolge: persönliche Leiterschaft und Zielsetzung“
