@@ -31,8 +31,33 @@
     a.addEventListener('click', function () { state.lang = a.getAttribute('data-set-lang'); save(state); });
   });
 
+  // ---------------------------------------------------------------- install
+  // Chrome/Edge/Samsung: our own "Install" button opens the browser's install dialog.
+  // iPhone/iPad: browsers there can't offer that, so show the Share → Add to Home Screen steps.
+  var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone;
   var tip = document.querySelector('[data-install-tip]');
-  if (tip && ((window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone)) tip.hidden = true;
+  var installBtns = document.querySelectorAll('[data-install]');
+  var deferred = null;
+  function show(sel, on) { var el = document.querySelector(sel); if (el) el.hidden = !on; }
+  if (standalone) { if (tip) tip.hidden = true; }
+  else if (/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+    show('[data-install-generic]', false); show('[data-ios-tip]', true);
+  }
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); deferred = e;
+    installBtns.forEach(function (b) { b.hidden = false; });
+  });
+  installBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.then(function () { deferred = null; installBtns.forEach(function (x) { x.hidden = true; }); });
+    });
+  });
+  window.addEventListener('appinstalled', function () {
+    installBtns.forEach(function (b) { b.hidden = true; });
+    show('[data-install-generic]', false); show('[data-installed]', true);
+  });
 
   // ---------------------------------------------------------------- menu
   var drawer = document.getElementById('drawer');

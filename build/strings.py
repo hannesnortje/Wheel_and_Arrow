@@ -4,6 +4,7 @@ LANGS = ["de", "en", "af"]
 
 STRINGS = {
     "en": {
+        "install": "Install the app", "ios_tip": "On iPhone/iPad: open this page in Safari, tap the Share button (square with arrow) and choose “Add to Home Screen”.", "installed": "The app is installed – open it from your home screen.",
         "back": "Back to the start page",
         "present": "Present the slides", "pdf_notes": "Leader's notes (PDF)",
         "app_online": "Also as an app", "worksheet": "Worksheet",
@@ -36,6 +37,7 @@ STRINGS = {
         "old_moved": "This page has moved.",
     },
     "de": {
+        "install": "App installieren", "ios_tip": "Auf iPhone/iPad: Öffne diese Seite in Safari, tippe auf „Teilen“ (Quadrat mit Pfeil) und wähle „Zum Home-Bildschirm“.", "installed": "Die App ist installiert – öffne sie über deinen Startbildschirm.",
         "back": "Zurück zur Startseite",
         "present": "Folien präsentieren", "pdf_notes": "Notizen für Leitende (PDF)",
         "app_online": "Auch als App", "worksheet": "Arbeitsblatt",
@@ -68,6 +70,7 @@ STRINGS = {
         "old_moved": "Diese Seite ist umgezogen.",
     },
     "af": {
+        "install": "Installeer die app", "ios_tip": "Op iPhone/iPad: maak hierdie blad in Safari oop, tik op die Deel-knoppie (vierkant met pyl) en kies “Voeg by tuisskerm”.", "installed": "Die app is geïnstalleer – maak dit oop vanaf jou tuisskerm.",
         "back": "Terug na die tuisblad",
         "present": "Bied die skyfies aan", "pdf_notes": "Leiersnotas (PDF)",
         "app_online": "Ook as 'n app", "worksheet": "Werkblad",

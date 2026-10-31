@@ -43,6 +43,7 @@
     <span class="drawer-title">{{ t.menu }}</span>
     <button class="icon-btn" type="button" data-drawer-close aria-label="{{ t.close }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
   </div>
+  <button class="drawer-install" type="button" data-install hidden>{{ t.install }}</button>
   <ul class="drawer-links">
     {% for p, label in nav %}<li><a href="{{ p }}"{% if p == file %} aria-current="page"{% endif %}>{{ label }}</a></li>{% endfor %}
   </ul>

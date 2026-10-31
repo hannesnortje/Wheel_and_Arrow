@@ -37,6 +37,7 @@
     <span class="drawer-title">Menu</span>
     <button class="icon-btn" type="button" data-drawer-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
   </div>
+  <button class="drawer-install" type="button" data-install hidden>Install the app</button>
   <ul class="drawer-links">
 <li><a href="index.html" aria-current="page">Home</a></li><li><a href="booklet.html">Read the booklet</a></li><li><a href="wheel.html">Wheel of Life</a></li><li><a href="goals.html">Goal Planning Worksheet</a></li><li><a href="plan.html">Whole-Life Goal Plan</a></li>  </ul>
   <section class="drawer-sec">
@@ -76,7 +77,12 @@
     <li><a href="goals.html"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="15" cy="17" r="11" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="15" cy="17" r="6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="15" cy="17" r="1.8" fill="currentColor"/><path d="M15 17L28 4M28 4h-5M28 4v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tt">Goal Planning Worksheet</span><span class="ts">Turn one goal into a dated, trackable plan.</span></a></li>
     <li><a href="plan.html"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 11h10M11 16h10M11 21h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tt">Whole-Life Goal Plan</span><span class="ts">Your mission statement and goals for every area.</span></a></li>
   </ul>
-  <p class="install-tip" data-install-tip>Tip: add this app to your home screen (browser menu → “Add to Home Screen” / “Install”). It then works offline too.</p>
+  <div class="install-tip" data-install-tip>
+    <p data-install-generic>Tip: add this app to your home screen (browser menu → “Add to Home Screen” / “Install”). It then works offline too.</p>
+    <p data-ios-tip hidden>On iPhone/iPad: open this page in Safari, tap the Share button (square with arrow) and choose “Add to Home Screen”.</p>
+    <p data-installed hidden>The app is installed – open it from your home screen.</p>
+    <button class="btn-solid install-btn" type="button" data-install hidden>Install the app</button>
+  </div>
 </div>
 </main>
 <footer class="site-footer">

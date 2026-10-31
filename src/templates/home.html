@@ -15,6 +15,11 @@
     <li{% if loop.first %} class="first"{% endif %}><a href="{{ c.href }}">{{ c.icon|safe }}<span class="tt">{{ c.title }}</span><span class="ts">{{ c.sub }}</span></a></li>
     {% endfor %}
   </ul>
-  <p class="install-tip" data-install-tip>{{ t.install_tip }}</p>
+  <div class="install-tip" data-install-tip>
+    <p data-install-generic>{{ t.install_tip }}</p>
+    <p data-ios-tip hidden>{{ t.ios_tip }}</p>
+    <p data-installed hidden>{{ t.installed }}</p>
+    <button class="btn-solid install-btn" type="button" data-install hidden>{{ t.install }}</button>
+  </div>
 </div>
 {% endblock %}
