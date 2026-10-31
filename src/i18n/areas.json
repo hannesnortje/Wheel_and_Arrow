@@ -1,0 +1,28 @@
+{
+  "_note": "The six life areas, in booklet order. ids are stable; never store translated names as keys.",
+  "ids": ["ethics", "mind", "society", "body", "family", "work"],
+  "en": {
+    "ethics": ["Ethics & Values", "Your convictions, your spiritual life and the principles you live by."],
+    "mind": ["Mind & Learning", "How you grow in knowledge, understanding and skill."],
+    "society": ["Society & Community", "Friendships, service and your place among other people."],
+    "body": ["Body & Health", "Energy, fitness, food and rest."],
+    "family": ["Family & Home", "Your spouse, your children and the home you share."],
+    "work": ["Work & Finances", "Your calling at work, how you do it, and how you handle money."]
+  },
+  "de": {
+    "ethics": ["Ethik & Werte", "Deine Überzeugungen, dein geistliches Leben und die Grundsätze, nach denen du lebst."],
+    "mind": ["Geist & Lernen", "Wie du an Wissen, Verständnis und Können wächst."],
+    "society": ["Gesellschaft & Gemeinschaft", "Freundschaften, Dienst an anderen und dein Platz unter Menschen."],
+    "body": ["Körper & Gesundheit", "Kraft, Fitness, Ernährung und Ruhe."],
+    "family": ["Familie & Zuhause", "Dein Ehepartner, deine Kinder und euer gemeinsames Zuhause."],
+    "work": ["Arbeit & Finanzen", "Deine Berufung im Beruf, wie du sie ausfüllst und wie du mit Geld umgehst."]
+  },
+  "af": {
+    "ethics": ["Etiek & Waardes", "Jou oortuigings, jou geestelike lewe en die beginsels waarvolgens jy leef."],
+    "mind": ["Verstand & Leer", "Hoe jy groei in kennis, insig en vaardigheid."],
+    "society": ["Samelewing & Gemeenskap", "Vriendskappe, diens aan ander en jou plek tussen mense."],
+    "body": ["Liggaam & Gesondheid", "Energie, fiksheid, kos en rus."],
+    "family": ["Gesin & Huis", "Jou eggenoot, jou kinders en die huis wat julle deel."],
+    "work": ["Werk & Finansies", "Jou roeping by die werk, hoe jy dit doen, en hoe jy met geld omgaan."]
+  }
+}

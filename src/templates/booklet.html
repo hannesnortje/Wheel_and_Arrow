@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ bk.title }} · {{ t.booklet_short }}{% endblock %}
+{% block main %}
+<article class="wrap booklet">
+  <header class="bk-title">
+    <p class="eyebrow">{{ bk.series }}</p>
+    <h1>{{ bk.title }}</h1>
+    <p class="subtitle">{{ bk.subtitle }}</p>
+    <p class="byline">{{ t.author }}</p>
+  </header>
+  <h2 class="sec-h">{{ t.contents }}</h2>
+  <ol class="bk-toc">
+    {% for c in chapters %}<li><a href="#{{ c.id }}"><span class="dn">{{ c.n }}</span><span>{{ c.title }}</span></a></li>{% endfor %}
+  </ol>
+  {% for c in chapters %}
+  <section class="chapter-sec body" id="{{ c.id }}">
+    <h2><span class="cn">{{ t.chapter }} {{ c.n }}</span>{{ c.title }}</h2>
+    {{ c.html|safe }}
+  </section>
+  {% endfor %}
+  <p class="muted bk-note">{{ t.translation_note }}<br>{{ t.not_affiliated }}</p>
+</article>
+{% endblock %}

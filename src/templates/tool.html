@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ tool_title }} · {{ t.app_title }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ root }}assets/{{ tool }}.css">{% endblock %}
+{% block main %}
+{% include "tools/" ~ tool ~ ".html" %}
+{% endblock %}
+{% block scripts %}
+<script>window.T = {{ T_json }};</script>
+{% for s in tool_scripts %}<script src="{{ root }}assets/{{ s }}"></script>
+{% endfor %}<script src="{{ root }}assets/{{ tool }}.js"></script>
+{% endblock %}

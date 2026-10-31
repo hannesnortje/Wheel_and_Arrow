@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Wheel and the Arrow · Das Rad und der Pfeil · Die Wiel en die Pyl</title>
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="{{ root }}assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ root }}assets/icon-180.png">
+<link rel="manifest" href="{{ root }}manifest.webmanifest">
+<style>body{margin:0;background:#16465a;color:#f4efe6;font:16px/1.5 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh}a{color:#f4efe6}</style>
+<script>window.APP = {{ app_json }};</script>
+</head>
+<body>
+<noscript><p>{% for l in langs %}<a href="{{ root }}{{ l }}/{{ target }}">{{ strings[l].lang_name }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p></noscript>
+<script src="{{ root }}assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ t.about }} · {{ t.app_title }}{% endblock %}
+{% block main %}
+<article class="wrap day legal about">
+  <h1>{{ t.about }}</h1>
+  {% if lang == 'de' %}
+  <p><strong>{{ t.app_title }}</strong> ist ein Heft und eine kleine App über persönliche Leiterschaft und Zielsetzung von {{ t.author }}. Das Heft führt in sechs kurzen Kapiteln durch Erfolg, das innere Fundament, das Lebensrad und das Setzen von Zielen. Die drei Werkzeuge – Lebensrad, Zielplanungsblatt und ganzheitlicher Zielplan – helfen dir, das Gelesene gleich umzusetzen.</p>
+  <h2>Deine Daten</h2>
+  <p>Alles, was du in die Werkzeuge einträgst, wird nur im Browser auf deinem Gerät gespeichert. Nichts wird an einen Server geschickt. Mit „Daten sichern“ kannst du eine Datei herunterladen, um deine Einträge zu sichern oder auf ein anderes Gerät zu übertragen.</p>
+  <h2>Quellen und Dank</h2>
+  <p>Die Definition von Erfolg im Heft stammt von Paul J. Meyer und wird mit Namensnennung zitiert. {{ t.not_affiliated }}</p>
+  <p>Die Studie zu schriftlichen Zielen: Gail Matthews, Dominican University of California, vorgestellt 2007 auf der 87. Tagung der Western Psychological Association. Die oft zitierte „Yale-Studie“ (3 %) hat nie stattgefunden.</p>
+  <p>{{ t.translation_note }}</p>
+  <h2>Lizenz</h2>
+  <p>Texte, Arbeitsblätter und Bibelübersetzung: CC BY-NC-ND 4.0 (siehe <a href="legal.html">Impressum</a>). Der Programmcode steht unter der MIT-Lizenz. Für die PDF-Funktionen wird <a href="https://pdf-lib.js.org/">pdf-lib</a> (MIT) verwendet.</p>
+  {% elif lang == 'af' %}
+  <p><strong>{{ t.app_title }}</strong> is 'n boekie en 'n klein app oor persoonlike leierskap en doelwitstelling deur {{ t.author }}. Die boekie neem jou in ses kort hoofstukke deur sukses, die innerlike fondament, die lewenswiel en die stel van doelwitte. Die drie gereedskapstukke – lewenswiel, doelwitbeplanningsblad en doelwitplan vir die hele lewe – help jou om wat jy gelees het dadelik toe te pas.</p>
+  <h2>Jou data</h2>
+  <p>Alles wat jy in die gereedskap invul, word net in die blaaier op jou toestel gestoor. Niks word na 'n bediener gestuur nie. Met “Stoor my data” kan jy 'n lêer aflaai om jou inskrywings te rugsteun of na 'n ander toestel oor te dra.</p>
+  <h2>Bronne en dank</h2>
+  <p>Die definisie van sukses in die boekie kom van Paul J. Meyer en word met erkenning aangehaal. {{ t.not_affiliated }}</p>
+  <p>Die studie oor geskrewe doelwitte: Gail Matthews, Dominican University of California, voorgelê in 2007 by die 87ste kongres van die Western Psychological Association. Die dikwels aangehaalde “Yale-studie” (3%) het nooit plaasgevind nie.</p>
+  <p>{{ t.translation_note }}</p>
+  <h2>Lisensie</h2>
+  <p>Tekste, werkblaaie en Bybelvertaling: CC BY-NC-ND 4.0 (sien die <a href="legal.html">regskennisgewing</a>). Die programkode is onder die MIT-lisensie. Vir die PDF-funksies word <a href="https://pdf-lib.js.org/">pdf-lib</a> (MIT) gebruik.</p>
+  {% else %}
+  <p><strong>{{ t.app_title }}</strong> is a booklet and a small app on personal leadership and goal setting by {{ t.author }}. The booklet takes you in six short chapters through success, the inner foundation, the Wheel of Life and setting goals. The three tools – Wheel of Life, Goal Planning Worksheet and Whole-Life Goal Plan – help you put what you read into practice straight away.</p>
+  <h2>Your data</h2>
+  <p>Everything you enter in the tools is stored only in the browser on your device. Nothing is sent to a server. Use “Download my data” to keep a backup file or to move your entries to another device.</p>
+  <h2>Sources and thanks</h2>
+  <p>The definition of success in the booklet is by Paul J. Meyer and is quoted with attribution. {{ t.not_affiliated }}</p>
+  <p>The study on written goals: Gail Matthews, Dominican University of California, presented in 2007 at the 87th Convention of the Western Psychological Association. The often-quoted “Yale study” (3%) never took place.</p>
+  <p>{{ t.translation_note }}</p>
+  <h2>Licence</h2>
+  <p>Texts, worksheets and Bible translation: CC BY-NC-ND 4.0 (see the <a href="legal.html">imprint</a>). The program code is under the MIT licence. The PDF features use <a href="https://pdf-lib.js.org/">pdf-lib</a> (MIT).</p>
+  {% endif %}
+</article>
+{% endblock %}

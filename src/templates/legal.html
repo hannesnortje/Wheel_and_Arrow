@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}{{ t.legal }}{% endblock %}
+{% block main %}
+<article class="wrap day legal">
+  <h1>{{ t.legal }}</h1>
+  {% if lang != 'de' %}<p class="lead">{% if lang == 'en' %}This is a translation for convenience. The German version is legally binding.{% else %}Hierdie is 'n vertaling vir gerief. Die Duitse weergawe is regsgeldig.{% endif %} <a href="../de/legal.html">Deutsch</a></p>{% endif %}
+
+  {% if lang == 'de' %}
+  <h2>Impressum</h2>
+  <p>Angaben gemäß § 18 Abs. 1 MStV und § 5 DDG</p>
+  {% elif lang == 'en' %}
+  <h2>Legal notice</h2>
+  <p>Information according to § 18 (1) MStV and § 5 DDG (German law)</p>
+  {% else %}
+  <h2>Regskennisgewing</h2>
+  <p>Inligting volgens § 18 (1) MStV en § 5 DDG (Duitse reg)</p>
+  {% endif %}
+  <p class="address">{{ legal.name }}<br>{% for a in legal.address_lines or [] %}{{ a }}<br>{% endfor %}
+  {% if lang == 'de' %}E-Mail{% elif lang == 'en' %}Email{% else %}E-pos{% endif %}: <a href="mailto:{{ legal.email }}">{{ legal.email }}</a></p>
+  <p>{% if lang == 'de' %}Verantwortlich für den Inhalt{% elif lang == 'en' %}Responsible for the content{% else %}Verantwoordelik vir die inhoud{% endif %}: {{ legal.name }}, {% if lang == 'de' %}Anschrift wie oben{% elif lang == 'en' %}address as above{% else %}adres soos hierbo{% endif %}.</p>
+
+  {% if lang == 'de' %}
+  <h2>Urheberrecht</h2>
+  <p>Das Heft, die Arbeitsblätter, die Bibelübersetzung und alle weiteren Texte und Materialien auf dieser Website sind urheberrechtlich geschützt. © {{ year }} {{ legal.name }}.</p>
+  {% if legal.licence %}<p>{{ legal.licence }}</p>{% else %}<p>Alle Rechte vorbehalten. Für eine Nutzung über den privaten Gebrauch hinaus – etwa den Abdruck in Gemeindebriefen – frag bitte per E-Mail an.</p>{% endif %}
+  <p>Die Schriftarten Literata und Inter stehen unter der SIL Open Font License und werden von dieser Website selbst ausgeliefert.</p>
+
+  <h2>Haftung</h2>
+  <p>Die Inhalte wurden mit Sorgfalt erstellt. Für Inhalte externer Websites, auf die verlinkt wird, sind ausschließlich deren Betreiber verantwortlich.</p>
+
+  <h2>Datenschutzerklärung</h2>
+  <h3>Verantwortlicher</h3>
+  <p>{{ legal.name }}, Anschrift und E-Mail siehe oben.</p>
+  <h3>Hosting und Server-Logfiles</h3>
+  <p>Diese Website wird über GitHub Pages bereitgestellt (GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA). Beim Aufruf der Seiten verarbeitet GitHub technisch notwendige Verbindungsdaten, insbesondere deine IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite und Angaben zu Browser und Betriebssystem. Das ist nötig, um die Website auszuliefern und ihre Sicherheit zu gewährleisten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren und zuverlässigen Betrieb). Daten können dabei in die USA übermittelt werden; GitHub stützt sich hierfür nach eigenen Angaben auf die EU-Standardvertragsklauseln. Näheres: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement">Datenschutzerklärung von GitHub</a>.</p>
+  <h3>Keine Cookies, kein Tracking</h3>
+  <p>Diese Website setzt keine Cookies, keine Analyse- oder Tracking-Werkzeuge und keine eingebetteten Inhalte Dritter ein. Schriftarten werden von dieser Website selbst geladen, nicht von fremden Servern.</p>
+  <h3>Speicherung auf deinem Gerät</h3>
+  <p>Die Seite speichert deine Sprachwahl und alles, was du in das Lebensrad, das Zielplanungsblatt und den Zielplan einträgst, im lokalen Speicher deines Browsers (localStorage). Diese Angaben bleiben auf deinem Gerät und werden nicht an uns oder Dritte übertragen; auch PDF- und Sicherungsdateien werden direkt auf deinem Gerät erzeugt. Außerdem legt die Seite eine Kopie ihrer Inhalte im Browser ab, damit sie auch offline funktioniert. Du kannst deine Einträge in jedem Werkzeug mit „Alles löschen“ entfernen oder alle Daten über die Einstellungen deines Browsers löschen. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG, da diese Speicherung für die von dir gewünschte Funktion unbedingt erforderlich ist.</p>
+  <h3>Kontakt per E-Mail</h3>
+  <p>Wenn du per E-Mail Kontakt aufnimmst, werden deine Angaben nur zur Bearbeitung deiner Anfrage verwendet (Art. 6 Abs. 1 lit. f DSGVO) und danach gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
+  <h3>Deine Rechte</h3>
+  <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch (Art. 15–21 DSGVO). Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Landesbeauftragten für Datenschutz und Informationsfreiheit Nordrhein-Westfalen.</p>
+  <p class="muted">Stand: {{ legal_date }}</p>
+
+  {% elif lang == 'en' %}
+  <h2>Copyright</h2>
+  <p>The booklet, the worksheets, the Bible translation and all other texts and materials on this website are protected by copyright. © {{ year }} {{ legal.name }}.</p>
+  {% if legal.licence_en %}<p>{{ legal.licence_en }}</p>{% else %}<p>All rights reserved. For any use beyond personal use – for example reprinting in a church newsletter – please ask by email.</p>{% endif %}
+  <p>The fonts Literata and Inter are licensed under the SIL Open Font License and are served by this website itself.</p>
+
+  <h2>Liability</h2>
+  <p>The content has been prepared with care. The operators of external websites that are linked to are solely responsible for their content.</p>
+
+  <h2>Privacy statement</h2>
+  <h3>Controller</h3>
+  <p>{{ legal.name }}, address and email above.</p>
+  <h3>Hosting and server log files</h3>
+  <p>This website is provided via GitHub Pages (GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA). When you open the pages, GitHub processes technically necessary connection data, in particular your IP address, the date and time of access, the page requested and details of your browser and operating system. This is necessary to deliver the website and keep it secure. The legal basis is Art. 6(1)(f) GDPR (legitimate interest in secure and reliable operation). Data may be transferred to the USA; according to GitHub, this is based on the EU Standard Contractual Clauses. More: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+  <h3>No cookies, no tracking</h3>
+  <p>This website uses no cookies, no analytics or tracking tools and no embedded third-party content. Fonts are loaded from this website itself, not from external servers.</p>
+  <h3>Storage on your device</h3>
+  <p>The site stores your language choice and everything you enter in the Wheel of Life, the Goal Planning Worksheet and the Whole-Life Goal Plan in your browser's local storage (localStorage). This information stays on your device and is not transmitted to us or to anyone else; PDF and backup files are also created directly on your device. The site also keeps a copy of its pages in your browser so that it works offline. You can delete your entries in each tool with “Clear all”, or remove all data in your browser settings. The legal basis is § 25(2) no. 2 TDDDG, as this storage is strictly necessary for the function you request.</p>
+  <h3>Contact by email</h3>
+  <p>If you contact us by email, your details are used only to deal with your enquiry (Art. 6(1)(f) GDPR) and are then deleted, unless statutory retention obligations apply.</p>
+  <h3>Your rights</h3>
+  <p>You have the right of access, rectification, erasure, restriction of processing, data portability and objection (Art. 15–21 GDPR). You can also lodge a complaint with a data protection supervisory authority, for example the State Commissioner for Data Protection and Freedom of Information of North Rhine-Westphalia.</p>
+  <p class="muted">Last updated: {{ legal_date }}</p>
+
+  {% else %}
+  <h2>Kopiereg</h2>
+  <p>Die boekie, die werkblaaie, die Bybelvertaling en alle ander tekste en materiaal op hierdie webwerf word deur kopiereg beskerm. © {{ year }} {{ legal.name }}.</p>
+  {% if legal.licence_af %}<p>{{ legal.licence_af }}</p>{% else %}<p>Alle regte voorbehou. Vir enige gebruik buiten persoonlike gebruik – byvoorbeeld herdruk in 'n gemeentenuusbrief – vra asseblief per e-pos.</p>{% endif %}
+  <p>Die lettertipes Literata en Inter is onder die SIL Open Font License gelisensieer en word deur hierdie webwerf self gelewer.</p>
+
+  <h2>Aanspreeklikheid</h2>
+  <p>Die inhoud is met sorg opgestel. Die operateurs van eksterne webwerwe waarna geskakel word, is alleen verantwoordelik vir hulle inhoud.</p>
+
+  <h2>Privaatheidsverklaring</h2>
+  <h3>Verantwoordelike</h3>
+  <p>{{ legal.name }}, adres en e-pos hierbo.</p>
+  <h3>Gasheer en bedienerlêers</h3>
+  <p>Hierdie webwerf word via GitHub Pages aangebied (GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, VSA). Wanneer jy die blaaie oopmaak, verwerk GitHub tegnies noodsaaklike verbindingsdata, veral jou IP-adres, die datum en tyd van toegang, die blad wat aangevra is en besonderhede oor jou blaaier en bedryfstelsel. Dit is nodig om die webwerf te lewer en veilig te hou. Die regsgrondslag is Art. 6(1)(f) AVG/GDPR (geregverdigde belang by veilige en betroubare werking). Data kan na die VSA oorgedra word; volgens GitHub berus dit op die EU-standaardkontrakbepalings. Meer: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub se privaatheidsverklaring</a>.</p>
+  <h3>Geen koekies, geen opsporing</h3>
+  <p>Hierdie webwerf gebruik geen koekies, geen analise- of opsporingsgereedskap en geen ingebedde inhoud van derdes nie. Lettertipes word van hierdie webwerf self gelaai, nie van eksterne bedieners nie.</p>
+  <h3>Berging op jou toestel</h3>
+  <p>Die webwerf stoor jou taalkeuse en alles wat jy in die lewenswiel, die doelwitbeplanningsblad en die doelwitplan invul in jou blaaier se plaaslike berging (localStorage). Hierdie inligting bly op jou toestel en word nie aan ons of iemand anders gestuur nie; PDF- en rugsteunlêers word ook direk op jou toestel geskep. Die webwerf hou ook 'n kopie van sy blaaie in jou blaaier sodat dit aflyn werk. Jy kan jou inskrywings in elke gereedskapstuk met “Vee alles uit” verwyder, of alle data in jou blaaierinstellings uitvee. Die regsgrondslag is § 25(2) nr. 2 TDDDG, aangesien hierdie berging streng noodsaaklik is vir die funksie wat jy versoek.</p>
+  <h3>Kontak per e-pos</h3>
+  <p>As jy per e-pos kontak maak, word jou besonderhede slegs gebruik om jou navraag te hanteer (Art. 6(1)(f) GDPR) en daarna uitgevee, tensy wetlike bewaringsverpligtinge geld.</p>
+  <h3>Jou regte</h3>
+  <p>Jy het die reg op toegang, regstelling, uitwissing, beperking van verwerking, oordraagbaarheid van data en beswaar (Art. 15–21 GDPR). Jy kan ook 'n klag by 'n toesighoudende owerheid vir databeskerming indien, byvoorbeeld die Staatskommissaris vir Databeskerming en Inligtingsvryheid van Noordryn-Wesfale.</p>
+  <p class="muted">Laas bygewerk: {{ legal_date }}</p>
+  {% endif %}
+</article>
+{% endblock %}

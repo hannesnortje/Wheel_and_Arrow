@@ -1,0 +1,11 @@
+# Imprint details. address_lines: street, postcode + town, country (leave empty until known).
+name: "Dr. Johannes A. Nortjé"
+address_lines:
+  - "Am Kindergarten 19"
+  - "33165 Lichtenau"
+  - "Deutschland"
+email: "biborgs@gmail.com"
+# Licence for the texts (empty = all rights reserved)
+licence: 'Das Heft, die Arbeitsblätter und die Bibelübersetzung stehen unter der Lizenz <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de">Creative Commons Namensnennung – Nicht kommerziell – Keine Bearbeitungen 4.0 International (CC BY-NC-ND 4.0)</a>. Du darfst sie unverändert und nicht kommerziell weitergeben, ausdrucken und in Gemeinde, Kleingruppe oder Kurs verwenden, sofern du den Autor und diese Website nennst. Für Bearbeitungen, Übersetzungen oder kommerzielle Nutzung frag bitte per E-Mail an.'
+licence_en: 'The booklet, the worksheets and the Bible translation are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)</a>. You may share, print and use them unchanged and non-commercially – in church, a small group or a course, for example – as long as you name the author and this website. For adaptations, translations or commercial use, please ask by email.'
+licence_af: 'Die boekie, die werkblaaie en die Bybelvertaling is gelisensieer onder <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Erkenning-NieKommersieel-GeenAfleidings 4.0 Internasionaal (CC BY-NC-ND 4.0)</a>. Jy mag dit onveranderd en nie-kommersieel deel, uitdruk en gebruik – byvoorbeeld in die gemeente, ''n kleingroep of ''n kursus – mits jy die skrywer en hierdie webwerf noem. Vir aanpassings, vertalings of kommersiële gebruik, vra asseblief per e-pos.'

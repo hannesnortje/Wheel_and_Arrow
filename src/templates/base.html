@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}{{ t.app_title }}{% endblock %}</title>
+<meta name="description" content="{{ t.app_sub }}">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ t.app_sub }}">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16465a">
+<link rel="icon" href="{{ root }}assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ root }}assets/icon-180.png">
+<link rel="manifest" href="{{ root }}manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="{{ root }}assets/style.css">
+{% block head %}{% endblock %}
+<script>window.APP = {{ app_json }};</script>
+</head>
+<body data-lang="{{ lang }}" data-page="{{ page }}">
+<a class="skip" href="#main">↓</a>
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="{{ t.menu }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="{{ root }}{{ lang }}/index.html">
+      {% include "_mark.html" %}
+      <span>{% block brand %}{{ t.app_title }}{% endblock %}</span>
+    </a>
+    <nav class="langs" aria-label="{{ t.choose_lang }}">
+      {% for l in langs %}<a href="{{ root }}{{ l }}/{{ file }}" lang="{{ l }}" data-set-lang="{{ l }}"{% if l == lang %} aria-current="true"{% endif %}>{{ l|upper }}</a>{% endfor %}
+    </nav>
+  </div>
+</header>
+<div class="drawer-overlay" data-drawer-close hidden></div>
+<nav id="drawer" class="drawer" aria-label="{{ t.menu }}" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <span class="drawer-title">{{ t.menu }}</span>
+    <button class="icon-btn" type="button" data-drawer-close aria-label="{{ t.close }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <ul class="drawer-links">
+    {% for p, label in nav %}<li><a href="{{ p }}"{% if p == file %} aria-current="page"{% endif %}>{{ label }}</a></li>{% endfor %}
+  </ul>
+  {% if page == 'booklet' %}
+  <section class="drawer-sec">
+    <h2>{{ t.contents }}</h2>
+    <ol class="drawer-toc">
+      {% for c in chapters %}<li><a href="#{{ c.id }}"><span class="dn">{{ c.n }}</span><span class="dt">{{ c.title }}</span></a></li>{% endfor %}
+    </ol>
+  </section>
+  {% endif %}
+  <section class="drawer-sec">
+    <h2>{{ t.downloads }}</h2>
+    <ul class="drawer-links small">
+      <li><a href="{{ root }}pdf/wheel-and-arrow-{{ lang }}.pdf">{{ t.pdf_booklet }}</a></li>
+      <li><a href="{{ root }}pdf/wheel-and-arrow-slides-{{ lang }}.pdf">{{ t.pdf_slides }}</a></li>
+      <li><a href="{{ root }}pdf/goal-worksheet-{{ lang }}.pdf">{{ t.pdf_worksheet }}</a></li>
+    </ul>
+  </section>
+  <section class="drawer-sec">
+    <h2>{{ t.choose_lang }}</h2>
+    <div class="langs drawer-langs">
+      {% for l in langs %}<a href="{{ root }}{{ l }}/{{ file }}" lang="{{ l }}" data-set-lang="{{ l }}"{% if l == lang %} aria-current="true"{% endif %}>{{ strings[l].lang_name }}</a>{% endfor %}
+    </div>
+  </section>
+  <ul class="drawer-links small foot">
+    <li><a href="about.html">{{ t.about }}</a></li>
+    <li><a href="legal.html">{{ t.legal }}</a></li>
+  </ul>
+</nav>
+<main id="main" class="{% block mainclass %}{% endblock %}">
+{% block main %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{{ copyright }} · {{ t.privacy_short }}</p>
+    <p><a href="about.html">{{ t.about }}</a> · <a href="legal.html">{{ t.legal }}</a></p>
+  </div>
+</footer>
+<button class="update-toast" type="button" data-update hidden>{{ t.update_ready }}</button>
+<script src="{{ root }}assets/app.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="hero app-hero">
+  <div class="wrap">
+    <p class="eyebrow">{{ t.app_sub }}</p>
+    <h1>{{ t.app_title }}</h1>
+    <p class="byline">{{ t.author }}</p>
+    <p class="hero-lead">{{ motto }}</p>
+  </div>
+  <svg class="waves" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20c100 0 100-14 200-14s100 14 200 14 100-14 200-14 100 14 200 14 100-14 200-14 100 14 200 14v20H0z"/></svg>
+</section>
+<div class="wrap">
+  <ul class="tool-cards">
+    {% for c in cards %}
+    <li{% if loop.first %} class="first"{% endif %}><a href="{{ c.href }}">{{ c.icon|safe }}<span class="tt">{{ c.title }}</span><span class="ts">{{ c.sub }}</span></a></li>
+    {% endfor %}
+  </ul>
+  <p class="install-tip" data-install-tip>{{ t.install_tip }}</p>
+</div>
+{% endblock %}
