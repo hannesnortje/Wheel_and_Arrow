@@ -353,3 +353,4 @@ a:hover { color: var(--sea-2); }
 .drawer-toc a:hover { background: var(--paper-2); }
 .drawer-toc .dn { font: 600 .95rem/1 var(--serif); color: var(--sea); text-align: center; }
 .body blockquote.motto { background: var(--sea-tint); border-left: 0; border-radius: .9rem; }
+.site-footer a { display: inline-block; padding: .7rem .2rem; }
