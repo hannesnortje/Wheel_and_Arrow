@@ -42,6 +42,7 @@ def iso(text, year):
 
 def sample_goal(lang, area_alias, name):
     e, L = example_data(lang), EX_LABELS[lang]
+    yes = [w is True or str(w).lower() in YES for w in e["worth"]]   # YAML reads a bare yes as True
     year = re.search(r"\d{4}", str(e["started"])).group(0)
     g = {"name": name, "life_area": area_alias.get(e["area"], ""), "started": iso(e["started"], year),
          "target_date": iso(e["target"], year), "achieved_on": iso(e["achieved"], year), "the_goal": e["goal"],
@@ -49,14 +50,14 @@ def sample_goal(lang, area_alias, name):
          "obstacles": "\n".join(f"{i}. {o}" for i, (o, _) in enumerate(e["obstacles"], 1)),
          "handling": "\n".join(f"{i}. {h}" for i, (_, h) in enumerate(e["obstacles"], 1)),
          "who_should_know": "\n".join(f"• {w}" for w in e["who"]), "track_progress": e["track"],
-         "worth_value_yes": e["worth"][0] == "yes", "worth_value_no": e["worth"][0] != "yes",
-         "worth_cost_yes": e["worth"][1] == "yes", "worth_cost_no": e["worth"][1] != "yes", "worth_cost_later": False,
+         "worth_value_yes": yes[0], "worth_value_no": not yes[0],
+         "worth_cost_yes": yes[1], "worth_cost_no": not yes[1], "worth_cost_later": False,
          "reminders": e["reminder"], "picture_success": e["picture"]}
     for i, (step, due, rev, done) in enumerate(e["steps"], 1):
         g[f"action_{i}"] = step
         g[f"due_{i}"] = iso(due, year)
         g[f"reviewed_{i}"] = iso(rev, year)
-        g[f"done_{i}"] = str(done).strip().lower() in YES
+        g[f"done_{i}"] = str(done).strip().lower() in YES or done is True
     return g
 
 

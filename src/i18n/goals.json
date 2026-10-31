@@ -48,10 +48,10 @@
       "handling": "1. A fixed cash-only budget for weekends; the cards stay at home.\n2. An automatic recurring transfer on payday in the banking app.",
       "who_should_know": "• My spouse – so that we plan household spending together and keep each other accountable.\n• My mentor – who asks about my progress at our meetings every two weeks.",
       "track_progress": "A habit tracker on my phone to tick off each transfer, and a look at the account balance on the 1st of every month.",
-      "worth_value_yes": false,
-      "worth_value_no": true,
-      "worth_cost_yes": false,
-      "worth_cost_no": true,
+      "worth_value_yes": true,
+      "worth_value_no": false,
+      "worth_cost_yes": true,
+      "worth_cost_no": false,
       "worth_cost_later": false,
       "reminders": "Financial discipline is a form of self-respect.",
       "picture_success": "A printed screenshot of the savings account at 1,500 USD, taped inside my diary.",
@@ -175,7 +175,8 @@
       "Liggaam & Gesondheid": "body",
       "Gesin & Huis": "family",
       "Werk & Finansies": "work"
-    }
+    },
+    "sample_btn": "Example"
   },
   "de": {
     "title": "Zielplanungsblatt",
@@ -226,10 +227,10 @@
       "handling": "1. Ein festes Bargeldbudget fürs Wochenende; die Karten bleiben zu Hause.\n2. Ein Dauerauftrag zum Zahltag in der Banking-App.",
       "who_should_know": "• Mein Ehepartner – damit wir die Ausgaben im Haushalt gemeinsam planen und einander zur Rechenschaft ziehen.\n• Mein Mentor – der bei unseren Treffen alle zwei Wochen nach meinem Fortschritt fragt.",
       "track_progress": "Ein Gewohnheits-Tracker auf dem Handy, in dem ich jede Überweisung abhake, und ein Blick auf den Kontostand am 1. jedes Monats.",
-      "worth_value_yes": false,
-      "worth_value_no": true,
-      "worth_cost_yes": false,
-      "worth_cost_no": true,
+      "worth_value_yes": true,
+      "worth_value_no": false,
+      "worth_cost_yes": true,
+      "worth_cost_no": false,
       "worth_cost_later": false,
       "reminders": "Finanzielle Disziplin ist eine Form von Selbstachtung.",
       "picture_success": "Ein ausgedruckter Screenshot des Sparkontos mit 1.500 EUR, innen in meinen Kalender geklebt.",
@@ -333,7 +334,8 @@
       "goal_hint": "Formuliere es SMART – spezifisch, messbar, erreichbar, relevant/realistisch, terminiert.",
       "why_hint": "Was ich gewinne, wenn ich es erreiche – und was ich vermeide.",
       "filed": "Wenn es geschafft ist, leg dieses Blatt zu deinen Erfolgen."
-    }
+    },
+    "sample_btn": "Beispiel"
   },
   "af": {
     "title": "Doelwitbeplanningsblad",
@@ -384,10 +386,10 @@
       "handling": "1. 'n Vaste kontantbegroting vir naweke; die kaarte bly by die huis.\n2. 'n Outomatiese herhalende oorplasing op betaaldag in die bank-app.",
       "who_should_know": "• My eggenoot – sodat ons huishoudelike uitgawes saam beplan en mekaar aanspreeklik hou.\n• My mentor – wat elke twee weke by ons gesprekke na my vordering vra.",
       "track_progress": "'n Gewoontevolger op my foon om elke oorplasing af te merk, en 'n kykie na die rekeningsaldo op die 1ste van elke maand.",
-      "worth_value_yes": false,
-      "worth_value_no": true,
-      "worth_cost_yes": false,
-      "worth_cost_no": true,
+      "worth_value_yes": true,
+      "worth_value_no": false,
+      "worth_cost_yes": true,
+      "worth_cost_no": false,
       "worth_cost_later": false,
       "reminders": "Finansiële dissipline is 'n vorm van selfrespek.",
       "picture_success": "'n Gedrukte skermskoot van die spaarrekening op R15 000, binne-in my dagboek vasgeplak.",
@@ -491,6 +493,7 @@
       "goal_hint": "Maak dit SMART – spesifiek, meetbaar, haalbaar, relevant/realisties, tydgebonde.",
       "why_hint": "Wat ek wen as ek dit bereik – en wat ek vermy.",
       "filed": "As dit klaar is, hou hierdie blad by jou suksesse."
-    }
+    },
+    "sample_btn": "Voorbeeld"
   }
 }
